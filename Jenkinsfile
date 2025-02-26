@@ -15,7 +15,7 @@ pipeline {
                 url: 'https://github.com/Uniandes-isis2603/' + env.GIT_REPO
           }
        }
-       stage('Statistical analysis') { 
+       stage('GitInspector') { 
          steps {
             withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                sh 'mkdir -p code-analyzer-report'
@@ -51,7 +51,6 @@ pipeline {
                 docker.image('chrometools-isis2603:latest').inside('-u root') {
                    sh '''
                       npm i -s
-                      npm i -g @angular/cli
                       ng test
                    '''
                 }
