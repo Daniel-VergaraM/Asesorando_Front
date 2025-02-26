@@ -48,7 +48,7 @@ pipeline {
       stage('Test') {
           steps {
              script {
-                docker.image('nodetools-isis2603:latest').inside('-u root') {
+                docker.image('chrometools-isis2603:latest').inside('-u root') {
                    sh '''
                       java -version
                       ng test
