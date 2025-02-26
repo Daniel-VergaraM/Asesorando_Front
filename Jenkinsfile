@@ -50,7 +50,6 @@ pipeline {
              script {
                 docker.image('chrometools-isis2603:latest').inside('-u root') {
                    sh '''
-                      npm i -s
                       ng test --code-coverage
                    '''
                 }
