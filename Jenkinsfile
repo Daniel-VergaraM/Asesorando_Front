@@ -50,7 +50,6 @@ pipeline {
              script {
                 docker.image('chrometools-isis2603:latest').inside('-u root') {
                    sh '''
-                      java -version
                       ng test
                       ./node_modules/sonarqube-scanner/bin/sonar-scanner
                    '''
