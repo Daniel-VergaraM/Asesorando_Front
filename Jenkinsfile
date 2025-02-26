@@ -53,7 +53,6 @@ pipeline {
                       npm i -s
                       npm i -g @angular/cli
                       ng test
-                      ./node_modules/sonarqube-scanner/bin/sonar-scanner
                    '''
                 }
              }
