@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       GIT_REPO = 'ISIS2603_202510_S1_E1_OlimpiadasAndinas_Front'
+       GIT_REPO = 'ISIS2603_202510_S3_E3_Asesorando_Front'
        GIT_CREDENTIAL_ID = '7c21addc-0cbf-4f2e-9bd8-eced479c56c6'
        SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-isis2603'
        SONAR_TOKEN = credentials('sonar-login')
@@ -15,11 +15,11 @@ pipeline {
                 url: 'https://github.com/Uniandes-isis2603/' + env.GIT_REPO
           }
        }
-       stage('GitInspector') { 
+       stage('GitInspector') {
          steps {
             withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                sh 'mkdir -p code-analyzer-report'
-               sh """ curl --request POST --url https://code-analyzer.virtual.uniandes.edu.co/analyze --header "Content-Type: application/json" --data '{"repo_url":"git@github.com:Uniandes-isis2603/bookstore-front.git", "access_token": "${GIT_PASSWORD}" }' > code-analyzer-report/index.html """   
+               sh """ curl --request POST --url https://code-analyzer.virtual.uniandes.edu.co/analyze --header "Content-Type: application/json" --data '{"repo_url":"git@github.com:Uniandes-isis2603/bookstore-front.git", "access_token": "${GIT_PASSWORD}" }' > code-analyzer-report/index.html """
             }
             publishHTML (target: [
                allowMissing: false,
@@ -30,7 +30,7 @@ pipeline {
                reportName: "GitInspector"
             ])
          }
-       }     
+       }
        stage('Build') {
           // Build app
           steps {
