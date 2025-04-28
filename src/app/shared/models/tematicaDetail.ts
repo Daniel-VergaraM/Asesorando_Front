@@ -6,6 +6,6 @@ export class TematicaDetail extends Tematica {
 
   constructor(id: number, area: string, tema: string, profesores: Profesor[]) {
     super(id, area, tema);
-    this.profesores = profesores;
+    this.profesores = profesores || [];
   }
 }

@@ -1,22 +1,21 @@
 import { Asesoria } from './asesoria';
-import { Comentario } from './comentario';
+import { Calendario } from './calendario';
 import { Profesor } from './profesor';
 import { Reserva } from './reserva';
 
-export class ComentarioDetail extends Comentario {
+export class CalendarioDetail extends Calendario {
   public profesores: Profesor[];
   public asesorias: Asesoria[];
   public reservas: Reserva[];
 
   constructor(
-    id: number,
-    comentario: string,
-    calificacion: number,
-    profesores: Profesor[],
-    asesorias: Asesoria[],
-    reservas: Reserva[]
+    fechaInicio: Date,
+    fechaFin: Date,
+    profesores?: Profesor[],
+    asesorias?: Asesoria[],
+    reservas?: Reserva[]
   ) {
-    super(id, comentario, calificacion);
+    super(fechaInicio, fechaFin);
     this.profesores = profesores || [];
     this.asesorias = asesorias || [];
     this.reservas = reservas || [];
