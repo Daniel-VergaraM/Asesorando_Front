@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario";
+import { Usuario } from './usuario';
 
 export class Profesor extends Usuario {
   public fotoUrl: string;
