@@ -3,7 +3,7 @@ import { Calendario } from './calendario';
 import { Profesor } from './profesor';
 import { Reserva } from './reserva';
 export class AsesoriaDetail extends Asesoria {
-  public calendario: Calendario[];
+  public calendario: Calendario | null;
   public profesor: Profesor[];
   public reserva: Reserva[];
 
@@ -15,12 +15,12 @@ export class AsesoriaDetail extends Asesoria {
     area: string,
     completada: boolean,
     profesorId: number,
-    calendario?: Calendario[],
+    calendario?: Calendario,
     profesor?: Profesor[],
     reserva?: Reserva[]
   ) {
     super(id, duracion, tematica, tipo, area, completada, profesorId);
-    this.calendario = calendario || [];
+    this.calendario = calendario || null;
     this.profesor = profesor || [];
     this.reserva = reserva || [];
   }
