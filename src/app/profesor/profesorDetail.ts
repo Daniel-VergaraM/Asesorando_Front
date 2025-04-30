@@ -1,5 +1,5 @@
 import { Profesor } from './profesor';
-import { Tematica } from './tematica';
+import { Tematica } from '../tematica/tematica';
 
 export class ProfesorDetail extends Profesor {
   public tematicas: Tematica[];

@@ -1,6 +1,6 @@
-import { Comentario } from './comentario';
+import { Comentario } from '../comentario/comentario';
 import { Estudiante } from './estudiante';
-import { Reserva } from './reserva';
+import { Reserva } from '../reserva/reserva';
 
 export class EstudianteDetail extends Estudiante {
   public comentarios: Comentario[];

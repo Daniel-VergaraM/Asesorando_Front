@@ -1,7 +1,7 @@
-import { Asesoria } from './asesoria';
+import { Asesoria } from '../asesoria/asesoria';
 import { Calendario } from './calendario';
-import { Profesor } from './profesor';
-import { Reserva } from './reserva';
+import { Profesor } from '../profesor/profesor';
+import { Reserva } from '../reserva/reserva';
 
 export class CalendarioDetail extends Calendario {
   public profesores: Profesor[];
@@ -9,13 +9,14 @@ export class CalendarioDetail extends Calendario {
   public reservas: Reserva[];
 
   constructor(
+    id: number,
     fechaInicio: Date,
     fechaFin: Date,
     profesores?: Profesor[],
     asesorias?: Asesoria[],
     reservas?: Reserva[]
   ) {
-    super(fechaInicio, fechaFin);
+    super(id, fechaInicio, fechaFin);
     this.profesores = profesores || [];
     this.asesorias = asesorias || [];
     this.reservas = reservas || [];

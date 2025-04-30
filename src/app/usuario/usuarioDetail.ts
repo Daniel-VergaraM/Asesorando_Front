@@ -1,4 +1,4 @@
-import { Asesoria } from './asesoria';
+import { Asesoria } from '../asesoria/asesoria';
 import { Usuario } from './usuario';
 
 export class UsuarioDetail extends Usuario {

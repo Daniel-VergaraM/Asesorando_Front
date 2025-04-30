@@ -1,7 +1,7 @@
-import { Asesoria } from './asesoria';
+import { Asesoria } from '../asesoria/asesoria';
 import { Comentario } from './comentario';
-import { Profesor } from './profesor';
-import { Reserva } from './reserva';
+import { Profesor } from '../profesor/profesor';
+import { Reserva } from '../reserva/reserva';
 
 export class ComentarioDetail extends Comentario {
   public profesores: Profesor[];

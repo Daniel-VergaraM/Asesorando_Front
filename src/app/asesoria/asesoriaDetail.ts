@@ -1,7 +1,7 @@
 import { Asesoria } from './asesoria';
-import { Calendario } from './calendario';
-import { Profesor } from './profesor';
-import { Reserva } from './reserva';
+import { Calendario } from '../calendario/calendario';
+import { Profesor } from '../profesor/profesor';
+import { Reserva } from '../reserva/reserva';
 export class AsesoriaDetail extends Asesoria {
   public calendario: Calendario | null;
   public profesor: Profesor[];

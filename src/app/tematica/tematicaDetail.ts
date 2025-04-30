@@ -1,4 +1,4 @@
-import { Profesor } from './profesor';
+import { Profesor } from '../profesor/profesor';
 import { Tematica } from './tematica';
 
 export class TematicaDetail extends Tematica {
