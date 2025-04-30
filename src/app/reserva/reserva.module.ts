@@ -4,8 +4,9 @@ import { ReservaComponent } from './reserva.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReservaComponent
   ],
-  declarations: [ReservaComponent]
+  declarations: []
 })
 export class ReservaModule { }

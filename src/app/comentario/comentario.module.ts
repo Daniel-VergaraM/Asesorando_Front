@@ -4,8 +4,9 @@ import { ComentarioComponent } from './comentario.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ComentarioComponent
   ],
-  declarations: [ComentarioComponent]
+  declarations: []
 })
 export class ComentarioModule { }

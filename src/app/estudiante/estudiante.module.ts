@@ -4,8 +4,9 @@ import { EstudianteComponent } from './estudiante.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    EstudianteComponent
   ],
-  declarations: [EstudianteComponent]
+  declarations: []
 })
 export class EstudianteModule { }

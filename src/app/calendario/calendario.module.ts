@@ -4,8 +4,9 @@ import { CalendarioComponent } from './calendario.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CalendarioComponent
   ],
-  declarations: [CalendarioComponent]
+  declarations: []
 })
 export class CalendarioModule { }
