@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsuarioComponent } from './usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
+import { UsuarioComponent }           from './usuario.component';
+import { UsuarioListComponent }       from './usuario-list/usuario-list.component';
+import { UsuarioActualizarComponent } from './usuario-update/usuario-update.component';
+import { Usuario } from './usuario';
 @NgModule({
-  imports: [
-    CommonModule
+  declarations: [UsuarioComponent, UsuarioListComponent, UsuarioActualizarComponent],
+  exports: [
   ],
-  declarations: [UsuarioComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
 })
-export class UsuarioModule { }
+export class UsuarioModule {}

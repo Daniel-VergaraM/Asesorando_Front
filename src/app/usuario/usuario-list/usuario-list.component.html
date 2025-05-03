@@ -1,0 +1,27 @@
+<div class="container-fluid mt-2 mb-4">
+    <h2 class="text-center">Usuarios</h2>
+  
+    <div class="row justify-content-center align-items-center">
+      <div *ngFor="let usuario of users" class="user-card col-auto mb-4">
+        <div class="card user-card-inner">
+          <div class="card-body text-dark">
+            <h5 class="card-title">{{ usuario.nombre }}</h5>
+            <p class="card-text"><strong>ID:</strong> {{ usuario.id }}</p>
+            <p class="card-text"><strong>Correo:</strong> {{ usuario.correo }}</p>
+            <p class="card-text"><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <button
+              class="btn btn-outline-primary btn-sm"
+              (click)="seleccionarUsuario(usuario)"
+            >Ver</button>
+            <button
+              class="btn btn-outline-success btn-sm"
+              (click)="updateUsuario(usuario.id)"
+            >Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
