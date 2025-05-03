@@ -1,3 +1,31 @@
-<p>
-  calendario works!
-</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Calendario de Asesorías</h2>
+        <div>
+          <button *ngIf="!isProfesor" class="btn btn-sm btn-outline-primary me-2" (click)="mockProfesorSession()">
+            Simular sesión de profesor
+          </button>
+          <button *ngIf="isProfesor" class="btn btn-sm btn-outline-danger" (click)="clearSession()">
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+
+      <div class="alert alert-info" *ngIf="!isProfesor">
+        <i class="bi bi-info-circle"></i>
+        Para acceder a tu calendario de asesorías, necesitas iniciar sesión como profesor.
+      </div>
+
+      <div class="card mt-3" *ngIf="isProfesor">
+        <div class="card-header">
+          <h3>Mi Calendario de Asesorías</h3>
+        </div>
+        <div class="card-body">
+          <app-calendario-list [profesorId]="userId"></app-calendario-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

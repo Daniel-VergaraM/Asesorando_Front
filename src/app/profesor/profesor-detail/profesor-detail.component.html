@@ -1,3 +1,160 @@
-<p>
-  profesor-detail works!
-</p>
+<div class="container" *ngIf="profesorLoaded">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">Perfil de Profesor</h2>
+
+      <!-- Session status bar -->
+      <div class="alert" [ngClass]="{'alert-info': !canEditProfile(), 'alert-success': canEditProfile()}" *ngIf="loginMessage || canEditProfile()">
+        <div class="d-flex justify-content-between align-items-center">
+          <span>
+            <i [ngClass]="{'bi bi-info-circle': !canEditProfile(), 'bi bi-check-circle': canEditProfile()}"></i>
+            {{ canEditProfile() ? 'Has iniciado sesión como profesor. Puedes editar tu perfil.' : loginMessage }}
+          </span>
+          <div>
+            <button *ngIf="!canEditProfile() && profesorLoaded" class="btn btn-sm btn-outline-primary me-2" (click)="mockProfesorSession()">
+              Simular sesión
+            </button>
+            <button *ngIf="canEditProfile()" class="btn btn-sm btn-outline-danger" (click)="clearSession()">
+              Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3>{{ profesor.nombre }}</h3>
+          <button *ngIf="canEditProfile() && !showEditForm" class="btn btn-primary" (click)="toggleEditForm()">
+            Editar perfil
+          </button>
+        </div>
+
+        <!-- View Mode -->
+        <div class="card-body" *ngIf="!showEditForm">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <img [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'" alt="Foto del profesor" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+              <h4>Información de Contacto</h4>
+              <p><strong>Correo:</strong> {{ profesor.correo }}</p>
+              <p><strong>Teléfono:</strong> {{ profesor.telefono }}</p>
+              <p *ngIf="profesor.enlaceReunion"><strong>Enlace de reunión:</strong> <a [href]="profesor.enlaceReunion" target="_blank">{{ profesor.enlaceReunion }}</a></p>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <h4>Información Profesional</h4>
+              <div class="card mb-3">
+                <div class="card-header">Formación Académica</div>
+                <div class="card-body">
+                  <p>{{ profesor.formacion }}</p>
+                </div>
+              </div>
+
+              <div class="card mb-3">
+                <div class="card-header">Experiencia</div>
+                <div class="card-body">
+                  <p>{{ profesor.experiencia }}</p>
+                </div>
+              </div>
+
+              <div class="card mb-3" *ngIf="profesor.videoUrl">
+                <div class="card-header">Video de Presentación</div>
+                <div class="card-body">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" [src]="profesor.videoUrl | safeResourceUrl" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-3" *ngIf="profesor.tematicas && profesor.tematicas.length > 0">
+                <div class="card-header">Áreas de Especialidad</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6" *ngFor="let tematica of profesor.tematicas">
+                      <div class="card mb-2">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ tematica.area }}</h5>
+                          <p class="card-text">{{ tematica.tema }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Mode -->
+        <div class="card-body" *ngIf="showEditForm">
+          <form #profesorForm="ngForm">
+            <div class="row mb-4">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="fotoUrl">URL de la foto:</label>
+                  <input type="text" class="form-control" id="fotoUrl" name="fotoUrl" [(ngModel)]="profesor.fotoUrl">
+                </div>
+                <div class="mt-3">
+                  <img [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'" alt="Foto del profesor" class="img-fluid rounded">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h4>Información de Contacto</h4>
+                <div class="form-group">
+                  <label for="correo">Correo:</label>
+                  <input type="email" class="form-control" id="correo" name="correo" [(ngModel)]="profesor.correo" required>
+                </div>
+                <div class="form-group mt-2">
+                  <label for="telefono">Teléfono:</label>
+                  <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="profesor.telefono" required>
+                </div>
+                <div class="form-group mt-2">
+                  <label for="enlaceReunion">Enlace de reunión:</label>
+                  <input type="text" class="form-control" id="enlaceReunion" name="enlaceReunion" [(ngModel)]="profesor.enlaceReunion">
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-12">
+                <h4>Información Profesional</h4>
+                <div class="form-group mt-2">
+                  <label for="formacion">Formación Académica:</label>
+                  <textarea class="form-control" id="formacion" name="formacion" [(ngModel)]="profesor.formacion" rows="5" required></textarea>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="experiencia">Experiencia:</label>
+                  <textarea class="form-control" id="experiencia" name="experiencia" [(ngModel)]="profesor.experiencia" rows="5" required></textarea>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="videoUrl">URL del video de presentación:</label>
+                  <input type="text" class="form-control" id="videoUrl" name="videoUrl" [(ngModel)]="profesor.videoUrl">
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-secondary me-2" (click)="cancelEdit()">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="saveChanges(profesor)" [disabled]="profesorForm.invalid">
+                Guardar cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!profesorLoaded">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border text-primary mt-5" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>

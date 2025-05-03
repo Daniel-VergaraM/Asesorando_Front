@@ -1,3 +1,128 @@
-<p>
-  calendario-list works!
-</p>
+<div class="container">
+  <!-- Mensaje de error si existe -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Spinner de carga -->
+  <div *ngIf="loading" class="d-flex justify-content-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error">
+    <!-- Filtros -->
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <h5 class="mb-0">Filtros</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="searchTerm" class="form-label">Buscar asesorías:</label>
+            <input type="text" class="form-control" id="searchTerm" placeholder="Buscar por temática, área o tipo..."
+              [(ngModel)]="searchTerm">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="searchDate" class="form-label">Fecha:</label>
+            <input type="date" class="form-control" id="searchDate" [(ngModel)]="searchDate">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="filterEstado" class="form-label">Estado:</label>
+            <select class="form-select" id="filterEstado" [(ngModel)]="filterEstado">
+              <option value="todas">Todas</option>
+              <option value="disponibles">Disponibles</option>
+              <option value="reservadas">Reservadas</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mt-2">
+          <button class="btn btn-secondary me-2" (click)="limpiarFiltros()">Limpiar</button>
+          <button class="btn btn-primary" (click)="aplicarFiltros()">Aplicar filtros</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sin resultados -->
+    <div *ngIf="asesorias.length === 0" class="alert alert-info">
+      No tienes asesorías registradas.
+    </div>
+
+    <div *ngIf="asesorias.length > 0">
+      <!-- Asesorías disponibles -->
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-calendar-check"></i> Asesorías disponibles ({{ asesoriasDisponibles.length }})
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Tipo</th>
+                  <th>Temática</th>
+                  <th>Área</th>
+                  <th>Duración</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let asesoria of asesoriasDisponibles">
+                  <td>{{ asesoria.tipo }}</td>
+                  <td>{{ asesoria.tematica }}</td>
+                  <td>{{ asesoria.area }}</td>
+                  <td>{{ asesoria.duracion }}</td>
+                  <td>{{ asesoria.calendario?.fechaInicio ? formatearFecha(asesoria.calendario?.fechaInicio) : 'N/A' }}</td>
+                </tr>
+                <tr *ngIf="asesoriasDisponibles.length === 0">
+                  <td colspan="5" class="text-center py-3">No hay asesorías disponibles que coincidan con los filtros.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Asesorías reservadas -->
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">
+            <i class="bi bi-calendar-x"></i> Asesorías reservadas ({{ asesoriasReservadas.length }})
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Tipo</th>
+                  <th>Temática</th>
+                  <th>Área</th>
+                  <th>Duración</th>
+                  <th>Fecha</th>
+                  <th>Estudiante</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let asesoria of asesoriasReservadas">
+                  <td>{{ asesoria.tipo }}</td>
+                  <td>{{ asesoria.tematica }}</td>
+                  <td>{{ asesoria.area }}</td>
+                  <td>{{ asesoria.duracion }}</td>
+                  <td>{{ asesoria.calendario?.fechaInicio ? formatearFecha(asesoria.calendario?.fechaInicio) : 'N/A' }}</td>
+                  <td>No disponible</td>
+                </tr>
+                <tr *ngIf="asesoriasReservadas.length === 0">
+                  <td colspan="6" class="text-center py-3">No hay asesorías reservadas que coincidan con los filtros.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

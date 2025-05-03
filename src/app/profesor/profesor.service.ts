@@ -1,13 +1,20 @@
 import { Profesor } from './profesor';
-import { HttpClient } from '@angular/common/http';
+import { ProfesorDetail } from './profesorDetail';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfesorService {
-  private url = 'http://localhost:8080/api/profesores';
+  private url = environment.apiUrl + '/profesores';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -41,14 +48,20 @@ export class ProfesorService {
   }
 
   createProfesor(profesor: Profesor): Observable<Profesor> {
-    return this.http.post<Profesor>(this.url, profesor);
+    console.log('Creating profesor with data:', profesor);
+    return this.http.post<Profesor>(this.url, profesor, this.httpOptions);
   }
 
   updateProfesor(profesor: Profesor): Observable<Profesor> {
-    return this.http.put<Profesor>(this.url + '/' + profesor.id, profesor);
+    console.log('Updating profesor with id:', profesor.id);
+    return this.http.put<Profesor>(this.url + '/' + profesor.id, profesor, this.httpOptions);
   }
 
   deleteProfesor(id: number): Observable<void> {
     return this.http.delete<void>(this.url + '/' + id);
+  }
+
+  getProfesorDetail(id: number): Observable<ProfesorDetail> {
+    return this.http.get<ProfesorDetail>(this.url + '/' + id);
   }
 }

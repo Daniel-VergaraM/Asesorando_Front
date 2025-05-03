@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsuarioComponent }           from './usuario/usuario.component';
 import { UsuarioListComponent }       from './usuario/usuario-list/usuario-list.component';
 import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-update.component';
+import { ProfesorDetailComponent } from './profesor/profesor-detail/profesor-detail.component';
+import { ProfesorListComponent } from './profesor/profesor-list/profesor-list.component';
+import { ProfesorCreateComponent } from './profesor/profesor-create/profesor-create.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 const routes: Routes = [
   {
@@ -12,6 +16,18 @@ const routes: Routes = [
       { path: '',           component: UsuarioListComponent   }, // /usuarios
       { path: 'update/:id', component: UsuarioActualizarComponent } // usuariosactualizar
     ]
+  },
+  {
+    path: 'profesores',
+    children: [
+      { path: '', component: ProfesorListComponent },
+      { path: 'nuevo', component: ProfesorCreateComponent },
+      { path: ':id', component: ProfesorDetailComponent }
+    ]
+  },
+  {
+    path: 'calendario',
+    component: CalendarioComponent
   },
   { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
   { path: '**', redirectTo: 'usuarios' }

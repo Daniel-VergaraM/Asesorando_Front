@@ -1,3 +1,145 @@
-<p>
-  profesor-create works!
-</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Crear Nuevo Profesor</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <form [formGroup]="profesorForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Información Personal</h4>
+
+            <!-- Nombre -->
+            <div class="form-group mb-3">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" formControlName="nombre" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formControls['nombre'].errors }">
+              <div *ngIf="submitted && formControls['nombre'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['nombre'].errors['required']">El nombre es requerido</div>
+              </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="form-group mb-3">
+              <label for="correo">Correo electrónico *</label>
+              <input type="email" id="correo" formControlName="correo" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formControls['correo'].errors }">
+              <div *ngIf="submitted && formControls['correo'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['correo'].errors['required']">El correo es requerido</div>
+                <div *ngIf="formControls['correo'].errors['email']">Ingrese un correo válido</div>
+              </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group mb-3">
+              <label for="contrasena">Contraseña *</label>
+              <input type="password" id="contrasena" formControlName="contrasena" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formControls['contrasena'].errors }">
+              <div *ngIf="submitted && formControls['contrasena'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['contrasena'].errors['required']">La contraseña es requerida</div>
+                <div *ngIf="formControls['contrasena'].errors['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+              </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-group mb-3">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" formControlName="telefono" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formControls['telefono'].errors }">
+              <div *ngIf="submitted && formControls['telefono'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['telefono'].errors['required']">El teléfono es requerido</div>
+              </div>
+            </div>
+
+            <!-- Tipo de Profesor -->
+            <div class="form-group mb-3">
+              <label for="tipo">Tipo de Profesor *</label>
+              <select id="tipo" formControlName="tipo" class="form-select">
+                <option *ngFor="let tipo of tiposProfesor" [value]="tipo">{{ tipo }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <h4>Información Profesional</h4>
+
+            <!-- Formación -->
+            <div class="form-group mb-3">
+              <label for="formacion">Formación Académica *</label>
+              <textarea id="formacion" formControlName="formacion" class="form-control" rows="4"
+                [ngClass]="{ 'is-invalid': submitted && formControls['formacion'].errors }"></textarea>
+              <div *ngIf="submitted && formControls['formacion'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['formacion'].errors['required']">La formación académica es requerida</div>
+              </div>
+            </div>
+
+            <!-- Experiencia -->
+            <div class="form-group mb-3">
+              <label for="experiencia">Experiencia *</label>
+              <textarea id="experiencia" formControlName="experiencia" class="form-control" rows="4"
+                [ngClass]="{ 'is-invalid': submitted && formControls['experiencia'].errors }"></textarea>
+              <div *ngIf="submitted && formControls['experiencia'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['experiencia'].errors['required']">La experiencia es requerida</div>
+              </div>
+            </div>
+
+            <!-- Enlace de Reunión -->
+            <div class="form-group mb-3">
+              <label for="enlaceReunion">Enlace de reunión (opcional)</label>
+              <input type="url" id="enlaceReunion" formControlName="enlaceReunion" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <h4>Medios y Ubicación</h4>
+
+            <!-- URL de Foto -->
+            <div class="form-group mb-3">
+              <label for="fotoUrl">URL de Foto (opcional)</label>
+              <input type="url" id="fotoUrl" formControlName="fotoUrl" class="form-control">
+            </div>
+
+            <!-- URL de Video -->
+            <div class="form-group mb-3">
+              <label for="videoUrl">URL de Video de presentación (opcional)</label>
+              <input type="url" id="videoUrl" formControlName="videoUrl" class="form-control">
+            </div>
+
+            <!-- Código Postal -->
+            <div class="form-group mb-3">
+              <label for="codigoPostal">Código Postal (opcional)</label>
+              <input type="number" id="codigoPostal" formControlName="codigoPostal" class="form-control">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Latitud -->
+                <div class="form-group mb-3">
+                  <label for="latitud">Latitud (opcional)</label>
+                  <input type="number" id="latitud" formControlName="latitud" class="form-control" step="0.000001">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- Longitud -->
+                <div class="form-group mb-3">
+                  <label for="longitud">Longitud (opcional)</label>
+                  <input type="number" id="longitud" formControlName="longitud" class="form-control" step="0.000001">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button type="button" class="btn btn-secondary me-2" (click)="cancelCreation()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear Profesor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

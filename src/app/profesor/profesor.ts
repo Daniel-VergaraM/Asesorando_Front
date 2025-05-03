@@ -1,10 +1,17 @@
 import { Usuario } from '../usuario/usuario';
 
-export class Profesor extends Usuario {
+export class Profesor implements Usuario {
+  public id: number;
+  public tipo: string;
+  public nombre: string;
+  public correo: string;
+  public contrasena: string;
+  public telefono: string;
+
   public fotoUrl: string;
   public videoUrl: string;
   public formacion: string;
-  public experciencia: string;
+  public experiencia: string;
   public enlaceReunion?: string;
   public codigoPostal?: number;
   public latitud?: number;
@@ -26,11 +33,16 @@ export class Profesor extends Usuario {
     latitud?: number,
     longitud?: number
   ) {
-    super(id, tipo, nombre, correo, contrasena, telefono);
+    this.id = id;
+    this.tipo = tipo;
+    this.nombre = nombre;
+    this.correo = correo;
+    this.contrasena = contrasena;
+    this.telefono = telefono;
     this.fotoUrl = fotoUrl;
     this.videoUrl = videoUrl;
     this.formacion = formacion;
-    this.experciencia = experiencia;
+    this.experiencia = experiencia;
     this.enlaceReunion = enlaceReunion;
     this.codigoPostal = codigoPostal;
     this.latitud = latitud;
