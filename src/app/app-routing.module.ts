@@ -1,4 +1,3 @@
-// src/app/app-routing.module.ts
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuarioComponent }           from './usuario/usuario.component';
@@ -11,7 +10,7 @@ const routes: Routes = [
     component: UsuarioComponent,
     children: [
       { path: '',           component: UsuarioListComponent   }, // /usuarios
-      { path: 'update/:id', component: UsuarioActualizarComponent } // /usuarios/update/1
+      { path: 'update/:id', component: UsuarioActualizarComponent } // usuariosactualizar
     ]
   },
   { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
