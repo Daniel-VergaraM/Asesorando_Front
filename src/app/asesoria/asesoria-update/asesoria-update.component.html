@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h4 class="text-center">Actualizar Asesoría</h4>
+  <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+    <div class="mb-3">
+      <label class="form-label">Duración</label>
+      <input type="text" class="form-control" formControlName="duracion" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Temática</label>
+      <input type="text" class="form-control" formControlName="tematica" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipo</label>
+      <input type="text" class="form-control" formControlName="tipo" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Área</label>
+      <input type="text" class="form-control" formControlName="area" />
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" formControlName="completada" />
+      <label class="form-check-label">Completada</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancelarUpdate()">Cancelar</button>
+  </form>
+</div>
