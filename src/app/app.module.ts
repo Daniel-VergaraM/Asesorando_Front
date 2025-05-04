@@ -26,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     UsuarioModule,
     ComentarioModule,
-    AsesoriaModule,
+    AsesoriaModule
   ],
   bootstrap: [AppComponent]
 })

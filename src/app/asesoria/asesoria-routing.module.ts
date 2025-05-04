@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AsesoriaListComponent } from './asesoria-list/asesoria-list.component';
 import { AsesoriaDetailComponent } from './asesoria-detail/asesoria-detail.component';
 import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.component';
+import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesoria-explorar-area.component';
 
 const routes: Routes = [
   { path: '', component: AsesoriaListComponent },
   { path: 'create', component: AsesoriaCreateComponent },
-  { path: ':id', component: AsesoriaDetailComponent }
+  { path: ':id', component: AsesoriaDetailComponent },
+  {path: 'explore', component: AsesoriaExplorarAreaComponent }
 ];
 
 @NgModule({

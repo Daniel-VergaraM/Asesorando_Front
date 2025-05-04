@@ -5,14 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsesoriaListComponent } from './asesoria-list/asesoria-list.component';
 import { AsesoriaDetailComponent } from './asesoria-detail/asesoria-detail.component';
 import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.component';
+import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesoria-explorar-area.component';
+
 import { AsesoriaComponent } from './asesoria.component';
 import { RouterModule } from '@angular/router';
 @NgModule({
-  declarations: [
-    AsesoriaComponent,
+  declarations: [AsesoriaComponent,
     AsesoriaListComponent,
     AsesoriaDetailComponent,
-    AsesoriaCreateComponent
+    AsesoriaCreateComponent,
+    AsesoriaExplorarAreaComponent
   ],
   imports: [
     CommonModule,

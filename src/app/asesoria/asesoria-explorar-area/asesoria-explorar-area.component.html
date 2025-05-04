@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Explorar Asesorías</h2>
+
+  <div class="form-group mb-4">
+    <label for="areaSelect" class="h5">Selecciona un área temática:</label>
+    <select id="areaSelect" [(ngModel)]="selectedArea" (change)="onAreaChange()" class="form-control p-3">
+      <option value="">-- Selecciona un área --</option>
+      <option *ngFor="let area of areasTematicas" [value]="area">{{ area }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="asesorias.length > 0; else noAsesorias">
+    <h3 class="mb-3">Asesorías disponibles:</h3>
+    <div *ngFor="let asesoria of asesorias" class="asesoria-card mb-4 p-3 border rounded shadow-sm">
+      <h4 class="text-primary">{{ asesoria.tematica }}</h4>
+      <p>{{ asesoria.tipo }}</p>
+      <button class="btn btn-primary">Ver detalles</button>
+    </div>
+  </div>
+
+  <ng-template #noAsesorias>
+    <p class="text-muted">No hay asesorías disponibles para esta área.</p>
+  </ng-template>
+</div>

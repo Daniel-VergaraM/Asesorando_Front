@@ -1,0 +1,14 @@
+.asesoria-card {
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+  }
+  
+  .asesoria-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  

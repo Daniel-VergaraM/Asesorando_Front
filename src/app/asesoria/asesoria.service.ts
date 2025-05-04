@@ -28,4 +28,8 @@ export class AsesoriaService {
   createAsesoria(asesoria: Asesoria): Observable<Asesoria> {
     return this.http.post<Asesoria>(this.apiUrl, asesoria);
   }
+
+  getAsesoriasPorArea(area: string): Observable<AsesoriaDetail[]> {
+    return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}?area=${area}`);
+  }
 }
