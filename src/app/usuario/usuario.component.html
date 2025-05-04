@@ -1,5 +1,8 @@
-<div class="container">
-  <h2 class="text-center">HUJUANCAICEDO</h2>
-  <app-usuario-list></app-usuario-list>
-  <app-usuario-update></app-usuario-update>
+<div class="usuario-container"><app-usuario-list
+  (editRequested)="onEditRequested($event)"></app-usuario-list>
+<app-usuario-update
+    *ngIf="editingUserId !== null"
+    [userId]="editingUserId"
+    (cancel)="onCancelEdit()">
+  </app-usuario-update>
 </div>

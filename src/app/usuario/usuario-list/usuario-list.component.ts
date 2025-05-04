@@ -1,8 +1,7 @@
-import { Component, OnInit }       from '@angular/core';
-import { UsuarioService }          from '../usuario.service';
-import { Usuario }                 from '../usuario';
-import { UsuarioDetail }           from '../usuarioDetail';
-import { Router }                  from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UsuarioService }                         from '../usuario.service';
+import { Usuario }                                from '../usuario';
+import { UsuarioDetail }                          from '../usuarioDetail';
 
 @Component({
   standalone: false,
@@ -12,18 +11,13 @@ import { Router }                  from '@angular/router';
 })
 export class UsuarioListComponent implements OnInit {
   users: Usuario[] = [];
-  selectedUser: UsuarioDetail | null = null;  
+  selectedUser: UsuarioDetail | null = null;
 
-  constructor(
-    private usuarioService: UsuarioService,
-    private router: Router
-  ) {}
+  @Output() editRequested = new EventEmitter<number>();
+
+  constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    this.loadUsers();
-  }
-
-  private loadUsers(): void {
     this.usuarioService.getUsuarios().subscribe({
       next: data => this.users = data,
       error: err  => console.error('Error al cargar usuarios:', err)
@@ -31,15 +25,13 @@ export class UsuarioListComponent implements OnInit {
   }
 
   updateUsuario(id: number): void {
-    this.router.navigate(['/usuarios', 'update', id]).then(() => {
-      console.log('Ruta actual:', this.router.url);
-    });
+    this.editRequested.emit(id);
   }
 
   seleccionarUsuario(u: Usuario): void {
     this.usuarioService.getUsuarioDetail(u.id).subscribe({
-      next: detalle => this.selectedUser = detalle,
-      error: err      => console.error(err)
+      next: d => this.selectedUser = d,
+      error: err => console.error('Error detalle:', err)
     });
   }
 

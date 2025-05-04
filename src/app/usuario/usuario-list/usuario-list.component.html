@@ -1,54 +1,40 @@
 <div class="container-fluid mt-2 mb-4">
-  <h2 class="text-center">Usuarios</h2>
-
-  <div class="row justify-content-center align-items-center">
-    <div *ngFor="let usuario of users" class="user-card col-auto mb-4">
-      <div class="card user-card-inner">
-        <div class="card-body text-dark">
-          <h5 class="card-title">{{ usuario.nombre }}</h5>
-          <p class="card-text"><strong>ID:</strong> {{ usuario.id }}</p>
-          <p class="card-text"><strong>Correo:</strong> {{ usuario.correo }}</p>
-          <p class="card-text"><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+  <h2 class="text-center">HU14 Juan Caicedo </h2>
+  <div class="row justify-content-center">
+    <div *ngFor="let u of users" class="col-auto mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5>{{ u.nombre }}</h5>
+          <p><strong>ID:</strong> {{ u.id }}</p>
+          <p><strong>Correo:</strong> {{ u.correo }}</p>
+          <p><strong>Teléfono:</strong> {{ u.telefono }}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
-          <button
-            class="btn btn-outline-primary btn-sm"
-            (click)="seleccionarUsuario(usuario)"
-          >Ver</button>
-          <button
-            class="btn btn-outline-success btn-sm"
-            (click)="updateUsuario(usuario.id)"
-          >Actualizar</button>
+          <button class="btn btn-outline-primary btn-sm"
+                  (click)="seleccionarUsuario(u)">Ver</button>
+          <button class="btn btn-outline-success btn-sm"
+                  (click)="updateUsuario(u.id)">Actualizar</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div *ngIf="selectedUser" class="container mt-4 p-4 border rounded bg-light">
-  <div class="d-flex justify-content-between">
-    <h4>Detalle de {{ selectedUser.nombre }}</h4>
-    <button class="btn btn-sm btn-outline-secondary" (click)="cerrarDetalle()">Cerrar ✕</button>
+  <div *ngIf="selectedUser" class="mt-4 p-3 border bg-light">
+    <div class="d-flex justify-content-between">
+      <h4>Detalle de {{ selectedUser.nombre }}</h4>
+      <button class="btn btn-sm btn-outline-secondary"
+              (click)="cerrarDetalle()">✕</button>
+    </div>
+    <p><strong>ID:</strong> {{ selectedUser.id }}</p>
+    <p><strong>Tipo:</strong> {{ selectedUser.tipo }}</p>
+    <p><strong>Correo:</strong> {{ selectedUser.correo }}</p>
+    <p><strong>Teléfono:</strong> {{ selectedUser.telefono }}</p>
+    <h5>Asesorías completadas ({{ selectedUser.asesoriasCompletadas.length }})</h5>
+    <ul class="list-group">
+      <li *ngFor="let a of selectedUser.asesoriasCompletadas"
+          class="list-group-item">
+        ID: {{ a.id }} — Temática: {{ a.tematica }}
+      </li>
+    </ul>
   </div>
-  <p><strong>ID:</strong> {{ selectedUser.id }}</p>
-  <p><strong>Tipo:</strong> {{ selectedUser.tipo }}</p>
-  <p><strong>Correo:</strong> {{ selectedUser.correo }}</p>
-  <p><strong>Teléfono:</strong> {{ selectedUser.telefono }}</p>
-
-
-<div *ngIf="selectedUser" class="mt-4 p-4 border rounded bg-light">
-  <div class="d-flex justify-content-between">
-    <h4>Detalle de {{ selectedUser.nombre }}</h4>
-    <button class="btn btn-sm btn-outline-secondary" (click)="cerrarDetalle()">✕</button>
-  </div>
-  <p><strong>ID:</strong> {{ selectedUser.id }}</p>
-  <p><strong>Tipo:</strong> {{ selectedUser.tipo }}</p>
-  <p><strong>Correo:</strong> {{ selectedUser.correo }}</p>
-  <p><strong>Teléfono:</strong> {{ selectedUser.telefono }}</p>
-  <h5>Asesorías completadas ({{ selectedUser.asesoriasCompletadas.length }})</h5>
-  <ul class="list-group">
-    <li *ngFor="let a of selectedUser.asesoriasCompletadas" class="list-group-item">
-      Asesoría #{{ a.id }} – {{ a.tematica || a.duracion || 'Sin título' }}
-    </li>
-  </ul>
 </div>
