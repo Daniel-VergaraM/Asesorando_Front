@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AsesoriaDetail } from '../asesoria-detail';
+import { AsesoriaService } from '../asesoria.service';
 
 @Component({
   selector: 'app-asesoria-list',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asesoria-list.component.css']
 })
 export class AsesoriaListComponent implements OnInit {
+  asesorias: AsesoriaDetail[] = [];
 
-  constructor() { }
+  constructor(private asesoriaService: AsesoriaService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.asesoriaService.getAsesoriasProfesorUltimoAnio().subscribe({
+      next: data => this.asesorias = data,
+      error: err => console.error(err)
+    });
   }
-
 }

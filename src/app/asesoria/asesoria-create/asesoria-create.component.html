@@ -1,3 +1,95 @@
-<p>
-  asesoria-create works!
-</p>
+<div class="container mt-4">
+  <h2 class="text-center">Crear nueva asesoría</h2>
+  <form
+    [formGroup]="asesoriaForm"
+    (ngSubmit)="!asesoriaForm.invalid && createAsesoria(asesoriaForm.value)"
+  >
+    <!-- Duración -->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="duracion">Duración</label>
+      <input
+        id="duracion"
+        class="form-control"
+        formControlName="duracion"
+        placeholder="Ej. 1h, 30m"
+      />
+      <div class="alert alert-danger" *ngIf="asesoriaForm.get('duracion')!.invalid && asesoriaForm.get('duracion')!.touched">
+        Duración requerida
+      </div>
+    </div>
+
+    <!-- Temática -->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="tematica">Temática</label>
+      <input
+        id="tematica"
+        class="form-control"
+        formControlName="tematica"
+        placeholder="Tema de la asesoría"
+      />
+      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tematica')!.invalid && asesoriaForm.get('tematica')!.touched">
+        Temática requerida
+      </div>
+    </div>
+
+    <!-- Tipo -->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="tipo">Tipo</label>
+      <select id="tipo" class="form-control" formControlName="tipo">
+        <option value="">Selecciona...</option>
+        <option value="individual">Individual</option>
+        <option value="grupo">Grupo</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tipo')!.invalid && asesoriaForm.get('tipo')!.touched">
+        Tipo requerido
+      </div>
+    </div>
+
+    <!-- Área -->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="area">Área</label>
+      <input
+        id="area"
+        class="form-control"
+        formControlName="area"
+        placeholder="Área (p.ej. Matemáticas)"
+      />
+      <div class="alert alert-danger" *ngIf="asesoriaForm.get('area')!.invalid && asesoriaForm.get('area')!.touched">
+        Área requerida
+      </div>
+    </div>
+
+    <!-- Completada -->
+    <div class="form-group form-check mx-sm-3 mb-2">
+      <input
+        id="completada"
+        type="checkbox"
+        class="form-check-input"
+        formControlName="completada"
+      />
+      <label class="form-check-label" for="completada">Completada</label>
+    </div>
+
+    <!-- Profesor ID (hidden) -->
+    <input type="hidden" formControlName="profesorId" />
+
+    <div class="form-group mx-sm-3 mb-2" style="margin-top: 15px;">
+      <button
+        id="submit"
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!asesoriaForm.valid"
+        style="margin-right: 10px;"
+      >
+        Crear
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-3"
+        (click)="cancelCreation()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
