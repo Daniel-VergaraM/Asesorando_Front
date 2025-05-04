@@ -8,6 +8,7 @@ import { Comentario } from '../comentario';
   standalone: false,  
   selector: 'app-comentario-create',
   templateUrl: './comentario-create.component.html',
+  styleUrl: './comentario-create.component.css'
 })
 export class ComentarioCreateComponent implements OnInit {
   comentarioForm!: FormGroup;
