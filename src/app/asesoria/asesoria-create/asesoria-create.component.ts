@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-asesoria-create',
   templateUrl: './asesoria-create.component.html',
+  standalone: false,
   styleUrls: ['./asesoria-create.component.css']
 })
 export class AsesoriaCreateComponent implements OnInit {
@@ -21,7 +22,7 @@ export class AsesoriaCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const profesorId = /* aquí obtén el id del profesor logueado */;
+    const profesorId = Number(localStorage.getItem('profesorId'));
     this.asesoriaForm = this.fb.group({
       duracion: ['', Validators.required],
       tematica: ['', Validators.required],

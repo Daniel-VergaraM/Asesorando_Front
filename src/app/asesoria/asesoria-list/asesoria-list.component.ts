@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AsesoriaDetail } from '../asesoria-detail';
+import { AsesoriaDetail } from '../asesoriaDetail';
 import { AsesoriaService } from '../asesoria.service';
 
 @Component({
   selector: 'app-asesoria-list',
   templateUrl: './asesoria-list.component.html',
+  standalone: false,
   styleUrls: ['./asesoria-list.component.css']
 })
 export class AsesoriaListComponent implements OnInit {
@@ -13,9 +14,10 @@ export class AsesoriaListComponent implements OnInit {
   constructor(private asesoriaService: AsesoriaService) {}
 
   ngOnInit(): void {
-    this.asesoriaService.getAsesoriasProfesorUltimoAnio().subscribe({
-      next: data => this.asesorias = data,
-      error: err => console.error(err)
+    this.asesoriaService.getAsesorias().subscribe({
+      next: (data: AsesoriaDetail[]) => this.asesorias = data,
+      error: (err: any) => console.error(err)
     });
   }
+  
 }
