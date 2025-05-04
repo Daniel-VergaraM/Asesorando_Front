@@ -14,10 +14,12 @@ export class AsesoriaListComponent implements OnInit {
   constructor(private asesoriaService: AsesoriaService) {}
 
   ngOnInit(): void {
+    this.loadAsesorias();
+  }
+  
+  loadAsesorias(): void {
     this.asesoriaService.getAsesorias().subscribe({
       next: (data: AsesoriaDetail[]) => this.asesorias = data,
       error: (err: any) => console.error(err)
-    });
-  }
-  
+    });}
 }

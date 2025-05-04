@@ -9,15 +9,15 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class AsesoriaService {
+  private apiUrl = `${environment.apiUrl}/asesorias`;
 
-  private apiUrl = environment.apiUrl + 'asesorias';
 
   constructor(private http: HttpClient) { }
 
   /** Lista todas las asesorías del profesor (último año) */
   getAsesorias(): Observable<AsesoriaDetail[]> {
-    return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}/profesor/ultimo-anio`);
-  }
+    return this.http.get<AsesoriaDetail[]>(this.apiUrl);
+    }
 
   /** Detalle de una asesoría */
   getAsesoria(id: number): Observable<AsesoriaDetail> {

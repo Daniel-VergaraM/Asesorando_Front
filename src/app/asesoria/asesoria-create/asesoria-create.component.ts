@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   standalone: false,
   styleUrls: ['./asesoria-create.component.css']
 })
+
 export class AsesoriaCreateComponent implements OnInit {
   asesoriaForm!: FormGroup;
 
@@ -22,7 +23,7 @@ export class AsesoriaCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const profesorId = Number(localStorage.getItem('profesorId'));
+    const profesorId = 1; 
     this.asesoriaForm = this.fb.group({
       duracion: ['', Validators.required],
       tematica: ['', Validators.required],
@@ -33,9 +34,9 @@ export class AsesoriaCreateComponent implements OnInit {
     });
   }
 
-  createAsesoria(form: any): void {
+  createAsesoria(): void {
     if (this.asesoriaForm.invalid) return;
-
+    const form = this.asesoriaForm.value;
     const nueva = new Asesoria(
       0,
       form.duracion,
@@ -50,7 +51,7 @@ export class AsesoriaCreateComponent implements OnInit {
         this.toastr.success('Asesoría creada', 'Éxito');
         this.router.navigate(['/asesorias/list']);
       },
-      error: err => {
+      error: (err: any) => {
         console.error(err);
         this.toastr.error('Error al crear', 'Error');
       }

@@ -1,8 +1,8 @@
 <div class="container mt-4">
-  <h2 class="text-center">Crear nueva asesoría</h2>
+  <p>ESTOY AQUÍ: formulario de creación</p>
   <form
     [formGroup]="asesoriaForm"
-    (ngSubmit)="!asesoriaForm.invalid && createAsesoria(asesoriaForm.value)"
+    (ngSubmit)="createAsesoria()"
   >
     <!-- Duración -->
     <div class="form-group mx-sm-3 mb-2">
@@ -79,7 +79,6 @@
         type="submit"
         class="btn btn-primary"
         [disabled]="!asesoriaForm.valid"
-        style="margin-right: 10px;"
       >
         Crear
       </button>

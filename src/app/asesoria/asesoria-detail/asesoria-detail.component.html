@@ -1,3 +1,10 @@
-<p>
-  asesoria-detail works!
-</p>
+<div *ngIf="detalle">
+  <h4>Detalles de la Asesoría</h4>
+  <p>Temática: {{ detalle.tematica }}</p>
+  <p>Tipo: {{ detalle.tipo }}</p>
+  <p>Duración: {{ detalle.duracion }}</p>
+  <p>Área: {{ detalle.area }}</p>
+  <p>Fecha inicio: {{ detalle.calendario?.fechaInicio | date:'fullDate' }}</p>
+  <p>Fecha fin: {{ detalle.calendario?.fechaFin | date:'fullDate' }}</p>
+  <p>Completada: {{ detalle.completada ? 'Sí' : 'No' }}</p>
+</div>
