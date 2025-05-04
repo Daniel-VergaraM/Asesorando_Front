@@ -8,6 +8,7 @@ import { CalendarioComponent } from './calendario.component';
 import { CalendarioListComponent } from './calendario-list/calendario-list.component';
 import { CalendarioDetailComponent } from './calendario-detail/calendario-detail.component';
 import { CalendarioCreateComponent } from './calendario-create/calendario-create.component';
+import { CalendarioUpdateComponent } from './calendario-update/calendario-update.component'; 
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CalendarioCreateComponent } from './calendario-create/calendario-create
     CalendarioListComponent,
     CalendarioDetailComponent,
     CalendarioCreateComponent,
+    CalendarioUpdateComponent
   ],
   declarations: [],
   exports: [
@@ -27,6 +29,7 @@ import { CalendarioCreateComponent } from './calendario-create/calendario-create
     CalendarioListComponent,
     CalendarioDetailComponent,
     CalendarioCreateComponent,
+    CalendarioUpdateComponent
   ],
 })
 export class CalendarioModule {}

@@ -3,21 +3,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ComentraioCreateComponent } from './comentraio-create.component';
 
-describe('ComentraioCreateComponent', () => {
-  let component: ComentraioCreateComponent;
-  let fixture: ComponentFixture<ComentraioCreateComponent>;
+import { CalendarioUpdateComponent } from './calendario-update.component';
+
+describe('CalendarioUpdateComponent', () => {
+  let component: CalendarioUpdateComponent;
+  let fixture: ComponentFixture<CalendarioUpdateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComentraioCreateComponent ]
+      declarations: [ CalendarioUpdateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComentraioCreateComponent);
+    fixture = TestBed.createComponent(CalendarioUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

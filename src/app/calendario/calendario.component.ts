@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CalendarioService } from './calendario.service';
 import { CalendarioListComponent } from './calendario-list/calendario-list.component';
+import { CalendarioUpdateComponent } from './calendario-update/calendario-update.component';
 
 @Component({
   selector: 'app-calendario',

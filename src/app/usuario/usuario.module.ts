@@ -10,6 +10,9 @@ import { Usuario } from './usuario';
 @NgModule({
   declarations: [UsuarioComponent, UsuarioListComponent, UsuarioActualizarComponent],
   exports: [
+    UsuarioComponent,
+    UsuarioListComponent,
+    UsuarioActualizarComponent
   ],
   imports: [
     CommonModule,

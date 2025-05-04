@@ -1,0 +1,19 @@
+<form [formGroup]="comentarioForm" (ngSubmit)="createComentario()">
+  <div>
+    <label for="texto">Comentario:</label>
+    <textarea id="texto" formControlName="texto"></textarea>
+  </div>
+
+  <div>
+    <label for="calificacion">Calificación (1 a 5):</label>
+    <input type="number" id="calificacion" formControlName="calificacion" min="1" max="5" />
+  </div>
+
+  <div>
+    <label for="idAsesoria">ID Asesoría:</label>
+    <input type="text" id="idAsesoria" formControlName="idAsesoria" />
+  </div>
+
+  <button type="submit" [disabled]="comentarioForm.invalid">Enviar</button>
+  <button type="button" (click)="cancelCreation()">Cancelar</button>
+</form>
