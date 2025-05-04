@@ -1,3 +1,21 @@
-<p>
-  asesoria-list works!
-</p>
+<div class="container-fluid mt-2 mb-4">
+  <h2 class="text-center">Mis asesorías (último año)</h2>
+  <div *ngIf="asesorias.length === 0" class="text-center">
+    No tienes asesorías en el último año.
+  </div>
+  <div class="row">
+    <div *ngFor="let a of asesorias" class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ a.tematica }} ({{ a.tipo }})</h5>
+          <p class="card-text">
+            Duración: {{ a.duracion }}<br>
+            Área: {{ a.area }}<br>
+            Fecha: {{ a.calendario?.fechaInicio | date:'shortDate' }}<br>
+            Completada: {{ a.completada ? 'Sí' : 'No' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AsesoriaComponent } from './asesoria.component';
+import { AsesoriaRoutingModule } from './asesoria-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AsesoriaListComponent } from './asesoria-list/asesoria-list.component';
+import { AsesoriaDetailComponent } from './asesoria-detail/asesoria-detail.component';
+import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.component';
 
 @NgModule({
-  imports: [
-    CommonModule
+  declarations: [
+    AsesoriaListComponent,
+    AsesoriaDetailComponent,
+    AsesoriaCreateComponent
   ],
-  declarations: [AsesoriaComponent]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AsesoriaRoutingModule
+  ]
 })
-export class AsesoriaModule { }
+export class AsesoriaModule {}
