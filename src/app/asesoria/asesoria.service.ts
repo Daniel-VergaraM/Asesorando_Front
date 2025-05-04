@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AsesoriaDetail } from './asesoria-detail';
+import { AsesoriaDetail } from './asesoriaDetail';
 import { Asesoria } from './asesoria';
 import { environment } from '../../environments/environment.development';
 
@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment.development';
 })
 export class AsesoriaService {
 
-  private apiUrl = environment.baseUrl + 'asesorias';
+  private apiUrl = environment.apiUrl + 'asesorias';
 
   constructor(private http: HttpClient) { }
 
