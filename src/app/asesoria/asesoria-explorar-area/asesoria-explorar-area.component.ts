@@ -11,8 +11,7 @@ import { AsesoriaDetail } from '../asesoriaDetail';
 export class AsesoriaExplorarAreaComponent  implements OnInit {
   asesorias: AsesoriaDetail[] = [];
   selectedArea: string = '';
-  areasTematicas: string[] = ['Matemáticas', 'Física', 'Química', 'Programación']; // ejemplo
-
+  areasTematicas: string[] = ['Matemáticas', 'Física', 'Química', 'Programación', 'Lenguaje', 'Biología']; // ejemplo
   constructor(private asesoriaService: AsesoriaService) { }
 
   ngOnInit(): void {
