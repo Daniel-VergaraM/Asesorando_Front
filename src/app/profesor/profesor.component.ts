@@ -4,8 +4,7 @@ import { Component} from '@angular/core';
   standalone: false,
   selector: 'app-profesor',
   templateUrl: './profesor.component.html',
-  styleUrls: ['./profesor.component.css'],
-  standalone: true,
-  imports: [CommonModule, ProfesorCreateComponent, ProfesorListComponent]
+  styleUrls: ['./profesor.component.css']
+
 })
 export class ProfesorComponent {}

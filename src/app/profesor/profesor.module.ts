@@ -10,7 +10,7 @@ import { ProfesorCreateComponent } from './profesor-create/profesor-create.compo
 import { ProfesorUpdateComponent } from './profesor-update/profesor-update.component';
 import { SafeResourceUrlPipe } from '../shared/pipes/safe-resource-url.pipe';
 import { ProfesorComponent } from './profesor.component';
-import { ProfesorComponent } from './profesor.component';
+
 
 @NgModule({
   imports: [
