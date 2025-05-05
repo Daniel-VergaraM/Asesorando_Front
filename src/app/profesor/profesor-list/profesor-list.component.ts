@@ -10,8 +10,7 @@ import { Asesoria } from '../../asesoria/asesoria';
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule]
+  standalone: false
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];

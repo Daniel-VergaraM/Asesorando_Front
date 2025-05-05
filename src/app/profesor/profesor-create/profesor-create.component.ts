@@ -9,8 +9,7 @@ import { Profesor } from '../profesor';
   selector: 'app-profesor-create',
   templateUrl: './profesor-create.component.html',
   styleUrls: ['./profesor-create.component.css'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule]
+  standalone: false
 })
 export class ProfesorCreateComponent implements OnInit {
   profesorForm!: FormGroup;

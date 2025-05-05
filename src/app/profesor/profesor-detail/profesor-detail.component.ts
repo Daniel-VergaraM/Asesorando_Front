@@ -10,8 +10,7 @@ import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
   selector: 'app-profesor-detail',
   templateUrl: './profesor-detail.component.html',
   styleUrls: ['./profesor-detail.component.css'],
-  standalone: true,
-  imports: [CommonModule, FormsModule, SafeResourceUrlPipe]
+  standalone: false
 })
 export class ProfesorDetailComponent implements OnInit {
   profesorId!: number;

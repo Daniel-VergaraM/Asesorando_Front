@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent }     from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UsuarioModule }    from './usuario/usuario.module';
+import { ProfesorModule }    from './profesor/profesor.module';
 import { ComentarioModule }    from './comentario/comentario.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AsesoriaModule } from './asesoria/asesoria.module';
@@ -26,7 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     UsuarioModule,
     ComentarioModule,
-    AsesoriaModule
+    AsesoriaModule,
+    ProfesorModule
   ],
   bootstrap: [AppComponent]
 })
