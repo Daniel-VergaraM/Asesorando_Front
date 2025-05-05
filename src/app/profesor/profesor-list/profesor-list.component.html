@@ -14,7 +14,7 @@
               <input type="text" class="form-control" placeholder="Buscar profesores..." [(ngModel)]="searchTerm" (keyup)="filterProfesores()">
             </div>
           </div>
-          <a [routerLink]="['/profesores', 'nuevo']" class="btn btn-primary">Nuevo Profesor</a>
+          <button (click)="onCreateNewProfesor()" class="btn btn-primary">Nuevo Profesor</button>
         </div>
 
         <div class="card-body">
@@ -50,9 +50,9 @@
                       <button class="btn btn-sm btn-info me-1" (click)="selectProfesor(profesor)">
                         <i class="bi bi-eye"></i> Ver detalles
                       </button>
-                      <a [routerLink]="['/profesores', profesor.id]" class="btn btn-sm btn-primary">
+                      <button class="btn btn-sm btn-primary" (click)="viewProfile(profesor)">
                         <i class="bi bi-person"></i> Perfil
-                      </a>
+                      </button>
                     </div>
                   </td>
                 </tr>

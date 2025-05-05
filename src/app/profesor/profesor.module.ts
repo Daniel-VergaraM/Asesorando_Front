@@ -7,7 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfesorListComponent } from './profesor-list/profesor-list.component';
 import { ProfesorDetailComponent } from './profesor-detail/profesor-detail.component';
 import { ProfesorCreateComponent } from './profesor-create/profesor-create.component';
+import { ProfesorUpdateComponent } from './profesor-update/profesor-update.component';
 import { SafeResourceUrlPipe } from '../shared/pipes/safe-resource-url.pipe';
+import { ProfesorComponent } from './profesor.component';
+
 
 @NgModule({
   imports: [
@@ -16,19 +19,23 @@ import { SafeResourceUrlPipe } from '../shared/pipes/safe-resource-url.pipe';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    ProfesorListComponent,
-    ProfesorCreateComponent,
     SafeResourceUrlPipe,
-    ProfesorDetailComponent
-  ],
-  declarations: [
-
-  ],
-  exports: [
     ProfesorListComponent,
     ProfesorDetailComponent,
     ProfesorCreateComponent,
-    SafeResourceUrlPipe
+  ],
+  declarations: [
+    ProfesorComponent,
+
+    ProfesorUpdateComponent,
+  ],
+  exports: [
+    ProfesorComponent,
+    ProfesorListComponent,
+    ProfesorDetailComponent,
+    ProfesorCreateComponent,
+    ProfesorUpdateComponent
   ]
 })
 export class ProfesorModule {}
+

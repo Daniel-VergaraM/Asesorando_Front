@@ -6,11 +6,10 @@ import { Profesor } from '../profesor';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
+  standalone: false,
   selector: 'app-profesor-update',
   templateUrl: './profesor-update.component.html',
-  styleUrls: ['./profesor-update.component.css'],
-  imports: [ReactiveFormsModule]
+  styleUrls: ['./profesor-update.component.css']
 })
 export class ProfesorUpdateComponent implements OnInit {
   profesorForm!: FormGroup;
