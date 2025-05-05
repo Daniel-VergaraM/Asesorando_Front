@@ -92,9 +92,7 @@ export class ProfesorListComponent implements OnInit {
   }
 
   getProfesorAsesorias(profesor: ProfesorDetail): Asesoria[] {
-    // In a real application, you might fetch this data from a service
-    // For now, we'll return an empty array as a placeholder
-    return [];
+    return []
   }
 
   onCreateNewProfesor() {
