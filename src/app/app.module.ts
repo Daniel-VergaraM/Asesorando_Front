@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AsesoriaModule } from './asesoria/asesoria.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ProfesorModule } from './profesor/profesor.module';
+import { CalendarioModule } from './calendario/calendario.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     UsuarioModule,
     ComentarioModule,
     AsesoriaModule,
-    ProfesorModule
+    ProfesorModule,
+    CalendarioModule
   ],
   bootstrap: [AppComponent]
 })
