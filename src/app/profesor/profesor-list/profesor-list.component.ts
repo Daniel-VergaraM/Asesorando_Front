@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { ProfesorService } from '../profesor.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
@@ -9,8 +6,7 @@ import { Asesoria } from '../../asesoria/asesoria';
 @Component({
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
-  styleUrls: ['./profesor-list.component.css'],
-  standalone: false
+  styleUrls: ['./profesor-list.component.css']
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];

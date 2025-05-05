@@ -17,15 +17,24 @@ import { ProfesorComponent } from './profesor.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule  
+    RouterModule,
+    HttpClientModule,
+    SafeResourceUrlPipe,
+    ProfesorListComponent,
+    ProfesorDetailComponent,
+    ProfesorCreateComponent,
   ],
   declarations: [
     ProfesorComponent,
-    ProfesorUpdateComponent
+
+    ProfesorUpdateComponent,
   ],
   exports: [
     ProfesorComponent,
-    ProfesorUpdateComponent  
+    ProfesorListComponent,
+    ProfesorDetailComponent,
+    ProfesorCreateComponent,
+    ProfesorUpdateComponent
   ]
 })
 export class ProfesorModule {}

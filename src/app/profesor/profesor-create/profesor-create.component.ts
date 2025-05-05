@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { ProfesorService } from '../profesor.service';
 import { Profesor } from '../profesor';
 
 @Component({
   selector: 'app-profesor-create',
   templateUrl: './profesor-create.component.html',
-  styleUrls: ['./profesor-create.component.css'],
-  standalone: false
+  styleUrls: ['./profesor-create.component.css']
 })
 export class ProfesorCreateComponent implements OnInit {
   profesorForm!: FormGroup;

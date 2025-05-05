@@ -2,15 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfesorDetail } from '../profesorDetail';
 import { ProfesorService } from '../profesor.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
 
 @Component({
   selector: 'app-profesor-detail',
   templateUrl: './profesor-detail.component.html',
-  styleUrls: ['./profesor-detail.component.css'],
-  standalone: false
+  styleUrls: ['./profesor-detail.component.css']
 })
 export class ProfesorDetailComponent implements OnInit {
   profesorId!: number;
