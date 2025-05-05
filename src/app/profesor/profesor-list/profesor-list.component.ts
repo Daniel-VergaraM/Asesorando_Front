@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfesorService } from '../profesor.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
-  styleUrls: ['./profesor-list.component.css']
+  styleUrls: ['./profesor-list.component.css'],
+  imports: [CommonModule, FormsModule],
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];
@@ -15,6 +18,9 @@ export class ProfesorListComponent implements OnInit {
   searchType: string = 'nombre';
   loading: boolean = true;
   selectedProfesor: ProfesorDetail | null = null;
+
+  @Output() createProfesor = new EventEmitter<void>();
+  @Output() viewProfesorDetail = new EventEmitter<ProfesorDetail>();
 
   constructor(private profesorService: ProfesorService) { }
 
@@ -89,5 +95,13 @@ export class ProfesorListComponent implements OnInit {
     // In a real application, you might fetch this data from a service
     // For now, we'll return an empty array as a placeholder
     return [];
+  }
+
+  onCreateNewProfesor() {
+    this.createProfesor.emit();
+  }
+
+  viewProfile(profesor: ProfesorDetail) {
+    this.viewProfesorDetail.emit(profesor);
   }
 }

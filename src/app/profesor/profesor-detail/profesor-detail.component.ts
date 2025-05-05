@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProfesorDetail } from '../profesorDetail';
 import { ProfesorService } from '../profesor.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
 
 @Component({
   selector: 'app-profesor-detail',
   templateUrl: './profesor-detail.component.html',
-  styleUrls: ['./profesor-detail.component.css']
+  styleUrls: ['./profesor-detail.component.css'],
+  imports: [CommonModule, FormsModule, SafeResourceUrlPipe]
 })
 export class ProfesorDetailComponent implements OnInit {
-  profesorId!: number;
+  @Input() profesorId!: number;
   profesor!: ProfesorDetail;
   showEditForm: boolean = false;
   userId: number | null = null;
@@ -18,19 +21,17 @@ export class ProfesorDetailComponent implements OnInit {
   profesorLoaded: boolean = false;
   loginMessage: string = '';
 
+  @Output() goBack = new EventEmitter<void>();
+
   constructor(
-    private route: ActivatedRoute,
-    private profesorService: ProfesorService,
-    private router: Router
+    private profesorService: ProfesorService
   ) {}
 
   ngOnInit() {
-    // Get the profesor ID from the route parameters
-    this.route.params.subscribe(params => {
-      this.profesorId = Number(params['id']);
+    if (this.profesorId) {
       this.getProfesorDetail();
       this.checkUserSession();
-    });
+    }
   }
 
   checkUserSession(): void {
@@ -217,5 +218,9 @@ export class ProfesorDetailComponent implements OnInit {
     this.isProfesor = false;
     alert('Sesión cerrada.');
     this.checkUserSession();
+  }
+
+  navigateBack(): void {
+    this.goBack.emit();
   }
 }
