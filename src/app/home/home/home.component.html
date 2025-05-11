@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: black; font-size: 30px; color: white; font-family: 'ADLaM Display', sans-serif;">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" style="font-size: 30px; color: white; font-family: 'ADLaM Display', sans-serif;">Asesorando</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" routerLink="/" style="font-size: 30px; color: white; font-family: 'ADLaM Display', sans-serif;">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/login" style="font-size: 30px; color: white; font-family: 'ADLaM Display', sans-serif;">Iniciar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section
+  class="position-relative d-flex align-items-center justify-content-center text-white"
+  style="
+    background-image: url('/assets/resources/img00.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding-bottom: 200px;
+  ">
+  <!-- overlay ligero -->
+  <div class="position-absolute --reseda"></div>
+
+  <div class="position-relative text-center px-3" style="z-index: 1; max-width: 100%; width: 100%;">
+    <h1 class="display-3 mb-3" style="color: white; font-size: 100px; font-family: sans-serif;">ENCUENTRA TU TUTOR IDEAL</h1>
+    <p class="lead mb-4" style="color: white; font-size: 40px; font-family: Arial, sans-serif;">
+      TUTORIAS DE TODAS LAS MATERIAS: VIRTUAL, PRESENCIAL O HIBRIDO
+    </p>
+    <div class="input-group mb-5" style="max-width: 1000px; margin: 0 auto;">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="¿Qué quieres aprender?"
+        [(ngModel)]="searchTerm"
+      />
+      <button class="btn btn-primary" (click)="onSearch()">Buscar</button>
+    </div>
+    <app-profesor-list></app-profesor-list>
+  </div>
+</section>

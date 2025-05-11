@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --onyx:        #2E3532;
+  --reseda:      #7E9181;
+  --french-gray: #C7CEDB;
+  --cadet-gray:  #A0AAB2;
+  --mountbatten: #94849B;
+  --white:       #ffffff;
+}
+
+html, body {
+  margin: 0;       /* quita cualquier margen por defecto */
+  padding: 0;      /* quita padding por defecto */
+  width: 100%;     /* fuerza al 100% del viewport */
+  height: 100%;    /* igual para la altura */
+  overflow-x: hidden; /* quita scroll horizontal */
+}
+
+.hero-section {
+  position: relative;
+  background-image: url('/assets/resources/img00.png');
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* 3) Capa de color semitransparente encima de la imagen */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mountbatten);
+  opacity: .5;
+  z-index: 0;
+}
+
+/* 4) Contenido dentro del hero */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* 5) Tarjeta de rating flotante */
+.hero-rating {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  color: var(--onyx);
+}
+
+/* 6) Dale forma a las imágenes verticales */
+.hero-images img {
+  object-fit: cover;
+  width: 150px;
+  height: 400px;
+  border-radius: 75px;
+  margin-left: 1rem;
+}

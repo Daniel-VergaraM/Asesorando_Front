@@ -1,14 +1,13 @@
-import { Usuario } from './usuario';
+import { Usuario } from '../usuario/usuario';
 
-export class Estudiante extends Usuario {
+export class Estudiante implements Usuario {
   constructor(
-    id: number,
-    tipo: string,
-    nombre: string,
-    correo: string,
-    contrasena: string,
-    telefono: string,
-  ) {
-    super(id, tipo, nombre, correo, contrasena, telefono);
-  }
+    public id: number,
+    public tipo: string,
+    public nombre: string,
+    public correo: string,
+    public contrasena: string,
+    public telefono: string,
+  ) {}
 }
+  

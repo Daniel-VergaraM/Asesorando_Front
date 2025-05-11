@@ -5,6 +5,8 @@ import { ProfesorService } from '../profesor.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
+import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
+import { AsesoriaService }             from '../../asesoria/asesoria.service';
 
 @Component({
   selector: 'app-profesor-detail',
@@ -22,11 +24,13 @@ export class ProfesorDetailComponent implements OnInit {
   isProfesor: boolean = false;
   profesorLoaded: boolean = false;
   loginMessage: string = '';
+  asesorias: AsesoriaDetail[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private profesorService: ProfesorService,
-    private router: Router
+    private router: Router,
+    private asesoriaSvc: AsesoriaService 
   ) {}
 
   ngOnInit() {
@@ -34,8 +38,17 @@ export class ProfesorDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.profesorId = Number(params['id']);
       this.getProfesorDetail();
+      this.loadAsesorias();
       this.checkUserSession();
     });
+  }
+  private loadAsesorias(): void {
+    this.asesoriaSvc
+      .getAsesoriasPorProfesor(this.profesorId)
+      .subscribe({
+        next: list => this.asesorias = list,
+        error: err => console.error('Error al cargar asesorías:', err)
+      });
   }
 
   checkUserSession(): void {

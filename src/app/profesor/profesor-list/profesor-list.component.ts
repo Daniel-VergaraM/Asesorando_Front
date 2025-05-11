@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { ProfesorService } from '../profesor.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
+import { AsesoriaDetail }    from '../../asesoria/asesoriaDetail';
+import { AsesoriaService }   from '../../asesoria/asesoria.service';
 
 @Component({
   selector: 'app-profesor-list',
@@ -20,8 +22,9 @@ export class ProfesorListComponent implements OnInit {
   searchType: string = 'nombre';
   loading: boolean = true;
   selectedProfesor: ProfesorDetail | null = null;
+  private asesoriasMap: Record<number, AsesoriaDetail[]> = {};
 
-  constructor(private profesorService: ProfesorService) { }
+  constructor(private profesorService: ProfesorService, private asesoriasService: AsesoriaService) {}
 
   ngOnInit() {
     this.loadProfesores();
@@ -84,15 +87,23 @@ export class ProfesorListComponent implements OnInit {
 
   selectProfesor(profesor: ProfesorDetail) {
     this.selectedProfesor = profesor;
+
+    // carga las asesorías de este profe y las guardas en el mapa
+    this.asesoriasService.getAsesoriasPorProfesor(profesor.id).subscribe({
+      next: list => this.asesoriasMap[profesor.id] = list,
+      error: err => {
+        console.error('Error al cargar asesorías:', err);
+        this.asesoriasMap[profesor.id] = [];
+      }
+    });
   }
+
 
   clearSelection() {
     this.selectedProfesor = null;
   }
 
-  getProfesorAsesorias(profesor: ProfesorDetail): Asesoria[] {
-    // In a real application, you might fetch this data from a service
-    // For now, we'll return an empty array as a placeholder
-    return [];
+  getProfesorAsesorias(profesor: ProfesorDetail): AsesoriaDetail[] {
+    return this.asesoriasMap[profesor.id] || [];
   }
 }

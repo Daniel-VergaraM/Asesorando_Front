@@ -1,8 +1,9 @@
-<div class="usuario-container"><app-usuario-list
-  (editRequested)="onEditRequested($event)"></app-usuario-list>
-<app-usuario-update
-    *ngIf="editingUserId !== null"
-    [userId]="editingUserId"
-    (cancel)="onCancelEdit()">
-  </app-usuario-update>
+<div class="usuario-container">
+  <!-- La lista emite editRequested con el id -->
+  <app-usuario-list (editRequested)="onEditRequested($event)"></app-usuario-list>
 </div>
+
+<!-- Aquí cargará el componente de actualización vía routing -->
+<router-outlet></router-outlet>
+
+<app-usuario-login (loginEvent)="onLoginSuccess($event)"></app-usuario-login>

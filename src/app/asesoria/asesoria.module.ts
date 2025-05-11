@@ -23,6 +23,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     AsesoriaRoutingModule
   ],
-  exports: [ AsesoriaComponent],
+  exports: [     AsesoriaComponent,AsesoriaListComponent,AsesoriaDetailComponent,AsesoriaCreateComponent,AsesoriaExplorarAreaComponent],
 })
 export class AsesoriaModule {}

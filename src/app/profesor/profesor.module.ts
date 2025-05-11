@@ -8,6 +8,7 @@ import { ProfesorListComponent } from './profesor-list/profesor-list.component';
 import { ProfesorDetailComponent } from './profesor-detail/profesor-detail.component';
 import { ProfesorCreateComponent } from './profesor-create/profesor-create.component';
 import { SafeResourceUrlPipe } from '../shared/pipes/safe-resource-url.pipe';
+import { HomeProfesorComponent } from './home-profesor/home-profesor.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,10 @@ import { SafeResourceUrlPipe } from '../shared/pipes/safe-resource-url.pipe';
     ProfesorListComponent,
     ProfesorCreateComponent,
     SafeResourceUrlPipe,
-    ProfesorDetailComponent
+    ProfesorDetailComponent,
+    HomeProfesorComponent
   ],
-  declarations: [
-
-  ],
+  
   exports: [
     ProfesorListComponent,
     ProfesorDetailComponent,

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component }       from '@angular/core';
+import { Router }          from '@angular/router';
 
 @Component({
   standalone: false,
@@ -6,14 +7,19 @@ import { Component } from '@angular/core';
   templateUrl: './usuario.component.html'
 })
 export class UsuarioComponent {
-  editingUserId: number | null = null;
+  constructor(private router: Router) {}
 
   onEditRequested(id: number) {
-    this.editingUserId = id;
+    // esto lanza la navegación a /usuarios/actualizar/:id
+    this.router.navigate(['/usuarios/actualizar', id]);
   }
 
-
   onCancelEdit() {
-    this.editingUserId = null;
+    // opcional: volver a la lista
+    this.router.navigate(['/usuarios']);
+  }
+
+  onLoginSuccess(user: any) {
+    // tu lógica de login…
   }
 }

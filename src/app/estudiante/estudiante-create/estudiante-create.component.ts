@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-estudiante-create',
   templateUrl: './estudiante-create.component.html',
   styleUrls: ['./estudiante-create.component.css']

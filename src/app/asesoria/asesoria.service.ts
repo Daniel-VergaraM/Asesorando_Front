@@ -32,4 +32,8 @@ export class AsesoriaService {
   getAsesoriasPorArea(area: string): Observable<AsesoriaDetail[]> {
     return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}?area=${area}`);
   }
+  getAsesoriasPorProfesor(profesorId: number): Observable<AsesoriaDetail[]> {
+    return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}/profesor/${profesorId}`);
+  }
+
 }
