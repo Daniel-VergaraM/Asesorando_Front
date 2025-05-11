@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfesorService } from '../profesor.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
+<<<<<<< HEAD
 import { AsesoriaDetail }    from '../../asesoria/asesoriaDetail';
 import { AsesoriaService }   from '../../asesoria/asesoria.service';
+=======
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+>>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
 
 @Component({
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];
@@ -24,7 +25,14 @@ export class ProfesorListComponent implements OnInit {
   selectedProfesor: ProfesorDetail | null = null;
   private asesoriasMap: Record<number, AsesoriaDetail[]> = {};
 
+<<<<<<< HEAD
   constructor(private profesorService: ProfesorService, private asesoriasService: AsesoriaService) {}
+=======
+  @Output() createProfesor = new EventEmitter<void>();
+  @Output() viewProfesorDetail = new EventEmitter<ProfesorDetail>();
+
+  constructor(private profesorService: ProfesorService) { }
+>>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
 
   ngOnInit() {
     this.loadProfesores();
@@ -103,7 +111,20 @@ export class ProfesorListComponent implements OnInit {
     this.selectedProfesor = null;
   }
 
+<<<<<<< HEAD
   getProfesorAsesorias(profesor: ProfesorDetail): AsesoriaDetail[] {
     return this.asesoriasMap[profesor.id] || [];
+=======
+  getProfesorAsesorias(profesor: ProfesorDetail): Asesoria[] {
+    return []
+  }
+
+  onCreateNewProfesor() {
+    this.createProfesor.emit();
+  }
+
+  viewProfile(profesor: ProfesorDetail) {
+    this.viewProfesorDetail.emit(profesor);
+>>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
   }
 }

@@ -1,11 +1,14 @@
+/// <reference types="jasmine" />
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AsesoriaCreateComponent } from './asesoria-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DebugElement } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AsesoriaService } from '../asesoria.service';
 import { RouterModule } from '@angular/router';
 import { By } from '@angular/platform-browser';
+
 
 describe('AsesoriaCreateComponent', () => {
   let component: AsesoriaCreateComponent;

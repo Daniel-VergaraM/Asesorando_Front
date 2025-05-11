@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProfesorDetail } from '../profesorDetail';
 import { ProfesorService } from '../profesor.service';
 import { CommonModule } from '@angular/common';
@@ -12,11 +11,10 @@ import { AsesoriaService }             from '../../asesoria/asesoria.service';
   selector: 'app-profesor-detail',
   templateUrl: './profesor-detail.component.html',
   styleUrls: ['./profesor-detail.component.css'],
-  standalone: true,
   imports: [CommonModule, FormsModule, SafeResourceUrlPipe]
 })
 export class ProfesorDetailComponent implements OnInit {
-  profesorId!: number;
+  @Input() profesorId!: number;
   profesor!: ProfesorDetail;
   showEditForm: boolean = false;
   userId: number | null = null;
@@ -26,21 +24,25 @@ export class ProfesorDetailComponent implements OnInit {
   loginMessage: string = '';
   asesorias: AsesoriaDetail[] = [];
 
+  @Output() goBack = new EventEmitter<void>();
+
   constructor(
+<<<<<<< HEAD
     private route: ActivatedRoute,
     private profesorService: ProfesorService,
     private router: Router,
     private asesoriaSvc: AsesoriaService 
+=======
+    private profesorService: ProfesorService
+>>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
   ) {}
 
   ngOnInit() {
-    // Get the profesor ID from the route parameters
-    this.route.params.subscribe(params => {
-      this.profesorId = Number(params['id']);
+    if (this.profesorId) {
       this.getProfesorDetail();
       this.loadAsesorias();
       this.checkUserSession();
-    });
+    }
   }
   private loadAsesorias(): void {
     this.asesoriaSvc
@@ -235,5 +237,9 @@ export class ProfesorDetailComponent implements OnInit {
     this.isProfesor = false;
     alert('Sesión cerrada.');
     this.checkUserSession();
+  }
+
+  navigateBack(): void {
+    this.goBack.emit();
   }
 }

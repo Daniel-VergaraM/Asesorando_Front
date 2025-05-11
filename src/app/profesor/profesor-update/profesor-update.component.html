@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h4 class="text-center">Actualizar Profesor</h4>
+  <form [formGroup]="profesorForm" (ngSubmit)="onSubmitUpdate()">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="nombre" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Correo</label>
+      <input type="email" class="form-control" formControlName="correo" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" formControlName="contrasena" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input type="tel" class="form-control" formControlName="telefono" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipo</label>
+      <select class="form-select" formControlName="tipo">
+        <option value="VIRTUAL">Virtual</option>
+        <option value="PRESENCIAL">Presencial</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Formación</label>
+      <textarea class="form-control" formControlName="formacion"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Experiencia</label>
+      <textarea class="form-control" formControlName="experiencia"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancelarUpdate()">Cancelar</button>
+  </form>
+</div>

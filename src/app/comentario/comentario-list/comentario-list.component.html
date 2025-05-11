@@ -1,3 +1,23 @@
-<p>
+<!--<p>
   comentario-list works!
-</p>
+</p>-->
+
+<div class="container-fluid mt-2 mb-4">
+  <h2 class="text-center">Consultar comentarios</h2>
+  <div *ngIf="asesorias.length === 0" class="text-center">
+    No hay comentarios publicados.
+  </div>
+  <div class="row">
+    <div *ngFor="let a of asesorias" class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ a.comentario }} ({{ a.calificacion }})</h5>
+          <p class="card-text">
+            Comentario: {{ a.comentario }}<br>
+            Calificación: {{ a.calificacion }}<br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

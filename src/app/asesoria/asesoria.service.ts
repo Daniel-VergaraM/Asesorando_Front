@@ -24,6 +24,10 @@ export class AsesoriaService {
     return this.http.get<AsesoriaDetail>(`${this.apiUrl}/${id}`);
   }
 
+  updateAsesoria(asesoria: Asesoria): Observable<Asesoria> {
+    return this.http.put<Asesoria>(`${this.apiUrl}/${asesoria.id}`, asesoria);
+  }
+
   /** Crear nueva asesoría */
   createAsesoria(asesoria: Asesoria): Observable<Asesoria> {
     return this.http.post<Asesoria>(this.apiUrl, asesoria);

@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfesorService } from '../profesor.service';
 import { Profesor } from '../profesor';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profesor-create',
   templateUrl: './profesor-create.component.html',
   styleUrls: ['./profesor-create.component.css'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class ProfesorCreateComponent implements OnInit {
   profesorForm!: FormGroup;
@@ -18,9 +16,11 @@ export class ProfesorCreateComponent implements OnInit {
   errorMessage = '';
   tiposProfesor = ['PROFESOR', 'PROFESORVIRTUAL', 'PROFESORPRESENCIAL'];
 
+  @Output() profesorCreated = new EventEmitter<Profesor>();
+  @Output() cancelCreate = new EventEmitter<void>();
+
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private profesorService: ProfesorService
   ) { }
 
@@ -72,7 +72,7 @@ export class ProfesorCreateComponent implements OnInit {
     this.profesorService.createProfesor(profesorData).subscribe({
       next: (profesor) => {
         console.log('Professor created successfully:', profesor);
-        this.router.navigate(['/profesores', profesor.id]);
+        this.profesorCreated.emit(profesor);
       },
       error: (error) => {
         console.error('Error creating professor:', error);
@@ -88,6 +88,6 @@ export class ProfesorCreateComponent implements OnInit {
   }
 
   cancelCreation() {
-    this.router.navigate(['/profesores']);
+    this.cancelCreate.emit();
   }
 }
