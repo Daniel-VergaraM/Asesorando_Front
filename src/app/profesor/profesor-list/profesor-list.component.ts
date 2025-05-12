@@ -2,15 +2,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfesorService } from '../profesor.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
-<<<<<<< HEAD
-import { AsesoriaDetail }    from '../../asesoria/asesoriaDetail';
-import { AsesoriaService }   from '../../asesoria/asesoria.service';
-=======
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
->>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
+import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
+import { AsesoriaService } from '../../asesoria/asesoria.service';
 
 @Component({
+  standalone: true,
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
@@ -22,17 +20,15 @@ export class ProfesorListComponent implements OnInit {
   searchTerm: string = '';
   searchType: string = 'nombre';
   loading: boolean = true;
+  private asesoriasMap: Record<number, Asesoria[]> = {};
   selectedProfesor: ProfesorDetail | null = null;
-  private asesoriasMap: Record<number, AsesoriaDetail[]> = {};
 
-<<<<<<< HEAD
-  constructor(private profesorService: ProfesorService, private asesoriasService: AsesoriaService) {}
-=======
   @Output() createProfesor = new EventEmitter<void>();
   @Output() viewProfesorDetail = new EventEmitter<ProfesorDetail>();
-
-  constructor(private profesorService: ProfesorService) { }
->>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
+  constructor(
+    private profesorService: ProfesorService,
+    private asesoriasService: AsesoriaService
+  ) { }
 
   ngOnInit() {
     this.loadProfesores();
@@ -111,10 +107,6 @@ export class ProfesorListComponent implements OnInit {
     this.selectedProfesor = null;
   }
 
-<<<<<<< HEAD
-  getProfesorAsesorias(profesor: ProfesorDetail): AsesoriaDetail[] {
-    return this.asesoriasMap[profesor.id] || [];
-=======
   getProfesorAsesorias(profesor: ProfesorDetail): Asesoria[] {
     return []
   }
@@ -125,6 +117,5 @@ export class ProfesorListComponent implements OnInit {
 
   viewProfile(profesor: ProfesorDetail) {
     this.viewProfesorDetail.emit(profesor);
->>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
   }
 }

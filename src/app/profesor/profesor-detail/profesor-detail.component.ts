@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
 import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { AsesoriaService }             from '../../asesoria/asesoria.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profesor-detail',
@@ -27,14 +28,11 @@ export class ProfesorDetailComponent implements OnInit {
   @Output() goBack = new EventEmitter<void>();
 
   constructor(
-<<<<<<< HEAD
     private route: ActivatedRoute,
-    private profesorService: ProfesorService,
     private router: Router,
-    private asesoriaSvc: AsesoriaService 
-=======
+    private asesoriaSvc: AsesoriaService,
+
     private profesorService: ProfesorService
->>>>>>> 729a777032a8f3becc29cad22bf6aaf6091fe278
   ) {}
 
   ngOnInit() {
