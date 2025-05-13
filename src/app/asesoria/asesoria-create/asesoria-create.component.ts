@@ -33,29 +33,52 @@ export class AsesoriaCreateComponent implements OnInit {
       profesorId: [profesorId, Validators.required]
     });
   }
+  get f() { return this.asesoriaForm.controls; }
 
   createAsesoria(): void {
-    if (this.asesoriaForm.invalid) return;
-    const form = this.asesoriaForm.value;
-    const nueva = new Asesoria(
-      0,
-      form.duracion,
-      form.tematica,
-      form.tipo,
-      form.area,
-      form.completada,
-      form.profesorId
-    );
-    this.asesoriaService.createAsesoria(nueva).subscribe({
-      next: () => {
-        this.toastr.success('Asesoría creada', 'Éxito');
-        this.router.navigate(['/asesorias/list']);
-      },
-      error: (err: any) => {
-        console.error(err);
-        this.toastr.error('Error al crear', 'Error');
-      }
-    });
+    // 1) Validación del formulario
+    if (this.asesoriaForm.invalid) {
+      return;
+    }
+  
+    // 2) Extracción de valores
+    const f = this.asesoriaForm.controls;
+    const id         = 0; // ID se asigna automáticamente en el backend
+    const duracion   = f['duracion'].value as string;
+    const tematica   = f['tematica'].value as string;
+    const tipo       = f['tipo'].value as string;
+    const area       = f['area'].value as string;
+    const completada = f['completada'].value as boolean;
+    const profesorId = f['profesorId'].value as number;
+  
+    // 3) Construcción del payload conforme al back
+    const payload = {
+      id,
+      duracion,
+      tematica,
+      tipo,
+      area,
+      completada,
+      profesor: { id: profesorId }
+    };
+  
+    console.log('Payload Asesoria ➡️', payload);
+  
+    // 4) Llamada al servicio
+    this.asesoriaService
+      .createAsesoria(payload)  // payload encaja con el DTO
+      .subscribe({
+        next: (created) => {
+          console.info('Asesoría creada:', created);
+          this.toastr.success('Asesoría creada correctamente', 'OK');
+          this.router.navigate(['/asesorias/list']);
+          this.asesoriaForm.reset();
+        },
+        error: (err) => {
+          console.error('Error al crear asesoría', err);
+          this.toastr.error('No se pudo crear la asesoría', 'Error');
+        }
+      });
   }
 
   cancelCreation(): void {

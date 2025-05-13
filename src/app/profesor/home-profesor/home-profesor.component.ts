@@ -36,6 +36,6 @@ export class HomeProfesorComponent implements OnInit {
         this.anuncios = p.tematicas || [];
       });
 
-    this.asesoriaSvc.getAsesoriasPorProfesor(profesorId)
+    this.asesoriaSvc.getAsesoriasByProfesorId(profesorId)
       .subscribe(list => this.solicitudes = list);
   }}

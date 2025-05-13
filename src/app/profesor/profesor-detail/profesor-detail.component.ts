@@ -7,6 +7,7 @@ import { SafeResourceUrlPipe } from '../../shared/pipes/safe-resource-url.pipe';
 import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { AsesoriaService }             from '../../asesoria/asesoria.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Asesoria } from '../../asesoria/asesoria';
 
 @Component({
   selector: 'app-profesor-detail',
@@ -44,10 +45,10 @@ export class ProfesorDetailComponent implements OnInit {
   }
   private loadAsesorias(): void {
     this.asesoriaSvc
-      .getAsesoriasPorProfesor(this.profesorId)
+      .getAsesoriasByProfesorId(this.profesorId)
       .subscribe({
-        next: list => this.asesorias = list,
-        error: err => console.error('Error al cargar asesorías:', err)
+       next: (list: AsesoriaDetail[]) => this.asesorias = list,
+        error: (err: any) => console.error('Error al cargar asesorías:', err)
       });
   }
 

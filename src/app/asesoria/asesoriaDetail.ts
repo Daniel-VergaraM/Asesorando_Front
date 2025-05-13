@@ -1,27 +1,33 @@
-import { Asesoria } from './asesoria';
+import { Asesoria }   from './asesoria';
 import { Calendario } from '../calendario/calendario';
-import { Profesor } from '../profesor/profesor';
-import { Reserva } from '../reserva/reserva';
+import { Profesor }   from '../profesor/profesor';
+import { Reserva }    from '../reserva/reserva';
+
 export class AsesoriaDetail extends Asesoria {
   public calendario: Calendario | null;
-  public profesor: Profesor[];
-  public reserva: Reserva[];
+  public profesorFull: Profesor | null;
+  public reserva: Reserva | null;
 
   constructor(
+    // parámetros de Asesoria:
     id: number,
     duracion: string,
     tematica: string,
     tipo: string,
     area: string,
     completada: boolean,
-    profesorId: number,
+    profesorRef: { id: number },
+
+    // parámetros específicos de detalle:
     calendario?: Calendario,
-    profesor?: Profesor[],
-    reserva?: Reserva[]
+    profesorFull?: Profesor,
+    reserva?: Reserva
   ) {
-    super(id, duracion, tematica, tipo, area, completada, profesorId);
-    this.calendario = calendario || null;
-    this.profesor = profesor || [];
-    this.reserva = reserva || [];
+    // en lugar de pasar profesorId, paso el objeto:
+    super(id, duracion, tematica, tipo, area, completada, profesorRef);
+
+    this.calendario    = calendario    || null;
+    this.profesorFull  = profesorFull  || null;
+    this.reserva       = reserva       || null;
   }
 }

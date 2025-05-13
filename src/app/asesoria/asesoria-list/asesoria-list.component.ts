@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AsesoriaDetail } from '../asesoriaDetail';
 import { AsesoriaService } from '../asesoria.service';
 
@@ -10,8 +10,6 @@ import { AsesoriaService } from '../asesoria.service';
 })
 export class AsesoriaListComponent implements OnInit {
   asesorias: AsesoriaDetail[] = [];
-  @Input() estudianteId!: number;
-
 
   constructor(private asesoriaService: AsesoriaService) {}
 

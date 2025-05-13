@@ -31,7 +31,6 @@ import { CalendarioModule }        from './calendario/calendario.module';
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     UsuarioModule,
     ComentarioModule,
-    AsesoriaModule,
     EstudianteModule,
     ProfesorModule,
     CalendarioModule

@@ -1,11 +1,11 @@
 export class Asesoria {
-  public id: number;
-  public duracion: string;
-  public tematica: string;
-  public tipo: string;
-  public area: string;
-  public completada: boolean;
-  public profesorId: number;
+  id: number;
+  duracion: string;
+  tematica: string;
+  tipo: string;
+  area: string;
+  completada: boolean;
+  profesor: { id: number };
 
   constructor(
     id: number,
@@ -14,7 +14,7 @@ export class Asesoria {
     tipo: string,
     area: string,
     completada: boolean,
-    profesorId: number
+    profesor: { id: number }
   ) {
     this.id = id;
     this.duracion = duracion;
@@ -22,6 +22,6 @@ export class Asesoria {
     this.tipo = tipo;
     this.area = area;
     this.completada = completada;
-    this.profesorId = profesorId;
+    this.profesor = profesor;
   }
 }

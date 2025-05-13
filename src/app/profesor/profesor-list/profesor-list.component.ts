@@ -93,9 +93,9 @@ export class ProfesorListComponent implements OnInit {
     this.selectedProfesor = profesor;
 
     // carga las asesorías de este profe y las guardas en el mapa
-    this.asesoriasService.getAsesoriasPorProfesor(profesor.id).subscribe({
-      next: list => this.asesoriasMap[profesor.id] = list,
-      error: err => {
+    this.asesoriasService.getAsesoriasByProfesorId(profesor.id).subscribe({
+      next: (list: Asesoria[]) => this.asesoriasMap[profesor.id] = list,
+      error: (err: any) => {
         console.error('Error al cargar asesorías:', err);
         this.asesoriasMap[profesor.id] = [];
       }

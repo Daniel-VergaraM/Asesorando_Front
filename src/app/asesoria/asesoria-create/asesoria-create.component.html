@@ -11,8 +11,9 @@
         class="form-control"
         formControlName="duracion"
         placeholder="Ej. 1h, 30m"
+        [ngClass]="{ 'is-invalid': f['duracion'].invalid && f['duracion'].touched }"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('duracion')!.invalid && asesoriaForm.get('duracion')!.touched">
+      <div class="alert alert-danger" *ngIf="f['duracion'].invalid && f['duracion'].touched">
         Duración requerida
       </div>
     </div>
@@ -25,8 +26,9 @@
         class="form-control"
         formControlName="tematica"
         placeholder="Tema de la asesoría"
+        [ngClass]="{ 'is-invalid': f['tematica'].invalid && f['tematica'].touched }"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tematica')!.invalid && asesoriaForm.get('tematica')!.touched">
+      <div class="alert alert-danger" *ngIf="f['tematica'].invalid && f['tematica'].touched">
         Temática requerida
       </div>
     </div>
@@ -34,12 +36,17 @@
     <!-- Tipo -->
     <div class="form-group mx-sm-3 mb-2">
       <label for="tipo">Tipo</label>
-      <select id="tipo" class="form-control" formControlName="tipo">
+      <select
+        id="tipo"
+        class="form-control"
+        formControlName="tipo"
+        [ngClass]="{ 'is-invalid': f['tipo'].invalid && f['tipo'].touched }"
+      >
         <option value="">Selecciona...</option>
         <option value="individual">Individual</option>
         <option value="grupo">Grupo</option>
       </select>
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tipo')!.invalid && asesoriaForm.get('tipo')!.touched">
+      <div class="alert alert-danger" *ngIf="f['tipo'].invalid && f['tipo'].touched">
         Tipo requerido
       </div>
     </div>
@@ -52,8 +59,9 @@
         class="form-control"
         formControlName="area"
         placeholder="Área (p.ej. Matemáticas)"
+        [ngClass]="{ 'is-invalid': f['area'].invalid && f['area'].touched }"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('area')!.invalid && asesoriaForm.get('area')!.touched">
+      <div class="alert alert-danger" *ngIf="f['area'].invalid && f['area'].touched">
         Área requerida
       </div>
     </div>
@@ -77,7 +85,7 @@
         id="submit"
         type="submit"
         class="btn btn-primary"
-        [disabled]="!asesoriaForm.valid"
+        [disabled]="asesoriaForm.invalid"
       >
         Crear
       </button>

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrls: ['./app.component.css']   // ← aquí
+  styleUrls: ['./app.component.css']   
 })
-export class AppComponent {
+export class AppComponent  {
   title = 'Asesorando';
   searchTerm: string = '';
 
@@ -15,4 +15,13 @@ export class AppComponent {
 
   }
 
+  public asesoriasOpen = false;
+
+  toggleAsesorias(): void {
+    this.asesoriasOpen = !this.asesoriasOpen;
+  }
+
+  closeAsesorias(): void {
+    this.asesoriasOpen = false;
+  }
 }

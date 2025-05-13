@@ -6,10 +6,10 @@ import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.compo
 import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesoria-explorar-area.component';
 
 const routes: Routes = [
-  { path: '', component: AsesoriaListComponent },
+  { path: 'list', component: AsesoriaListComponent },
   { path: 'create', component: AsesoriaCreateComponent },
   { path: ':id', component: AsesoriaDetailComponent },
-  {path: 'explore', component: AsesoriaExplorarAreaComponent }
+  {path: 'explorar', component: AsesoriaExplorarAreaComponent }
 ];
 
 @NgModule({
