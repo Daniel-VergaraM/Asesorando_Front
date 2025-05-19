@@ -17,58 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <!-- Dropdown de Asesorías -->
-            <li class="nav-item dropdown" (mouseleave)="closeAsesorias()">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                (click)="toggleAsesorias(); $event.preventDefault()"
-                [attr.aria-expanded]="asesoriasOpen"
-              >
-                Asesorías
-              </a>
-              <ul
-                class="dropdown-menu"
-                [class.show]="asesoriasOpen"
-                style="position: absolute;"
-              >
-                <li>
-                  <a
-                    class="dropdown-item"
-                    routerLink="/asesorias/list"
-                    (click)="closeAsesorias()"
-                  >
-                    Listar
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    routerLink="/asesorias/create"
-                    (click)="closeAsesorias()"
-                  >
-                    Crear
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    routerLink="/asesorias/explorar"
-                    (click)="closeAsesorias()"
-                  >
-                    Explorar
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/asesorias/list"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/asesorias/create"></a>
-            </li>
+           
             
             <li class="nav-item">
               <a 

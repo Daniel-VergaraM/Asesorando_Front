@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: 'usuarios', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
   { path: 'comentarios', loadChildren: () => import('./comentario/comentario.module').then(m => m.ComentarioModule)},
   { path: 'profesores', loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule) },
+  { path: 'profesores/:profesorId/asesorias',loadChildren: () =>import('./asesoria/asesoria.module').then(m => m.AsesoriaModule)},
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

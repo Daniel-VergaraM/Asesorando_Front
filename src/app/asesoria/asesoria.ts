@@ -5,7 +5,7 @@ export class Asesoria {
   tipo: string;
   area: string;
   completada: boolean;
-  profesor: { id: number };
+  profesorId: number;     // renombrado
 
   constructor(
     id: number,
@@ -14,14 +14,14 @@ export class Asesoria {
     tipo: string,
     area: string,
     completada: boolean,
-    profesor: { id: number }
+    profesorId: number     // renombrado
   ) {
-    this.id = id;
-    this.duracion = duracion;
-    this.tematica = tematica;
-    this.tipo = tipo;
-    this.area = area;
-    this.completada = completada;
-    this.profesor = profesor;
+    this.id          = id;
+    this.duracion    = duracion;
+    this.tematica    = tematica;
+    this.tipo        = tipo;
+    this.area        = area;
+    this.completada  = completada;
+    this.profesorId  = profesorId;
   }
 }
