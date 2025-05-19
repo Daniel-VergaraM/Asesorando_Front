@@ -1,0 +1,27 @@
+<!-- Sección de búsqueda -->
+<section
+  class="position-relative d-flex align-items-center justify-content-center text-white"
+  style="
+    background-image: url('/assets/resources/img00.png');
+    background-size: cover;
+    background-position: center;
+    height: 220vh;
+    padding-bottom: 220px;
+  ">
+  <div class="position-relative text-center px-3" style="z-index: 1; max-width: 100%; width: 100%;">
+    <h1 class="display-3 mb-3" style="color: white; font-size: 100px; font-family: sans-serif;">ENCUENTRA TU TUTOR IDEAL</h1>
+    <p class="lead mb-4" style="color: white; font-size: 40px; font-family: Arial, sans-serif;">
+      TUTORIAS DE TODAS LAS MATERIAS: VIRTUAL, PRESENCIAL O HIBRIDO
+    </p>
+    <div class="input-group mb-5" style="max-width: 1000px; margin: 0 auto;">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="¿Qué quieres aprender?"
+        [(ngModel)]="searchTerm"
+      />
+      <button class="btn btn-primary" (click)="onSearch()">Buscar</button>
+    </div>
+    <app-profesor-list></app-profesor-list>
+  </div>
+</section>

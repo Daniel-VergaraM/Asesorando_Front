@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UsuarioService }                         from '../usuario.service';
-import { Usuario }                                from '../usuario';
-import { UsuarioDetail }                          from '../usuarioDetail';
+import { UsuarioService } from '../usuario.service';
+import { Usuario } from '../usuario';
+import { UsuarioDetail } from '../usuarioDetail';
 
 @Component({
   standalone: false,

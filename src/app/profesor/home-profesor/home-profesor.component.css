@@ -1,0 +1,16 @@
+/* Perfil */
+.profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  /* Ajustes de tarjeta y progreso */
+  .progress {
+    height: 1.5rem;
+  }
+  .progress-bar {
+    line-height: 1.5rem;
+  }
+  

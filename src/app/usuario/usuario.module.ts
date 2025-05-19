@@ -1,27 +1,34 @@
-import { NgModule }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule }        from '@angular/router';
+// src/app/usuario/usuario.module.ts
+import { NgModule }               from '@angular/core';
+import { CommonModule }           from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule }           from '@angular/router';
 
-import { UsuarioListComponent }       from './usuario-list/usuario-list.component';
-import { UsuarioActualizarComponent } from './usuario-update/usuario-update.component';
-import { UsuarioComponent }           from './usuario.component';
+import { UsuarioComponent }          from './usuario.component';
+import { UsuarioListComponent }      from './usuario-list/usuario-list.component';
+import { UsuarioActualizarComponent }from './usuario-update/usuario-update.component';
+import { UsuarioLoginComponent } from './usuario-login/usuario-login/usuario-login.component';
+import { UsuarioService }           from './usuario.service';
+import { Usuario }                 from './usuario';
 
 @NgModule({
   declarations: [
     UsuarioComponent,
     UsuarioListComponent,
     UsuarioActualizarComponent,
+    UsuarioLoginComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,  
+    FormsModule,            // <-- para ngForm y ngModel
+    ReactiveFormsModule,    // <-- para formGroup y formControlName
     RouterModule
   ],
   exports: [
     UsuarioComponent,
     UsuarioListComponent,
-    UsuarioActualizarComponent
+    UsuarioActualizarComponent,
+    UsuarioLoginComponent
   ]
 })
-export class UsuarioModule {}
+export class UsuarioModule { }

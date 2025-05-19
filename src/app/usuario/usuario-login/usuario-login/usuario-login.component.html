@@ -1,0 +1,21 @@
+<div class="login-container container mt-5" style="max-width: 400px;">
+  <h2 class="text-center mb-4">Iniciar Sesión</h2>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
+      <input id="correo" name="correo" type="email"
+             class="form-control" required
+             [(ngModel)]="model.correo" />
+    </div>
+    <div class="mb-3">
+      <label for="contrasena" class="form-label">Contraseña</label>
+      <input id="contrasena" name="contrasena" type="password"
+             class="form-control" required
+             [(ngModel)]="model.contrasena" />
+    </div>
+    <button type="submit" class="btn btn-primary w-100"
+            [disabled]="loginForm.invalid">
+      Login
+    </button>
+  </form>
+</div>

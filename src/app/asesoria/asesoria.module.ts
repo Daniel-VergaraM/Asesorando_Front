@@ -7,24 +7,24 @@ import { AsesoriaDetailComponent } from './asesoria-detail/asesoria-detail.compo
 import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.component';
 import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesoria-explorar-area.component';
 
-import { AsesoriaComponent } from './asesoria.component';
+
 import { RouterModule } from '@angular/router';
 import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.component';
 @NgModule({
-  declarations: [AsesoriaComponent,
+  imports: [
+    CommonModule,
+    RouterModule,
+    AsesoriaRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  declarations: [
     AsesoriaListComponent,
     AsesoriaDetailComponent,
     AsesoriaCreateComponent,
     AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    AsesoriaRoutingModule
-  ],
-  exports: [ AsesoriaComponent],
+  ]
+  
 })
 export class AsesoriaModule {}

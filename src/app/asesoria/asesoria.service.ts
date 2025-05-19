@@ -18,7 +18,11 @@ export class AsesoriaService {
   getAsesorias(): Observable<AsesoriaDetail[]> {
     return this.http.get<AsesoriaDetail[]>(this.apiUrl);
     }
-
+  
+  getAsesoriasByProfesorId(profesorId: number): Observable<AsesoriaDetail[]> {
+    return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}/profesor/${profesorId}`);
+  }
+  
   /** Detalle de una asesoría */
   getAsesoria(id: number): Observable<AsesoriaDetail> {
     return this.http.get<AsesoriaDetail>(`${this.apiUrl}/${id}`);

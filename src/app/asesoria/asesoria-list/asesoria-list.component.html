@@ -11,7 +11,7 @@
           <p class="card-text">
             Duración: {{ a.duracion }}<br>
             Área: {{ a.area }}<br>
-            Fecha: {{ a.calendario?.fechaInicio | date:'shortDate' }}<br>
+            Fecha: {{ a.duracion| date:'longDate' }}<br>
             Completada: {{ a.completada ? 'Sí' : 'No' }}
           </p>
         </div>

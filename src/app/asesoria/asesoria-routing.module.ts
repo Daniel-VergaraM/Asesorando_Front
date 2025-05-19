@@ -6,12 +6,11 @@ import { AsesoriaCreateComponent } from './asesoria-create/asesoria-create.compo
 import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesoria-explorar-area.component';
 
 const routes: Routes = [
-  { path: '', component: AsesoriaListComponent },
-  { path: 'create', component: AsesoriaCreateComponent },
-  { path: ':id', component: AsesoriaDetailComponent },
-  {path: 'explore', component: AsesoriaExplorarAreaComponent }
+  { path: '',                 redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list',             component: AsesoriaListComponent },
+  { path: 'profesor/:profesorId', component: AsesoriaListComponent },
+  { path: 'create/:profesorId',   component: AsesoriaCreateComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -1,27 +1,161 @@
 <div class="container mt-3 border p-4 bg-light">
-  <h4 class="text-center">HU06 ESTUDIANTE #{{ userId }}</h4>
+  <h4 class="text-center mb-4">
+    {{ isProfesor ? 'Actualizar Profesor' : 'Actualizar Estudiante' }}
+    #{{ userId }}
+  </h4>
+
   <form [formGroup]="usuarioForm" (ngSubmit)="onSubmitUpdate()">
+
     <div class="mb-3">
-      <label>Nombre</label>
-      <input class="form-control" formControlName="nombre" />
-    </div>
-    <div class="mb-3">
-      <label>Correo</label>
-      <input class="form-control" formControlName="correo" />
-    </div>
-    <div class="mb-3">
-      <label>Contraseña</label>
-      <input type="password" class="form-control" formControlName="contrasena" />
-    </div>
-    <div class="mb-3">
-      <label>Teléfono</label>
-      <input class="form-control" formControlName="telefono" />
+      <label for="nombre" class="form-label">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        class="form-control"
+        formControlName="nombre"
+      />
     </div>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-secondary me-2" type="button"
-              (click)="onCancel()">Cancelar</button>
-      <button class="btn btn-success" type="submit">Guardar</button>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
+      <input
+        id="correo"
+        type="email"
+        class="form-control"
+        formControlName="correo"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="contrasena" class="form-label">Contraseña</label>
+      <input
+        id="contrasena"
+        type="password"
+        class="form-control"
+        formControlName="contrasena"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input
+        id="telefono"
+        type="text"
+        class="form-control"
+        formControlName="telefono"
+      />
+    </div>
+
+    <ng-container *ngIf="isProfesor">
+      <div class="mb-3">
+        <label for="fotoUrl" class="form-label">URL Foto</label>
+        <input
+          id="fotoUrl"
+          type="url"
+          class="form-control"
+          formControlName="fotoUrl"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="videoUrl" class="form-label">URL Video</label>
+        <input
+          id="videoUrl"
+          type="url"
+          class="form-control"
+          formControlName="videoUrl"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="formacion" class="form-label">Formación</label>
+        <input
+          id="formacion"
+          type="text"
+          class="form-control"
+          formControlName="formacion"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="experiencia" class="form-label">Experiencia</label>
+        <input
+          id="experiencia"
+          type="text"
+          class="form-control"
+          formControlName="experiencia"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="enlaceReunion" class="form-label">Enlace Reunión</label>
+        <input
+          id="enlaceReunion"
+          type="url"
+          class="form-control"
+          formControlName="enlaceReunion"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="precioHora" class="form-label">Precio Hora</label>
+        <input
+          id="precioHora"
+          type="number"
+          min="0"
+          class="form-control"
+          formControlName="precioHora"
+        />
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="codigoPostal" class="form-label">Código Postal</label>
+          <input
+            id="codigoPostal"
+            type="text"
+            class="form-control"
+            formControlName="codigoPostal"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="latitud" class="form-label">Latitud</label>
+          <input
+            id="latitud"
+            type="number"
+            step="any"
+            class="form-control"
+            formControlName="latitud"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="longitud" class="form-label">Longitud</label>
+          <input
+            id="longitud"
+            type="number"
+            step="any"
+            class="form-control"
+            formControlName="longitud"
+          />
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button
+        type="button"
+        class="btn btn-secondary me-2"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="usuarioForm.invalid"
+      >
+        Guardar
+      </button>
     </div>
   </form>
 </div>

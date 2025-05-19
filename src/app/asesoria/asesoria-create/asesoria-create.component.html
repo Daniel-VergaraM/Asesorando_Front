@@ -1,93 +1,104 @@
+<!-- src/app/asesoria/asesoria-create/asesoria-create.component.html -->
 <div class="container mt-4">
-  <form
-    [formGroup]="asesoriaForm"
-    (ngSubmit)="createAsesoria()"
-  >
+  <form [formGroup]="asesoriaForm" (ngSubmit)="createAsesoria()">
+
     <!-- Duración -->
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="duracion">Duración</label>
+    <div class="mb-3">
+      <label for="duracion" class="form-label">Duración</label>
       <input
         id="duracion"
-        class="form-control"
+        type="text"
         formControlName="duracion"
+        class="form-control"
         placeholder="Ej. 1h, 30m"
+        [class.is-invalid]="f['duracion'].invalid && f['duracion'].touched"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('duracion')!.invalid && asesoriaForm.get('duracion')!.touched">
+      <div class="invalid-feedback" *ngIf="f['duracion'].invalid && f['duracion'].touched">
         Duración requerida
       </div>
     </div>
 
     <!-- Temática -->
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="tematica">Temática</label>
+    <div class="mb-3">
+      <label for="tematica" class="form-label">Temática</label>
       <input
         id="tematica"
-        class="form-control"
+        type="text"
         formControlName="tematica"
+        class="form-control"
         placeholder="Tema de la asesoría"
+        [class.is-invalid]="f['tematica'].invalid && f['tematica'].touched"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tematica')!.invalid && asesoriaForm.get('tematica')!.touched">
+      <div class="invalid-feedback" *ngIf="f['tematica'].invalid && f['tematica'].touched">
         Temática requerida
       </div>
     </div>
 
     <!-- Tipo -->
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="tipo">Tipo</label>
-      <select id="tipo" class="form-control" formControlName="tipo">
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo</label>
+      <select
+        id="tipo"
+        formControlName="tipo"
+        class="form-select"
+        [class.is-invalid]="f['tipo'].invalid && f['tipo'].touched"
+      >
         <option value="">Selecciona...</option>
         <option value="individual">Individual</option>
         <option value="grupo">Grupo</option>
       </select>
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('tipo')!.invalid && asesoriaForm.get('tipo')!.touched">
+      <div class="invalid-feedback" *ngIf="f['tipo'].invalid && f['tipo'].touched">
         Tipo requerido
       </div>
     </div>
 
     <!-- Área -->
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="area">Área</label>
+    <div class="mb-3">
+      <label for="area" class="form-label">Área</label>
       <input
         id="area"
-        class="form-control"
+        type="text"
         formControlName="area"
+        class="form-control"
         placeholder="Área (p.ej. Matemáticas)"
+        [class.is-invalid]="f['area'].invalid && f['area'].touched"
       />
-      <div class="alert alert-danger" *ngIf="asesoriaForm.get('area')!.invalid && asesoriaForm.get('area')!.touched">
+      <div class="invalid-feedback" *ngIf="f['area'].invalid && f['area'].touched">
         Área requerida
       </div>
     </div>
 
     <!-- Completada -->
-    <div class="form-group form-check mx-sm-3 mb-2">
+    <div class="form-check mb-3">
       <input
         id="completada"
         type="checkbox"
-        class="form-check-input"
         formControlName="completada"
+        class="form-check-input"
       />
-      <label class="form-check-label" for="completada">Completada</label>
+      <label for="completada" class="form-check-label">Completada</label>
     </div>
 
-    <!-- Profesor ID (hidden) -->
+    <!-- Profesor ID oculto -->
     <input type="hidden" formControlName="profesorId" />
 
-    <div class="form-group mx-sm-3 mb-2" style="margin-top: 15px;">
+    <!-- Botones -->
+    <div class="mt-4">
       <button
-        id="submit"
         type="submit"
         class="btn btn-primary"
-        [disabled]="!asesoriaForm.valid"
+        [disabled]="asesoriaForm.invalid"
       >
         Crear
       </button>
       <button
         type="button"
-        class="btn btn-danger ml-3"
+        class="btn btn-danger ms-2"
         (click)="cancelCreation()"
       >
         Cancelar
       </button>
     </div>
+
   </form>
 </div>

@@ -4,8 +4,11 @@ import { ProfesorDetail } from '../profesorDetail';
 import { Asesoria } from '../../asesoria/asesoria';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
+import { AsesoriaService } from '../../asesoria/asesoria.service';
 
 @Component({
+  standalone: true,
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
@@ -17,12 +20,15 @@ export class ProfesorListComponent implements OnInit {
   searchTerm: string = '';
   searchType: string = 'nombre';
   loading: boolean = true;
+  private asesoriasMap: Record<number, Asesoria[]> = {};
   selectedProfesor: ProfesorDetail | null = null;
 
   @Output() createProfesor = new EventEmitter<void>();
   @Output() viewProfesorDetail = new EventEmitter<ProfesorDetail>();
-
-  constructor(private profesorService: ProfesorService) { }
+  constructor(
+    private profesorService: ProfesorService,
+    private asesoriasService: AsesoriaService
+  ) { }
 
   ngOnInit() {
     this.loadProfesores();
@@ -85,7 +91,17 @@ export class ProfesorListComponent implements OnInit {
 
   selectProfesor(profesor: ProfesorDetail) {
     this.selectedProfesor = profesor;
+
+    // carga las asesorías de este profe y las guardas en el mapa
+    this.asesoriasService.getAsesoriasByProfesorId(profesor.id).subscribe({
+      next: (list: Asesoria[]) => this.asesoriasMap[profesor.id] = list,
+      error: (err: any) => {
+        console.error('Error al cargar asesorías:', err);
+        this.asesoriasMap[profesor.id] = [];
+      }
+    });
   }
+
 
   clearSelection() {
     this.selectedProfesor = null;

@@ -88,6 +88,8 @@
           </div>
         </div>
 
+     
+
         <!-- Edit Mode -->
         <div class="card-body" *ngIf="showEditForm">
           <form #profesorForm="ngForm">
@@ -156,5 +158,21 @@
     <div class="spinner-border text-primary mt-5" role="status">
       <span class="visually-hidden">Cargando...</span>
     </div>
+  </div>
+</div>
+<!-- Sección de Asesorías -->
+<div class="card mb-3">
+  <div class="card-header">Asesorías</div>
+  <div class="card-body">
+    <!-- Si el array asesorias está vacío -->
+    <div class="alert alert-info" *ngIf="!asesorias.length">
+      Este profesor no tiene asesorías registradas.
+    </div>
+    <!-- Si hay asesorías, las listamos -->
+    <ul *ngIf="asesorias.length" class="list-unstyled">
+      <li *ngFor="let a of asesorias">
+        {{ a.tematica }} ({{ a.duracion }} min) 📋 {{ a.tipo }}
+      </li>
+    </ul>
   </div>
 </div>
