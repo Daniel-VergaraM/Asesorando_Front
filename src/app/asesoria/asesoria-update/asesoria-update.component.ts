@@ -6,11 +6,10 @@ import { Asesoria } from '../asesoria';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
+  standalone: false,
   selector: 'app-asesoria-update',
   templateUrl: './asesoria-update.component.html',
   styleUrls: ['./asesoria-update.component.css'],
-  imports: [ReactiveFormsModule]
 })
 export class AsesoriaUpdateComponent implements OnInit {
   asesoriaForm!: FormGroup;

@@ -9,11 +9,13 @@ import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesori
 
 import { AsesoriaComponent } from './asesoria.component';
 import { RouterModule } from '@angular/router';
+import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.component';
 @NgModule({
   declarations: [AsesoriaComponent,
     AsesoriaListComponent,
     AsesoriaDetailComponent,
     AsesoriaCreateComponent,
+    AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
   ],
   imports: [
