@@ -1,10 +1,9 @@
-import { Component, OnInit }                         from '@angular/core';
-import { FormBuilder, FormGroup, Validators }        from '@angular/forms';
-import { ActivatedRoute, Router }                    from '@angular/router';
-import { UsuarioService }                            from '../usuario.service';
-import { Usuario }                                   from '../usuario';
-import { ProfesorDetail }                            from '../../profesor/profesorDetail';
-import { EstudianteDetail }                          from '../../estudiante/estudianteDetail';
+import { Component, OnInit }              from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router }         from '@angular/router';
+import { UsuarioService }                 from '../usuario.service';
+import { Usuario }                        from '../usuario';
+import { UsuarioDetail }                  from '../usuarioDetail';
 
 @Component({
   standalone: false,
@@ -15,88 +14,66 @@ import { EstudianteDetail }                          from '../../estudiante/estu
 export class UsuarioActualizarComponent implements OnInit {
   userId!: number;
   usuarioForm!: FormGroup;
-  private userOriginal!: Usuario | ProfesorDetail | EstudianteDetail;
-  isProfesor = false;
+  private userOriginal!: UsuarioDetail;
 
   constructor(
-    private fb: FormBuilder,
+    private readonly fb: FormBuilder,
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.buildForm();
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const idParam = params.get('id');
-      if (!idParam) {
-        this.router.navigate(['/usuarios']);
-        return;
-      }
-      this.userId = +idParam;
-      this.loadUser(this.userId);
-    });
-  }
-
-  private loadUser(id: number) {
-    this.usuarioService.getUsuarioById(id).subscribe({
-      next: user => {this.userOriginal = user;
-        this.isProfesor = (user as ProfesorDetail).tematicas !== undefined
-        || user.tipo === 'PROFESOR';
-        this.buildForm();
+    this.userId = +this.route.snapshot.paramMap.get('id')!;
+    this.buildForm();
+    // Traemos el detalle completo (incluye teléfono, tipo, DTYPE, etc.)
+    this.usuarioService.getUsuarioDetail(this.userId)
+      .subscribe(user => {
+        this.userOriginal = user;
         this.usuarioForm.patchValue(user);
-      },error: () => this.router.navigate(['/usuarios'])}); }
+      });
+  }
 
   private buildForm() {
-    const ctrls: any = {
-      nombre:     ['', Validators.required],
-      correo:     ['', [Validators.required, Validators.email]],
-      contrasena: ['', Validators.required],
-      telefono:   ['', [Validators.required, Validators.minLength(7)]]
+    this.usuarioForm = this.fb.group({
+      nombre:        ['', Validators.required],
+      correo:        ['', [Validators.required, Validators.email]],
+      contrasena:    ['', Validators.required],
+      telefono:      ['', [Validators.required, Validators.minLength(7)]],
+      fotoUrl:       [''],
+      videoUrl:      [''],
+      formacion:     [''],
+      experiencia:   [''],
+      enlaceReunion: [''],
+      precioHora:    [''],
+      codigoPostal:  this.fb.control('', []),
+      latitud:       [''],
+      longitud:      ['']
+    });
+  }
+
+  onSubmitUpdate(): void {
+    if (this.usuarioForm.invalid) return;
+
+    // *** Cambio clave: merge del original con los valores nuevos ***
+    const payload: Usuario = {
+      ...this.userOriginal,
+      ...this.usuarioForm.value
     };
 
-    if (this.isProfesor) {
-      Object.assign(ctrls, {
-        fotoUrl:       [''],
-        videoUrl:      [''],
-        formacion:     [''],
-        experiencia:   [''],
-        enlaceReunion: [''],
-        precioHora:    [0, Validators.min(0)],
-        codigoPostal:  [''],
-        latitud:       [''],
-        longitud:      ['']
+    console.log('▶️ Payload a enviar:', payload);
+
+    this.usuarioService.actualizarUsuario(payload)
+      .subscribe({
+        next: resp => {
+          console.log('✅ Actualización OK:', resp);
+          this.router.navigate(['/profesor/home', this.userId]);
+        },
+        error: err => console.error('❌ Error al actualizar:', err)
       });
-    }
-
-    this.usuarioForm = this.fb.group(ctrls);
   }
-
-onSubmitUpdate(): void {
-  if (this.usuarioForm.invalid) return;
-
-  const payload: Usuario = {
-    ...this.userOriginal,
-    ...this.usuarioForm.value
-  };
-
-  this.usuarioService.actualizarUsuario(payload)
-    .subscribe({
-      next: () => this.navigatorHome(),   
-      error: err => console.error('Error al actualizar:', err)
-    });
-}
 
   onCancel(): void {
-    this.navigatorHome();
-  }
-
-  private navigatorHome() {
-    if (this.isProfesor) {
-      this.router.navigate(['/profesor/home', this.userId]);
-    } else {
-      this.router.navigate(['/estudiante/home', this.userId]);
-    }
+    this.router.navigate(['/profesor/home', this.userId]);
   }
 }
