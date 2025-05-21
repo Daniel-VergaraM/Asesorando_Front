@@ -1,5 +1,3 @@
-/// <reference types="jasmine" />
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AsignacionesComponent } from './asignaciones.component';
 
@@ -14,10 +12,9 @@ describe('AsignacionesComponent', () => {
 
     fixture = TestBed.createComponent(AsignacionesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });
