@@ -18,6 +18,6 @@ describe('AsignacionesComponent', () => {
   });
 
   it('should create', () => {
-    true
-  });
+  expect(component).toBeTruthy();
+});
 });
