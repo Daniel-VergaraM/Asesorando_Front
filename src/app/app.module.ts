@@ -16,11 +16,14 @@ import { AsesoriaModule }          from './asesoria/asesoria.module';
 import { EstudianteModule }        from './estudiante/estudiante.module';
 import { ProfesorModule }          from './profesor/profesor.module';
 import { CalendarioModule }        from './calendario/calendario.module';
+import { AsignacionesComponent } from './asignaciones/asignaciones.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
-  ],
+      AsignacionesComponent,
+      AsignacionesComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,7 +31,7 @@ import { CalendarioModule }        from './calendario/calendario.module';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
+    
     UsuarioModule,
     ComentarioModule,
     EstudianteModule,
