@@ -38,4 +38,14 @@ export class HomeProfesorComponent implements OnInit {
 
     this.asesoriaSvc.getAsesoriasByProfesorId(profesorId)
       .subscribe(list => this.solicitudes = list);
-  }}
+  }
+    public asesoriasOpen = false;
+
+  toggleAsesorias(): void {
+    this.asesoriasOpen = !this.asesoriasOpen;
+  }
+
+  closeAsesorias(): void {
+    this.asesoriasOpen = false;
+  }
+}

@@ -1,68 +1,70 @@
-<div class="container mt-4">
-  <div class="row mb-4">
-    <div class="col-12">
-      <h2>Profesores</h2>
-      <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <div>
-            <div class="input-group">
-              <select class="form-select" style="max-width: 150px;" [(ngModel)]="searchType">
-                <option value="nombre">Buscar por nombre</option>
-                <option value="tematica">Buscar por temática</option>
-                <option value="tipo">Buscar por tipo</option>
-              </select>
-              <input type="text" class="form-control" placeholder="Buscar profesores..." [(ngModel)]="searchTerm" (keyup)="filterProfesores()">
-            </div>
-          </div>
-          <button (click)="onCreateNewProfesor()" class="btn btn-primary">Nuevo Profesor</button>
-        </div>
+<main class="profesores-list w-100 p-0">
+  <div class="container-fluid mt-4 px-4">
+    <!-- Título -->
+    <h2 class="text-center text-white display-6 mb-5">Profesores</h2>
 
-        <div class="card-body">
-          <div *ngIf="loading" class="d-flex justify-content-center">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Cargando...</span>
-            </div>
-          </div>
+    <!-- Barra de búsqueda y botón -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="input-group input-group-sm" style="max-width: 400px;">
+        <select class="form-select" [(ngModel)]="searchType">
+          <option value="nombre">Por nombre</option>
+          <option value="tematica">Por temática</option>
+          <option value="tipo">Por tipo</option>
+        </select>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar profesores…"
+          [(ngModel)]="searchTerm"
+          (keyup)="filterProfesores()"
+        />
+      </div>
+      <button class="btn btn-outline-light btn-sm" (click)="onCreateNewProfesor()">
+        Nuevo profesor
+      </button>
+    </div>
 
-          <div *ngIf="!loading && filteredProfesores.length === 0" class="alert alert-info">
-            No se encontraron profesores que coincidan con tu búsqueda.
-          </div>
+    <!-- Spinner / “no encontrado” -->
+    <div *ngIf="loading" class="d-flex justify-content-center my-5">
+      <div class="spinner-border text-light" role="status"></div>
+    </div>
+    <div *ngIf="!loading && filteredProfesores.length === 0" class="alert alert-info">
+      No se encontraron profesores.
+    </div>
 
-          <div *ngIf="!loading && filteredProfesores.length > 0" class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tipo</th>
-                  <th>Correo</th>
-                  <th>Teléfono</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let profesor of filteredProfesores">
-                  <td>{{ profesor.nombre }}</td>
-                  <td>{{ profesor.tipo }}</td>
-                  <td>{{ profesor.correo }}</td>
-                  <td>{{ profesor.telefono }}</td>
-                  <td>
-                    <div class="btn-group">
-                      <button class="btn btn-sm btn-info me-1" (click)="selectProfesor(profesor)">
-                        <i class="bi bi-eye"></i> Ver detalles
-                      </button>
-                      <button class="btn btn-sm btn-primary" (click)="viewProfile(profesor)">
-                        <i class="bi bi-person"></i> Perfil
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <!-- Grid de cards -->
+    <div *ngIf="!loading && filteredProfesores.length > 0"
+         class="row g-4 justify-content-center mx-auto"
+         style="max-width: 1200px;">
+     <div *ngFor="let prof of filteredProfesores" class="col-12 col-sm-6 col-lg-4">
+  <div class="card profesor-card bg-transparent border-0">
+    <div class="ratio ratio-4x3 position-relative overflow-hidden rounded-custom">
+      <img [src]="prof.fotoUrl" class="card-img-top object-cover" alt="…">
+      <i class="bi bi-heart-fill favorite-icon"></i>
+      <div class="overlay-text text-white">
+        <h5 class="mb-1">{{ prof.nombre }}</h5>
+        <p class="small mb-0">{{ prof.experiencia }}</p>
+      </div>
+    </div>
+
+    <!-- body de la tarjeta con fondo coloreado rosado -->
+    <div class="card-body rounded-bottom-custom"
+         style="background-color: rgba(148, 132, 155, 0.8);">
+      <p class="mb-2 small text-white"></p>
+        {{ prof.formacion }}
+      <div class="d-flex align-items-center justify-content-between">
+        <button class="btn btn-sm btn-info" (click)="selectProfesor(prof)">
+          Ver detalles
+        </button>
+        <button class="btn btn-sm btn-primary" (click)="viewProfile(prof)">
+          Perfil
+        </button>
       </div>
     </div>
   </div>
+</div>
+
+
 
   <!-- Profesor Detail Section -->
   <div *ngIf="selectedProfesor" class="row">
@@ -144,4 +146,3 @@
       </div>
     </div>
   </div>
-</div>

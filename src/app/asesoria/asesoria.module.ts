@@ -9,6 +9,7 @@ import { AsesoriaExplorarAreaComponent  } from './asesoria-explorar-area/asesori
 
 
 import { RouterModule } from '@angular/router';
+import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     AsesoriaListComponent,
     AsesoriaDetailComponent,
     AsesoriaCreateComponent,
+    AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
   ]
   

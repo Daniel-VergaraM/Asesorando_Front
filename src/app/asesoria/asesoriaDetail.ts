@@ -1,3 +1,5 @@
+// src/app/asesoria/asesoria-detail.ts
+
 import { Asesoria }   from './asesoria';
 import { Calendario } from '../calendario/calendario';
 import { Profesor }   from '../profesor/profesor';
@@ -23,11 +25,11 @@ export class AsesoriaDetail extends Asesoria {
     profesorFull?: Profesor,
     reserva?: Reserva
   ) {
-    // en lugar de pasar profesorId, paso el objeto:
-    super(id, duracion, tematica, tipo, area, completada, profesorRef);
+    // Pasamos solo el número:
+    super(id, duracion, tematica, tipo, area, completada, profesorRef.id);
 
-    this.calendario    = calendario    || null;
-    this.profesorFull  = profesorFull  || null;
-    this.reserva       = reserva       || null;
+    this.calendario   = calendario   || null;
+    this.profesorFull = profesorFull || null;
+    this.reserva      = reserva      || null;
   }
 }

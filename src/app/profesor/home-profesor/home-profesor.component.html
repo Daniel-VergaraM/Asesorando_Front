@@ -1,87 +1,148 @@
-<div class="container mt-4">
+<div class="container mt-4 position-absolute start-0" style="top: 70px; left: 0; z-index: 1030; max-width: 350px;">
   <div class="row g-4">
     <!-- Tarjeta de perfil -->
-    <div class="col-md-4">
-      <div class="card text-center h-100">
-        <img
-          [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
-          class="profile-img mx-auto mt-4"
-          alt="Foto profesor"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ profesor.nombre }}</h5>
-          <p class="card-text">{{ profesor.correo }}</p>
-          <p class="card-text">{{ profesor.telefono }}</p>
-          <button
-            class="btn btn-warning ms-2"
-            [routerLink]="['/usuarios/actualizar', profesor.id]"
-          >
-            Actualizar mi usuario
-          </button>
-        </div>
+    <div class="col-md-12">
+      <div class="card text-center h-100" style="background-color: #bda9c6;">
+      <img
+        [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
+        class="profile-img mx-auto mt-4"
+        alt="Foto profesor"
+      />
+      <div class="card-body" style="background-color: #bda9c6;">
+        <h5 class="card-title">{{ profesor.nombre }}</h5>
+        <p class="card-text">{{ profesor.correo }}</p>
+        <p class="card-text">{{ profesor.telefono }}</p>
+        <button
+        *ngIf="profesor"
+        class="btn btn-dark ms-2"
+        [routerLink]="['/actualizar', profesor.id]"
+        >
+        <span style="color: #fff;">Actualizar mi usuario</span>
+        </button>
+      </div>
       </div>
     </div>
+    </div>
+  </div>
 
     <!-- Contenido principal -->
-    <div class="col-md-8">
+    <div class="container mt-4" style="position: absolute; top: 70px; left: -300px;z-index: 1030; right: 0;">
       <div class="row g-4">
         <!-- Mis solicitudes de clases -->
         <div class="col-lg-6">
-          <div class="card h-100">
-            <div class="card-header">Mis solicitudes de asesorias</div>
+            <div class="card h-100" style="background-color: #bda9c6;">
+            <div class="card-header" style="background-color: #bda9c6; color: #000000;">Mis solicitudes de asesorias</div>
             <ul
               class="list-group list-group-flush"
               *ngIf="solicitudes?.length; else noSol"
             >
               <li
-                class="list-group-item"
-                *ngFor="let s of solicitudes"
+              class="list-group-item"
+              *ngFor="let s of solicitudes"
+              style="background-color:#bda9c6;"
               >
-                {{ s.tematica }} ({{ s.duracion }} min) 📋 {{ s.tipo }}
+              {{ s.tematica }} ({{ s.duracion }} min) 📋 {{ s.tipo }}
               </li>
             </ul>
             <ng-template #noSol>
-              <div class="card-body"><em>No tienes solicitudes</em></div>
+              <div class="card-body" style="background-color: #bda9c6; color: #000000;"><em>No tienes solicitudes</em></div>
             </ng-template>
+            </div>
+            </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Mis asesorías -->
-        <div class="col-lg-6">
-          <div class="card h-100">
-            <div class="card-header">Mis asesorías</div>
-
+          <!-- Mis asesorías -->
+          <div class="container mt-4" style="position: absolute; top: 70px; left: 1070px; z-index: 1030; right: 0;">
+            <div class="card h-100" style="background-color: #bda9c6;">
+            <div class="card-header" style="background-color: #bda9c6; color: #000000;">Mis asesorías</div>
             <ul
               class="list-group list-group-flush"
               *ngIf="anuncios?.length; else noAnun"
             >
               <li
-                class="list-group-item"
-                *ngFor="let a of anuncios | slice:0:5"
+            class="list-group-item"
+            *ngFor="let a of anuncios | slice:0:5"
+            style="background-color: #bda9c6; color: #fff;"
               >
-                <strong>{{ a.tema }}</strong> {{ a.area }}
+            <strong>{{ a.tema }}</strong> {{ a.area }}
               </li>
             </ul>
-            
             <button
-                routerLink="/asesorias/list"
-                class="btn btn-outline-primary"
-              >
-                Mostrar todos las {{ solicitudes.length }} asesorias
-                <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-
+              routerLink="/asesorias/list"
+              class="btn"
+              style="color: #000; border: 2px solid #000; background-color: transparent;"
+            >
+              <span style="color: #000; background-color: #bda9c6;">
+                Mostrar todas las {{ solicitudes.length }} asesorías
+              </span>
+              <i class="bi bi-arrow-right ms-2"></i>
+            </button>
             <ng-template #noAnun>
-              <div class="card-body text-muted">
-                <i class="bi bi-info-circle me-2"></i>No has publicado anuncios
+              <div class="card-body text-muted" style="background-color: #bda9c6; color: #000000;">
+            <i class="bi bi-info-circle me-2"></i>No has publicado anuncios
               </div>
             </ng-template>
-            
-
-            
           </div>
         </div>
-      </div>
+
+
+
+        <!-- Contenedor rectangular centrado para el dropdown de Asesorías -->
+        <div class="d-flex justify-content-center align-items-center mt-4">
+          <div class="card text-center shadow" style="width: 350px; background-color: #bda9c6;">
+            <div class="card-header" style="background-color: #bda9c6; font-weight: bold; font-size: 1.2rem;">
+              Asesorías
+            </div>
+            <div class="card-body">
+              <!-- Dropdown de Asesorías -->
+              <div class="dropdown" [class.show]="asesoriasOpen">
+                <button
+                  class="btn btn-dark dropdown-toggle w-100"
+                  type="button"
+                  id="dropdownAsesorias"
+                  (click)="toggleAsesorias(); $event.preventDefault()"
+                  [attr.aria-expanded]="asesoriasOpen"
+                >
+                  Opciones de Asesorías
+                </button>
+                <ul
+                  class="dropdown-menu w-100 mt-2"
+                  [class.show]="asesoriasOpen"
+                  aria-labelledby="dropdownAsesorias"
+                  style="background-color: #e9d6f5;"
+                  (mouseleave)="closeAsesorias()"
+                >
+                  <li>
+                    <a class="dropdown-item"
+                      [routerLink]="['/asesorias/profesor', profesor.id]"
+                      (click)="closeAsesorias()">
+                      Listar
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item"
+                      [routerLink]="['/asesorias/create', profesor.id]"
+                      (click)="closeAsesorias()">
+                      Crear
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- Contenedor abajo a la izquierda para volver a la página principal -->
+<div class="position-fixed bottom-0 start-0 mb-4 ms-4" style="z-index: 1050;">
+  <div class="card text-center shadow" style="width: 250px; background-color: #bda9c6;"></div>
+    <div class="card-body">
+      <button
+        class="btn w-100"
+        style="background-color: #bda9c6; color: #000000; border: 2px solid #000000;"
+        [routerLink]="['/']"
+      >
+        <span style="color: #fff;">Cerrar sesion  </span>
+      </button>
     </div>
   </div>
-</div>
