@@ -1,79 +1,83 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';  
+import { RouterModule } from '@angular/router';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfesorService } from '../profesor.service';
 import { Profesor } from '../profesor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ProfesorDetail } from '../profesorDetail';
 
 @Component({
-  standalone: false,
   selector: 'app-profesor-update',
+  standalone: false,  
   templateUrl: './profesor-update.component.html',
   styleUrls: ['./profesor-update.component.css']
 })
-export class ProfesorUpdateComponent implements OnInit {
-  profesorForm!: FormGroup;
-  profesorId!: number;
-  profesorOriginal!: Profesor;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private profesorService: ProfesorService
-  ) {
-    this.profesorForm = this.fb.group({
-      nombre: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      contrasena: ['', Validators.required],
-      telefono: ['', [Validators.required, Validators.minLength(7)]],
-      fotoUrl: [''],
-      videoUrl: [''],
-      tipo: ['VIRTUAL', Validators.required],
-      formacion: ['', Validators.required],
-      experiencia: ['', Validators.required],
-      enlaceReunion: [''],
-      codigoPostal: [''],
-      latitud: [''],
-      longitud: ['']
-    });
-  }
 
-  ngOnInit(): void {
-    this.profesorId = +this.route.snapshot.paramMap.get('id')!;
-    this.profesorService.getProfesor(this.profesorId).subscribe({
-      next: (p: Profesor) => {
-        this.profesorOriginal = p;
-        this.profesorForm.patchValue({
-          ...p,
-          codigoPostal: p.codigoPostal?.toString() || '',
-          latitud: p.latitud?.toString() || '',
-          longitud: p.longitud?.toString() || ''
+  export class ProfesorActualizarComponent implements OnInit {
+    profesorId!: number;
+    profesorForm!: FormGroup;
+    private profesorOriginal!: ProfesorDetail;
+
+    constructor(
+      private readonly fb: FormBuilder,
+      private profesorService: ProfesorService,
+      private route: ActivatedRoute,
+      private router: Router
+    ) {}
+
+    ngOnInit(): void {
+      this.profesorId = +this.route.snapshot.paramMap.get('id')!;
+      this.buildForm();
+      this.profesorService.getProfesorDetail(this.profesorId)
+        .subscribe(p => {
+          this.profesorOriginal = p;
+          this.profesorForm.patchValue(p);
         });
-      },
-      error: err => console.error('Error al cargar profesor:', err)
-    });
+    }
+
+    private buildForm() {
+      this.profesorForm = this.fb.group({
+        nombre:        ['', Validators.required],
+        correo:        ['', [Validators.required, Validators.email]],
+        contrasena:    ['', Validators.required],
+        telefono:      ['', [Validators.required, Validators.minLength(7)]],
+        fotoUrl:       [''],
+        videoUrl:      [''],
+        formacion:     [''],
+        experiencia:   [''],
+        enlaceReunion: [''],
+        precioHora:    [''],
+        codigoPostal:  [''],
+        latitud:       [''],
+        longitud:      ['']
+      });
+    }
+
+    onSubmitUpdate(): void {
+      if (this.profesorForm.invalid) return;
+
+      const payload: Profesor = {
+      id: this.profesorId,
+      ...this.profesorForm.value
+      };
+
+      console.log('▶️ Payload profesor a enviar:', payload);
+
+      this.profesorService.updateProfesor(payload)
+        .subscribe({
+          next: resp => {
+            console.log('✅ Profesor actualizado:', resp);
+            this.router.navigate(['/profesor/home', this.profesorId]);
+          },
+          error: err => console.error('❌ Error al actualizar profesor:', err)
+        });
+    }
+
+    onCancel(): void {
+      this.router.navigate(['/profesor/home', this.profesorId]);
+    }
   }
-
-  onSubmitUpdate(): void {
-    const formValue = this.profesorForm.value;
-    const payload: Profesor = {
-      ...this.profesorOriginal,
-      ...formValue,
-      codigoPostal: formValue.codigoPostal ? +formValue.codigoPostal : null,
-      latitud: formValue.latitud ? +formValue.latitud : null,
-      longitud: formValue.longitud ? +formValue.longitud : null
-    };
-
-    console.log('Payload que mando:', payload);
-
-    this.profesorService.updateProfesor(payload).subscribe({
-      next: () => this.router.navigate(['/profesores']),
-      error: err => console.error('Error al actualizar profesor:', err)
-    });
-  }
-
-  cancelarUpdate(): void {
-    this.router.navigate(['/profesores']);
-  }
-}
