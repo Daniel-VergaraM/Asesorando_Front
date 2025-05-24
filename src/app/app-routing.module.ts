@@ -6,6 +6,7 @@ import {HomeProfesorComponent } from './profesor/home-profesor/home-profesor.com
 import { HomeComponent }               from './home/home/home.component';
 import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-update.component';
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
+import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
 
 const routes: Routes = [
   // página pública
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
 
   { path: 'actualizar/:id', component: UsuarioActualizarComponent },
+  
+  {path: 'profesor/actualizar/:id', component: ProfesorActualizarComponent },
 
   { path: 'asesorias', loadChildren: () => import('./asesoria/asesoria.module').then(m => m.AsesoriaModule) },
   { path: 'calendarios', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioModule) },

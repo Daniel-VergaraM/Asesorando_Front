@@ -11,13 +11,15 @@ import { ProfesorComponent }        from './profesor.component';
 import { ProfesorListComponent }    from './profesor-list/profesor-list.component';
 import { ProfesorDetailComponent }  from './profesor-detail/profesor-detail.component';
 import { ProfesorCreateComponent }  from './profesor-create/profesor-create.component';
-import { ProfesorUpdateComponent }  from './profesor-update/profesor-update.component';
+import { ProfesorActualizarComponent } from './profesor-update/profesor-update.component';
+
 import { HomeProfesorComponent }    from './home-profesor/home-profesor.component';
 
 @NgModule({
   declarations: [
     ProfesorComponent,
-    ProfesorUpdateComponent,
+    ProfesorActualizarComponent
+  
   ],
   imports: [
     CommonModule,
@@ -25,11 +27,13 @@ import { HomeProfesorComponent }    from './home-profesor/home-profesor.componen
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-     ProfesorListComponent,
+    ProfesorListComponent,
     ProfesorDetailComponent,
     ProfesorCreateComponent,
-    HomeProfesorComponent
-  ],
+    HomeProfesorComponent,
+    
 
-})
+  ],
+}
+)
 export class ProfesorModule {}
