@@ -1,5 +1,5 @@
 <main class="profesores-list w-100 p-0">
-  <div class="container-fluid mt-4 px-4">
+  <div class="container-fluid mt-5 px-4"> <!-- mt-5 para más espacio arriba -->
     <!-- Título -->
     <h2 class="text-center text-white display-6 mb-5">Profesores</h2>
 
@@ -34,115 +34,112 @@
 
     <!-- Grid de cards -->
     <div *ngIf="!loading && filteredProfesores.length > 0"
-         class="row g-4 justify-content-center mx-auto"
-         style="max-width: 1200px;">
-     <div *ngFor="let prof of filteredProfesores" class="col-12 col-sm-6 col-lg-4">
-  <div class="card profesor-card bg-transparent border-0">
-    <div class="ratio ratio-4x3 position-relative overflow-hidden rounded-custom">
-      <img [src]="prof.fotoUrl" class="card-img-top object-cover" alt="…">
-      <i class="bi bi-heart-fill favorite-icon"></i>
-      <div class="overlay-text text-white">
-        <h5 class="mb-1">{{ prof.nombre }}</h5>
-        <p class="small mb-0">{{ prof.experiencia }}</p>
-      </div>
-    </div>
-
-    <!-- body de la tarjeta con fondo coloreado rosado -->
-    <div class="card-body rounded-bottom-custom"
-         style="background-color: rgba(148, 132, 155, 0.8);">
-      <p class="mb-2 small text-white"></p>
-        {{ prof.formacion }}
-      <div class="d-flex align-items-center justify-content-between">
-        <button class="btn btn-sm btn-info" (click)="selectProfesor(prof)">
-          Ver detalles
-        </button>
-        <button class="btn btn-sm btn-primary" (click)="viewProfile(prof)">
-          Perfil
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-  <!-- Profesor Detail Section -->
-  <div *ngIf="selectedProfesor" class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h4>{{ selectedProfesor.nombre }} - Detalles</h4>
-          <button class="btn btn-sm btn-secondary" (click)="clearSelection()">
-            <i class="bi bi-x"></i> Cerrar
-          </button>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <!-- Professor Basic Info -->
-            <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="card-header">Información Básica</div>
-                <div class="card-body">
-                  <img [src]="selectedProfesor.fotoUrl || 'assets/images/default-profile.jpg'" class="img-fluid rounded mb-3" alt="Foto del profesor">
-                  <p><strong>Tipo:</strong> {{ selectedProfesor.tipo }}</p>
-                  <p><strong>Correo:</strong> {{ selectedProfesor.correo }}</p>
-                  <p><strong>Teléfono:</strong> {{ selectedProfesor.telefono }}</p>
-                  <p *ngIf="selectedProfesor.enlaceReunion">
-                    <strong>Enlace de reunión:</strong>
-                    <a [href]="selectedProfesor.enlaceReunion" target="_blank">{{ selectedProfesor.enlaceReunion }}</a>
-                  </p>
-                </div>
-              </div>
+         class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center mx-auto"
+         style="max-width: 1300px;">
+      <div *ngFor="let prof of filteredProfesores" class="col">
+        <div class="card profesor-card bg-transparent border-0">
+          <div class="ratio ratio-4x3 position-relative overflow-hidden rounded-custom">
+            <img [src]="prof.fotoUrl" class="card-img-top object-cover" alt="…">
+            <i class="bi bi-heart-fill favorite-icon"></i>
+            <div class="overlay-text text-white">
+              <h5 class="mb-1">{{ prof.nombre }}</h5>
+              <p class="small mb-0">{{ prof.experiencia }}</p>
             </div>
-
-            <!-- Professor Temáticas -->
-            <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="card-header">Temáticas</div>
-                <div class="card-body">
-                  <div *ngIf="selectedProfesor.tematicas && selectedProfesor.tematicas.length > 0">
-                    <div *ngFor="let tematica of selectedProfesor.tematicas" class="card mb-2">
-                      <div class="card-body p-3">
-                        <h5 class="card-title">{{ tematica.area }}</h5>
-                        <p class="card-text">{{ tematica.tema }}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div *ngIf="!selectedProfesor.tematicas || selectedProfesor.tematicas.length === 0" class="alert alert-info">
-                    Este profesor no tiene temáticas asignadas.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Professor Asesorías -->
-            <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="card-header">Asesorías</div>
-                <div class="card-body">
-                  <ng-container *ngIf="getProfesorAsesorias(selectedProfesor).length > 0; else noAsesorias">
-                    <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor)" class="card mb-2">
-                      <div class="card-body p-3">
-                        <h5 class="card-title">{{ asesoria.tipo }}</h5>
-                        <p class="mb-1"><strong>Área:</strong> {{ asesoria.area }}</p>
-                        <p class="mb-1"><strong>Temática:</strong> {{ asesoria.tematica }}</p>
-                        <p class="mb-1"><strong>Duración:</strong> {{ asesoria.duracion }}</p>
-                        <span class="badge" [ngClass]="{'bg-success': asesoria.completada, 'bg-warning': !asesoria.completada}">
-                          {{ asesoria.completada ? 'Completada' : 'Pendiente' }}
-                        </span>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <ng-template #noAsesorias>
-                    <div class="alert alert-info">
-                      Este profesor no tiene asesorías registradas.
-                    </div>
-                  </ng-template>
-                </div>
-              </div>
+          </div>
+          <div class="card-body rounded-bottom-custom"
+               style="background-color: rgba(148, 132, 155, 0.8);">
+            {{ prof.formacion }}
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <button class="btn btn-sm btn-info" (click)="selectProfesor(prof)">Ver detalles</button>
+              <button class="btn btn-sm btn-primary" (click)="viewProfile(prof)">Perfil</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Profesor Detail Section -->
+    <div *ngIf="selectedProfesor" class="row mt-5">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4>{{ selectedProfesor.nombre }} - Detalles</h4>
+            <button class="btn btn-sm btn-secondary" (click)="clearSelection()">
+              <i class="bi bi-x"></i> Cerrar
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Información básica -->
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <div class="card-header">Información Básica</div>
+                  <div class="card-body">
+                    <img [src]="selectedProfesor.fotoUrl || 'assets/images/default-profile.jpg'" class="img-fluid rounded mb-3" alt="Foto del profesor">
+                    <p><strong>Tipo:</strong> {{ selectedProfesor.tipo }}</p>
+                    <p><strong>Correo:</strong> {{ selectedProfesor.correo }}</p>
+                    <p><strong>Teléfono:</strong> {{ selectedProfesor.telefono }}</p>
+                    <p *ngIf="selectedProfesor.enlaceReunion">
+                      <strong>Enlace de reunión:</strong>
+                      <a [href]="selectedProfesor.enlaceReunion" target="_blank">{{ selectedProfesor.enlaceReunion }}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Temáticas -->
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <div class="card-header">Temáticas</div>
+                  <div class="card-body">
+                    <ng-container *ngIf="selectedProfesor.tematicas && selectedProfesor.tematicas.length > 0; else noTematicas">
+
+                      <div *ngFor="let tematica of selectedProfesor.tematicas" class="card mb-2">
+                        <div class="card-body p-3">
+                          <h5 class="card-title">{{ tematica.area }}</h5>
+                          <p class="card-text">{{ tematica.tema }}</p>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-template #noTematicas>
+                      <div class="alert alert-info">
+                        Este profesor no tiene temáticas asignadas.
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Asesorías -->
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <div class="card-header">Asesorías</div>
+                  <div class="card-body">
+                    <ng-container *ngIf="getProfesorAsesorias(selectedProfesor).length > 0; else noAsesorias">
+                      <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor)" class="card mb-2">
+                        <div class="card-body p-3">
+                          <h5 class="card-title">{{ asesoria.tipo }}</h5>
+                          <p class="mb-1"><strong>Área:</strong> {{ asesoria.area }}</p>
+                          <p class="mb-1"><strong>Temática:</strong> {{ asesoria.tematica }}</p>
+                          <p class="mb-1"><strong>Duración:</strong> {{ asesoria.duracion }}</p>
+                          <span class="badge" [ngClass]="{'bg-success': asesoria.completada, 'bg-warning': !asesoria.completada}">
+                            {{ asesoria.completada ? 'Completada' : 'Pendiente' }}
+                          </span>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-template #noAsesorias>
+                      <div class="alert alert-info">
+                        Este profesor no tiene asesorías registradas.
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
   </div>
+</main>

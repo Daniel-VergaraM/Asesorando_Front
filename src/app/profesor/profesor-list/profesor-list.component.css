@@ -1,91 +1,62 @@
-/* Selectores más específicos si hiciera falta */
-.container-fluid .row .card {
-  background: rgba(255, 255, 255, 0.8); /* blanco con 80% opacidad */
-  border: none;                           /* opcional, si quieres quitar bordes */
-}
-
-
-
-.container-fluid .row .card-body {
-  background: transparent;
-}
-/* Para que el main ocupe todo y tenga tu background */
+/* Espaciado general */
 .profesores-list {
-  min-height: calc(100vh - 56px - 60px); /* ajusta si tienes navbar y footer */
-  background: url('/assets/images/tu-fondo.jpg') center/cover no-repeat;
+  margin-top: 50px;
 }
 
-/* Radios personalizados */
-.rounded-custom {
-  border-top-left-radius: 1.2rem;
-  border-top-right-radius: 1.2rem;
-}
-
-.rounded-bottom-custom {
-  border-bottom-left-radius: 1.2rem;
-  border-bottom-right-radius: 1.2rem;
-}
-.profesor-card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* Para que la imagen llene y recorte bien */
-.object-cover {
-  object-fit: cover;
-  width: 100%;
+/* Ajuste de la card */
+.profesor-card {
+  background-color: rgba(240, 240, 255, 0.1); /* Color acorde con fondo oscuro */
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Overlay de texto sobre la imagen */
+/* Hover effect */
+.profesor-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen proporcional y redondeada */
+.profesor-card .ratio img {
+  object-fit: cover;
+   height: 160px;
+  width: 100%;
+}
+
+/* Texto dentro de la imagen */
 .overlay-text {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  text-shadow: 1px 1px 4px black;
+}
+
+/* Fondo de la parte inferior */
+.rounded-bottom-custom {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Para que la card no crezca mucho en pantallas pequeñas */
+@media (max-width: 768px) {
+  .profesor-card {
+    font-size: 90%;
+  }
+}
+.profesor-card img {
+  height: 100%;
   width: 100%;
-  padding: 0.8rem 1rem;
-  /* semitransparencia oscura */
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  object-fit: cover;
 }
 
-/* Ícono de favorito */
-.favorite-icon {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  font-size: 1.2rem;
-  color: white;
-  opacity: 0.8;
-  transition: opacity .2s;
-}
-.favorite-icon:hover {
-  opacity: 1;
-}
-
-/* Card general */
-.profesor-card {
-  transition: transform .2s, box-shadow .2s;
-}
-
-.profesor-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* Body de la card */
 .profesor-card .card-body {
-  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-/* Ajustes tipográficos */
-.profesor-card .card-body p {
-  font-size: 0.875rem;
-  line-height: 1.2;
-}
-
-/* Botones más redondos */
-.profesor-card .btn {
-  border-radius: 0.3rem;
-  padding: 0.3rem 0.8rem;
-}
-
-
