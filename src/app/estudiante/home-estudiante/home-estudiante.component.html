@@ -35,6 +35,20 @@
     </div>
   </div>
 
+  <!---Componente modal calendario-->
+      <ng-template #modalContent let-event="event">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ selectedEvent?.title }}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Fecha:</strong> {{ selectedEvent?.start | date:'fullDate' }}</p>
+        <p><strong>Hora:</strong> {{ selectedEvent?.start | date:'shortTime' }}</p>
+        <p><strong>Estado:</strong> {{ selectedEvent?.meta?.reserva?.estado }}</p>
+        <p><strong>Comentario:</strong> {{ selectedEvent?.meta?.reserva?.comentario?.texto || 'Sin comentarios' }}</p>
+      </div>
+    </ng-template>
+
   <!-- Bienvenida y botón -->
   <div class="text-center mt-5">
     <h2 class="text-verde-oscuro">Bienvenido, {{ usuarioNombre }}!</h2>
