@@ -4,9 +4,12 @@
   <form [formGroup]="profesorForm" (ngSubmit)="onSubmitUpdate()">
 
     <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input id="nombre" class="form-control" formControlName="nombre" />
-    </div>
+  <label for="nombre" class="form-label">Nombre</label>
+  <input id="nombre" class="form-control" formControlName="nombre" />
+  <div *ngIf="nombreDuplicado" class="text-danger mt-1">
+    El usuario que estás intentando actualizar tiene el mismo nombre.
+  </div>
+</div>
 
     <div class="mb-3">
       <label for="correo" class="form-label">Correo</label>
@@ -19,9 +22,12 @@
     </div>
 
     <div class="mb-3">
-      <label for="telefono" class="form-label">Teléfono</label>
-      <input id="telefono" class="form-control" formControlName="telefono" />
-    </div>
+  <label for="telefono" class="form-label">Teléfono</label>
+  <input id="telefono" class="form-control" formControlName="telefono" />
+  <div *ngIf="profesorForm.get('telefono')?.invalid && profesorForm.get('telefono')?.touched" class="text-danger mt-1">
+    El número solo puede contener dígitos y debe tener al menos 7 números.
+  </div>
+</div>
 
     <div class="mb-3">
       <label for="formacion" class="form-label">Formación</label>
