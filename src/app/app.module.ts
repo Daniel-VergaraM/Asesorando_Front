@@ -38,6 +38,10 @@ import { ReservaModule } from './reserva/reserva.module';
       progressBar: true,
       progressAnimation: 'increasing'
     }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     UsuarioModule,
     ComentarioModule,
     AsesoriaModule,

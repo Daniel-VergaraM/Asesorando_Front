@@ -4,13 +4,17 @@ import { EstudianteDetail } from '../estudianteDetail';
 import { ProfesorDetail } from '../../profesor/profesorDetail';
 import { EstudianteService } from '../estudiante.service';
 import { CommonModule } from '@angular/common';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @Component({
   selector: 'app-home-estudiante',
   standalone: true,   
   templateUrl: './home-estudiante.component.html',
   styleUrls: ['./home-estudiante.component.css'],
-   imports: [CommonModule, RouterModule] 
+   imports: [CommonModule, RouterModule,
+    CalendarModule
+   ] 
 })
 export class HomeEstudianteComponent implements OnInit {
   estudiante!: EstudianteDetail;
