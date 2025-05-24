@@ -17,6 +17,7 @@ const routes: Routes = [
 
   // perfil de estudiante
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
+  { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
 
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'profesores', loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule) },
   { path: 'profesores/:profesorId/asesorias',loadChildren: () =>import('./asesoria/asesoria.module').then(m => m.AsesoriaModule)},
 
-  { path: 'filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
+  
   
 ];
 

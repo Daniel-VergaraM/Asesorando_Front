@@ -11,6 +11,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ComentarioComponent } from '../../comentario/comentario.component';
 import { ReservaService } from '../../reserva/reserva.service';
 import { ComentarioModule } from '../../comentario/comentario.module';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home-estudiante',
@@ -22,6 +23,7 @@ import { ComentarioModule } from '../../comentario/comentario.module';
 export class HomeEstudianteComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: any;
   modalRef!: NgbModalRef;
+  refresh: Subject<void> = new Subject<void>();
 
   estudiante!: EstudianteDetail;
   usuarioNombre = '';
@@ -54,6 +56,8 @@ export class HomeEstudianteComponent implements OnInit {
             color: { primary: '#28a745', secondary: '#c3e6cb' },
             meta: { reserva } // datos extra para mostrar en el modal
           }));
+
+          this.refresh.next();
         }
       });
   }

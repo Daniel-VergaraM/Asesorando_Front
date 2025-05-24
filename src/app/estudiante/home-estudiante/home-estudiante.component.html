@@ -14,9 +14,11 @@
             >
               Actualizar mi usuario
             </button>
-            <button class="btn btn-explorar" [routerLink]="['filtrar-asesorias']">
+            <div *ngIf="estudiante">
+            <button class="btn btn-explorar" [routerLink]="['/estudiante/home', estudiante.id, 'filtrar-asesorias']">
               Explorar Asesorías
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -24,10 +26,12 @@
 
     <!-- Calendario -->
     <div class="col-lg-8 col-md-7">
-      <h3 class="mb-3 text-verde-oscuro">Mis Asesorías</h3>
+      <h3 class="mb-3 text-verde-oscuro">Mis Reservas</h3>
       <mwl-calendar-month-view
         [viewDate]="viewDate"
         [events]="calendarEvents"
+        [refresh]="refresh"
+        (eventClicked)="handleEventClick($event.event)"
         class="calendar-green"
         style="min-height: 600px;"
       >
