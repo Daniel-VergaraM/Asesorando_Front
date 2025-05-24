@@ -40,6 +40,7 @@ import { ReservaModule } from './reserva/reserva.module';
     }),
     UsuarioModule,
     ComentarioModule,
+    AsesoriaModule,
     EstudianteModule,
     ProfesorModule,
     CalendarioModule,
