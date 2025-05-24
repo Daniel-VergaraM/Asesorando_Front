@@ -1,32 +1,66 @@
-<div class="container mt-4">
-  <h4 class="text-center">Actualizar Asesoría</h4>
+<div class="container mt-3 border p-4 bg-light">
+  <h4 class="text-center mb-4">Actualizar Asesoría</h4>
+
   <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+
+    <!-- Área -->
     <div class="mb-3">
-      <label class="form-label">Duración</label>
-      <input type="text" class="form-control" formControlName="duracion" />
+      <label for="area" class="form-label">Área</label>
+      <input id="area" class="form-control" formControlName="area" />
     </div>
 
+    <!-- Temática -->
     <div class="mb-3">
-      <label class="form-label">Temática</label>
-      <input type="text" class="form-control" formControlName="tematica" />
+      <label for="tematica" class="form-label">Temática</label>
+      <input id="tematica" class="form-control" formControlName="tematica" />
     </div>
 
+    <!-- Tipo -->
     <div class="mb-3">
-      <label class="form-label">Tipo</label>
-      <input type="text" class="form-control" formControlName="tipo" />
+      <label for="tipo" class="form-label">Tipo</label>
+      <input id="tipo" class="form-control" formControlName="tipo" />
     </div>
 
+    <!-- Duración -->
     <div class="mb-3">
-      <label class="form-label">Área</label>
-      <input type="text" class="form-control" formControlName="area" />
+      <label for="duracion" class="form-label">Duración (minutos)</label>
+      <input id="duracion" type="number" class="form-control" formControlName="duracion" />
     </div>
 
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" formControlName="completada" />
-      <label class="form-check-label">Completada</label>
+    <!-- Completada -->
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" id="completada" formControlName="completada" />
+      <label class="form-check-label" for="completada">Completada</label>
     </div>
 
-    <button type="submit" class="btn btn-success">Guardar cambios</button>
-    <button type="button" class="btn btn-secondary ms-2" (click)="cancelarUpdate()">Cancelar</button>
+    <!-- Calendario ID -->
+    <div class="mb-3">
+      <label for="calendarioId" class="form-label">Calendario ID</label>
+      <input id="calendarioId" type="number" class="form-control" formControlName="calendarioId" />
+    </div>
+
+    <!-- Profesor ID -->
+    <div class="mb-3">
+      <label for="profesorId" class="form-label">Profesor ID</label>
+      <input id="profesorId" type="number" class="form-control" formControlName="profesorId" />
+    </div>
+
+    <!-- Reserva ID -->
+    <div class="mb-3">
+      <label for="reservaId" class="form-label">Reserva ID</label>
+      <input id="reservaId" type="number" class="form-control" formControlName="reservaId" />
+    </div>
+
+    <!-- Usuario ID -->
+    <div class="mb-3">
+      <label for="usuarioId" class="form-label">Usuario ID</label>
+      <input id="usuarioId" type="number" class="form-control" formControlName="usuarioId" />
+    </div>
+
+    <!-- Botones -->
+    <div class="d-flex justify-content-end mt-4">
+      <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" [disabled]="asesoriaForm.invalid">Guardar</button>
+    </div>
   </form>
 </div>

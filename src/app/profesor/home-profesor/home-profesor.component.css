@@ -1,39 +1,104 @@
-:root {
-  --mountbattenpink: #997a8d;
-}
+/* home-profesor.component.css */
 
-/* Perfil */
-.profile-card,
-.solicitudes-card,
-.asesorias-card {
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* Imagen circular con borde rosa */
+/* General styling for the profile image */
 .profile-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid var(--mountbattenpink);
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  border-radius: 50%; /* Makes the image round */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border: 3px solid #dee2e6; /* A light border around the profile picture */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* Botones */
-.btn-mountbattenpink {
-  background-color: var(--mountbattenpink);
-  color: #fff;
-  border: none;
-}
-.btn-outline-mountbattenpink {
-  color: var(--mountbattenpink);
-  border-color: var(--mountbattenpink);
+/* Styling for the cards, now white/light background */
+.card {
+  background-color: #ffffff !important; /* White background */
+  border: 1px solid rgba(0, 0, 0, 0.125); /* Standard Bootstrap card border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Lighter shadow for cards */
 }
 
-/* Headers de cards */
-.bg-mountbattenpink {
-  background-color: var(--mountbattenpink) !important;
+/* Styling for card headers */
+.card-header {
+  background-color: #f8f9fa !important; /* Light gray for card headers */
+  color: #343a40 !important; /* Dark text color for headers */
+  font-weight: bold; /* Make header text bold */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); /* Add a separator line */
 }
-.text-mountbattenpink {
-  color: var(--mountbattenpink) !important;
+
+/* Styling for card body text to ensure readability */
+.card-body,
+.list-group-item {
+  color: #212529; /* Darker text for card bodies and list items */
+  background-color: #ffffff !important; /* Consistent white background for list items */
+  border-color: rgba(0, 0, 0, 0.125); /* Light border for list items */
+}
+
+/* Specific text color for "No tienes solicitudes" and "No has publicado anuncios" */
+.card-body.text-muted {
+  color: #6c757d !important; /* Standard Bootstrap muted text color */
+}
+
+/* Styling for buttons inside the cards */
+.btn-dark {
+  background-color: #343a40; /* Dark button background */
+  border-color: #343a40; /* Dark button border */
+  color: #ffffff; /* White text for dark buttons */
+}
+
+.btn-dark:hover {
+  background-color: #23272b; /* Darker hover state */
+  border-color: #1d2124;
+}
+
+/* Styling for the dropdown button */
+.dropdown-toggle {
+  background-color: #343a40; /* Dark button for dropdown */
+  border-color: #343a40;
+  color: #ffffff;
+}
+
+.dropdown-toggle:hover {
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+/* Styling for the dropdown menu */
+.dropdown-menu {
+  background-color: #ffffff !important; /* White background for dropdown menu */
+  border: 1px solid rgba(0, 0, 0, 0.15); /* Subtle border */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175); /* Soft shadow */
+}
+
+/* Styling for dropdown items */
+.dropdown-item {
+  color: #212529; /* Dark text for dropdown items */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #e9ecef; /* Light gray hover state for dropdown items */
+  color: #212529; /* Keep text dark on hover */
+}
+
+/* Styling for the "Mostrar todas las asesorías" button */
+.btn-outline-dark { /* Changed to btn-outline-dark */
+  color: #343a40 !important;
+  border: 1px solid #343a40 !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-dark:hover {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+/* Ensure images have a default max-width to prevent overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Navbar styling for "Cerrar sesión" button */
+.navbar {
+  margin-bottom: 20px; /* Add some space below the navbar */
 }

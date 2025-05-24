@@ -29,7 +29,7 @@ import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.compo
     AsesoriaListComponent,
     AsesoriaDetailComponent,
     AsesoriaCreateComponent,
-    AsesoriaUpdateComponent,
+
     AsesoriaExplorarAreaComponent
   ]
   
