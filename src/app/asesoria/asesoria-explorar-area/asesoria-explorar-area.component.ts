@@ -10,31 +10,45 @@ import { AsesoriaDetail } from '../asesoriaDetail';
 })
 export class AsesoriaExplorarAreaComponent  implements OnInit {
   asesorias: AsesoriaDetail[] = [];
+
   selectedArea: string = '';
+  selectedProfesor: string = '';
+  selectedTipo: string = '';
   areasTematicas: string[] = ['Matemáticas', 'Física', 'Química', 'Programación', 'Lenguaje', 'Biología']; // ejemplo
+  profesores: string[] = [];
+  tipos: string[] = ['VIRTUAL', 'PRESENCIAL']; // ejemplo
   constructor(private asesoriaService: AsesoriaService) { }
 
   ngOnInit(): void {
-    
-    this.loadAsesorias();
+  this.loadProfesores();
+  this.loadAsesorias();
+}
+
+  loadProfesores(): void {
+    this.asesoriaService.getProfesores().subscribe((profesores) => {
+      this.profesores = profesores;
+    });
   }
 
   loadAsesorias(): void {
-    if (this.selectedArea) {
-      
-      this.asesoriaService.getAsesoriasPorArea(this.selectedArea).subscribe((asesorias) => {
-        this.asesorias = asesorias;
-      });
-    } else {
-      // Si no hay área seleccionada, cargar todas las asesorías
-      this.asesoriaService.getAsesorias().subscribe((asesorias) => {
-        this.asesorias = asesorias;
-      });
-    }
+  this.asesoriaService
+    .filtrarAsesorias(this.selectedArea, this.selectedProfesor, this.selectedTipo)
+    .subscribe((asesorias) => {
+      this.asesorias = asesorias;
+    });
+}
+
+  onFilterChange(): void {
+  this.loadAsesorias();
+}
+
+  selectedAsesoriaParaReserva: AsesoriaDetail | null = null;
+
+  abrirReserva(asesoria: AsesoriaDetail) {
+    this.selectedAsesoriaParaReserva = asesoria;
   }
 
-  onAreaChange(): void {
-    // Al cambiar el área, recargar las asesorías
-    this.loadAsesorias();
+  cerrarReserva() {
+    this.selectedAsesoriaParaReserva = null;
   }
 }

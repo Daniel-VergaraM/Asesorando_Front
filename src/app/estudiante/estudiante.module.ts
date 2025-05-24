@@ -22,7 +22,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [
-    HomeEstudianteComponent,
     EstudianteListComponent,
     EstudianteDetailComponent,
     EstudianteCreateComponent

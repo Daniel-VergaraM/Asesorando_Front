@@ -1,24 +1,83 @@
-<div class="container mt-4">
-  <h2 class="mb-4 text-center">Explorar Asesorías</h2>
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-center mb-4">Explorar Asesorías</h2>
 
-  <div class="form-group mb-4">
-    <label for="areaSelect" class="h5">Selecciona un área temática:</label>
-    <select id="areaSelect" [(ngModel)]="selectedArea" (change)="onAreaChange()" class="form-control p-3">
-      <option value="">-- Selecciona un área --</option>
-      <option *ngFor="let area of areasTematicas" [value]="area">{{ area }}</option>
-    </select>
-  </div>
-
-  <div *ngIf="asesorias.length > 0; else noAsesorias">
-    <h3 class="mb-3">Asesorías disponibles:</h3>
-    <div *ngFor="let asesoria of asesorias" class="asesoria-card mb-4 p-3 border rounded shadow-sm">
-      <h4 class="text-primary">{{ asesoria.tematica }}</h4>
-      <p>{{ asesoria.tipo }}</p>
-      <button class="btn btn-primary">Ver detalles</button>
+    <!-- Filtro: Área Temática -->
+    <div class="mb-3">
+      <label for="areaSelect" class="form-label h5">Área temática:</label>
+      <select
+        id="areaSelect"
+        [(ngModel)]="selectedArea"
+        (change)="onFilterChange()"
+        class="form-select p-3"
+      >
+        <option value="">-- Selecciona un área --</option>
+        <option *ngFor="let area of areasTematicas" [value]="area">{{ area }}</option>
+      </select>
     </div>
-  </div>
 
-  <ng-template #noAsesorias>
-    <p class="text-muted">No hay asesorías disponibles para esta área.</p>
-  </ng-template>
+    <!-- Filtro: Profesor -->
+    <div class="mb-3">
+      <label for="profesorSelect" class="form-label h5">Profesor:</label>
+      <select
+        id="profesorSelect"
+        [(ngModel)]="selectedProfesor"
+        (change)="onFilterChange()"
+        class="form-select p-3"
+      >
+        <option value="">-- Selecciona un profesor --</option>
+        <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+      </select>
+    </div>
+
+    <!-- Filtro: Modalidad -->
+    <div class="mb-4">
+      <label for="modalidadSelect" class="form-label h5">Modalidad:</label>
+      <select
+        id="modalidadSelect"
+        [(ngModel)]="selectedTipo"
+        (change)="onFilterChange()"
+        class="form-select p-3"
+      >
+        <option value="">-- Selecciona una modalidad --</option>
+        <option *ngFor="let modalidad of tipos" [value]="modalidad">{{ modalidad }}</option>
+      </select>
+    </div>
+
+    <!-- Resultado -->
+    <div *ngIf="asesorias.length > 0; else noAsesorias">
+      <h4 class="mb-3">Asesorías disponibles:</h4>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div *ngFor="let asesoria of asesorias" class="col">
+          <div class="card h-100 border-primary shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-primary">{{ asesoria.tematica }}</h5>
+              <p class="card-text">Tipo: {{ asesoria.tipo }}</p>
+              <p class="card-text">Área: {{ asesoria.area }}</p>
+              <p class="card-text">Profesor: {{ asesoria.profesorId }}</p>
+              <p class="card-text">Duración: {{ asesoria.duracion }}</p>
+              <p class="card-text">Tematica: {{ asesoria.tematica }}</p>
+              
+              <!-- Botón para abrir el modal -->
+              <button class="btn btn-success mt-2" (click)="abrirReserva(asesoria)">Reservar</button>
+
+              <!-- Aquí cargas el componente reserva-create sólo si selectedAsesoriaParaReserva NO es null -->
+              <div *ngIf="selectedAsesoriaParaReserva" class="modal-backdrop">
+                <div class="modal-content p-4 shadow rounded bg-white">
+                  <button class="btn btn-danger btn-sm mb-3" (click)="cerrarReserva()">Cerrar</button>
+                  <button class="btn btn-success mt-2" [routerLink]="['/reserva-create', asesoria.id]">Reservar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noAsesorias>
+      <div class="alert alert-info text-center mt-4" role="alert">
+        No hay asesorías disponibles con los filtros seleccionados.
+      </div>
+    </ng-template>
+  </div>
 </div>

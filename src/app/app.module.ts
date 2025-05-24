@@ -15,6 +15,7 @@ import { EstudianteModule }        from './estudiante/estudiante.module';
 import { ProfesorModule }          from './profesor/profesor.module';
 import { CalendarioModule }        from './calendario/calendario.module';
 import { AsignacionesComponent } from './asignaciones/asignaciones.component';
+import { ReservaModule } from './reserva/reserva.module';
 
 @NgModule({
   declarations: [		
@@ -37,13 +38,13 @@ import { AsignacionesComponent } from './asignaciones/asignaciones.component';
       progressBar: true,
       progressAnimation: 'increasing'
     }),
-
     UsuarioModule,
     ComentarioModule,
     EstudianteModule,
     ProfesorModule,
     CalendarioModule,
     AsesoriaModule,
+    ReservaModule
   ],
   
   bootstrap: [AppComponent]

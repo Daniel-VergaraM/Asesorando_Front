@@ -1,3 +1,25 @@
-<p>
-  reserva-create works!
-</p>
+<div class="container mt-4">
+  <h3>Reservar asesoría #{{ asesoriaId }}</h3>
+
+  <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()"> 
+    <div class="mb-3">
+      <label for="nombreCliente" class="form-label">Nombre:</label>
+      <input type="text" id="nombreCliente" class="form-control" formControlName="nombreCliente" />
+      <div *ngIf="reservaForm.get('nombreCliente')?.invalid && reservaForm.get('nombreCliente')?.touched" class="text-danger">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="emailCliente" class="form-label">Email:</label>
+      <input type="email" id="emailCliente" class="form-control" formControlName="emailCliente" />
+      <div *ngIf="reservaForm.get('emailCliente')?.invalid && reservaForm.get('emailCliente')?.touched" class="text-danger">
+        Ingresa un email válido.
+      </div>
+    </div>
+
+    <!-- Puedes agregar más campos según necesidad -->
+
+    <button type="submit" class="btn btn-primary" [disabled]="reservaForm.invalid">Reservar</button>
+  </form>
+</div>

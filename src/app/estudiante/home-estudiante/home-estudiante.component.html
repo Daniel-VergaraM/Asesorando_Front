@@ -1,3 +1,32 @@
+<div class="container mt-4 position-absolute start-0" style="top: 70px; left: 0; z-index: 1030; max-width: 350px;"> 
+  <div class="row g-4">
+    <!-- Tarjeta de perfil -->
+    <div class="col-md-12">
+      <div class="card text-center h-100" style="background-color: #bda9c6;">
+        <div class="card-body" style="background-color: #bda9c6;">
+          <h5 class="card-title">{{ estudiante.nombre }}</h5>
+          <p class="card-text">{{ estudiante.correo }}</p>
+          <button
+            *ngIf="estudiante"
+            class="btn btn-dark ms-2"
+            [routerLink]="['/actualizar', estudiante.id]"
+          >
+            <span style="color: #fff;">Actualizar mi usuario</span>
+          </button>
+          <button
+            class="btn btn-secondary mt-2"
+            [routerLink]="['/filtrar-asesorias']"
+          >
+            Buscar asesorías
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <div class="container pt-5" style="max-width:800px;">
 
