@@ -21,4 +21,9 @@ export class ReservaService {
   createReserva(reserva: Reserva): Observable<any> {
     return this.http.post(this.apiUrl, reserva);
   }
+
+  cambiarEstadoACompletada(id: number): Observable<any> {
+  return this.http.put(`/api/reservas/${id}/completar`, {});
+    }
+  
 }

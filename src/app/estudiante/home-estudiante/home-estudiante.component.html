@@ -33,7 +33,7 @@
       >
       </mwl-calendar-month-view>
     </div>
-  </div>
+
 
   <!---Componente modal calendario-->
       <ng-template #modalContent let-event="event">
@@ -48,6 +48,20 @@
         <p><strong>Comentario:</strong> {{ selectedEvent?.meta?.reserva?.comentario?.texto || 'Sin comentarios' }}</p>
       </div>
     </ng-template>
+
+    <div class="modal-footer"></div>
+    <button
+      class="btn btn-success"
+      *ngIf="selectedEvent?.meta?.reserva?.estado === 'pendiente'"
+      (click)="cambiarEstadoACompletada()">
+      Marcar como completada
+    </button>
+    <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+    </div>
+
+    <div *ngIf="mostrarFormularioComentario">
+      <app-comentario-create></app-comentario-create>
+    </div>
 
   <!-- Bienvenida y botón -->
   <div class="text-center mt-5">
