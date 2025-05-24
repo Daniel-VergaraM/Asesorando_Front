@@ -1,64 +1,45 @@
-<div class="container mt-4 position-absolute start-0" style="top: 70px; left: 0; z-index: 1030; max-width: 350px;">
+<div class="container mt-4">
   <div class="row g-4">
-    <!-- Tarjeta de perfil -->
-    <div class="col-md-12">
-      <div class="card text-center h-100" style="background-color: #c8e6c9;">
-        <div class="card-body" style="background-color: #c8e6c9;">
-          <h5 class="card-title" style="color: #2e7d32;">{{ estudiante.nombre }}</h5>
-          <p class="card-text" style="color: #2e7d32;">{{ estudiante.correo }}</p>
-          <button
-            *ngIf="estudiante"
-            class="btn"
-            style="background-color: #4caf50; color: #fff; margin-left: 0.5rem;"
-            [routerLink]="['/actualizar', estudiante.id]"
-          >
-            Actualizar mi usuario
-          </button>
-          <button [routerLink]="['filtrar-asesorias']" class="btn btn-dark">
-            Explorar Asesorías
-          </button>
-          <router-outlet></router-outlet>
+    <!-- Perfil -->
+    <div class="col-lg-4 col-md-5">
+      <div class="card text-center h-100 perfil-card">
+        <div class="card-body">
+          <h5 class="card-title">{{ estudiante.nombre }}</h5>
+          <p class="card-text">{{ estudiante.correo }}</p>
+          <div class="d-flex flex-column gap-2">
+            <button
+              *ngIf="estudiante"
+              class="btn btn-actualizar"
+              [routerLink]="['/actualizar', estudiante.id]"
+            >
+              Actualizar mi usuario
+            </button>
+            <button class="btn btn-explorar" [routerLink]="['filtrar-asesorias']">
+              Explorar Asesorías
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Calendario -->
+    <div class="col-lg-8 col-md-7">
+      <h3 class="mb-3 text-verde-oscuro">Mis Asesorías</h3>
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="calendarEvents"
+        class="calendar-green"
+        style="min-height: 600px;"
+      >
+      </mwl-calendar-month-view>
+    </div>
+  </div>
+
+  <!-- Bienvenida y botón -->
+  <div class="text-center mt-5">
+    <h2 class="text-verde-oscuro">Bienvenido, {{ usuarioNombre }}!</h2>
+    <button class="btn btn-buscar mt-3" routerLink="/profesores">
+      <i class="fa fa-search me-2"></i> Buscar nuevos profesores
+    </button>
   </div>
 </div>
-
-    <div class="container mt-5">
-      <h3 class="mb-3">Mis Asesorías</h3>
-
-      <mwl-calendar-month-view
-      [viewDate]="viewDate"
-      [events]="calendarEvents">
-    </mwl-calendar-month-view>
-    </div>
-
-    <!-- Modal -->
-    <ng-template #modalContent let-event="event">
-      <div class="modal-header">
-        <h4 class="modal-title">{{ selectedEvent?.title }}</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-      </div>
-      <div class="modal-body">
-        <p><strong>Fecha:</strong> {{ selectedEvent?.start | date:'fullDate' }}</p>
-        <p><strong>Hora:</strong> {{ selectedEvent?.start | date:'shortTime' }}</p>
-        <p><strong>Estado:</strong> {{ selectedEvent?.meta?.reserva.estado }}</p>
-        <p><strong>Comentario:</strong> {{ selectedEvent?.meta?.reserva.comentario?.texto || 'Sin comentarios' }}</p>
-      </div>
-    </ng-template>
-
-
-<div class="container pt-5" style="max-width:800px;">
-
-
-    <h2 class="mb-4">Bienvenido, {{ usuarioNombre }}!</h2>
-  
-    <div class="text-center mt-4">
-      <button class="btn btn-primary" routerLink="/profesores">
-        <i class="fa fa-search me-2"></i> Buscar nuevos profesores
-      </button>
-    </div>
-  
-  </div>
-  
-
