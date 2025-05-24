@@ -40,4 +40,21 @@ export class AsesoriaService {
   getAsesoriasPorArea(area: string): Observable<AsesoriaDetail[]> {
     return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}?area=${area}`);
   }
+
+  filtrarAsesorias(area?: string, profesor?: string, modalidad?: string): Observable<AsesoriaDetail[]> {
+  let queryParams = [];
+
+  if (area) queryParams.push(`area=${encodeURIComponent(area)}`);
+  if (profesor) queryParams.push(`profesor=${encodeURIComponent(profesor)}`);
+  if (modalidad) queryParams.push(`tipo=${encodeURIComponent(modalidad)}`);
+
+  const url = queryParams.length > 0 ? `${this.apiUrl}?${queryParams.join('&')}` : this.apiUrl;
+
+  return this.http.get<AsesoriaDetail[]>(url);
+}
+
+  getProfesores(): Observable<string[]> {
+  return this.http.get<string[]>(`${environment.apiUrl}/profesores`);
+  }
+
 }

@@ -15,6 +15,9 @@ import { EstudianteModule }        from './estudiante/estudiante.module';
 import { ProfesorModule }          from './profesor/profesor.module';
 import { CalendarioModule }        from './calendario/calendario.module';
 import { AsignacionesComponent } from './asignaciones/asignaciones.component';
+import { ReservaModule } from './reserva/reserva.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [		
@@ -37,13 +40,18 @@ import { AsignacionesComponent } from './asignaciones/asignaciones.component';
       progressBar: true,
       progressAnimation: 'increasing'
     }),
-
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     UsuarioModule,
     ComentarioModule,
     AsesoriaModule,
     EstudianteModule,
     ProfesorModule,
-    CalendarioModule
+    CalendarioModule,
+    AsesoriaModule,
+    ReservaModule
   ],
   
   bootstrap: [AppComponent]

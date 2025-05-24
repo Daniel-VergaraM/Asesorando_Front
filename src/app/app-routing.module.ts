@@ -5,6 +5,7 @@ import { HomeEstudianteComponent } from './estudiante/home-estudiante/home-estud
 import {HomeProfesorComponent } from './profesor/home-profesor/home-profesor.component';
 import { HomeComponent }               from './home/home/home.component';
 import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-update.component';
+import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
 
 const routes: Routes = [
@@ -29,6 +30,9 @@ const routes: Routes = [
   { path: 'comentarios', loadChildren: () => import('./comentario/comentario.module').then(m => m.ComentarioModule)},
   { path: 'profesores', loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule) },
   { path: 'profesores/:profesorId/asesorias',loadChildren: () =>import('./asesoria/asesoria.module').then(m => m.AsesoriaModule)},
+
+  { path: 'filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
+  
 ];
 
 

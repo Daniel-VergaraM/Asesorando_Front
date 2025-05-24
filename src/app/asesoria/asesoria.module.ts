@@ -16,7 +16,7 @@ import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.compo
     RouterModule,
     AsesoriaRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   declarations: [
     AsesoriaListComponent,

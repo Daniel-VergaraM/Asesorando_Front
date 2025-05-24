@@ -40,10 +40,17 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox',       // permite correr como root
+      '--disable-gpu',      // opcional, a veces necesario en headless
+      '--disable-dev-shm-usage' // opcional, evita problemas en sistemas con poca memoria compartida
+    ]
       }
     },
     singleRun: true,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+
+    captureTimeout: 60000,          // 60 segundos para capturar el navegador
+    browserNoActivityTimeout: 60000 // 60 segundos sin actividad antes de cancelar
+
   });
 };

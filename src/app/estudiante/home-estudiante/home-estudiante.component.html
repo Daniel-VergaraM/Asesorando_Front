@@ -1,3 +1,30 @@
+<div class="container mt-4 position-absolute start-0" style="top: 70px; left: 0; z-index: 1030; max-width: 350px;">
+  <div class="row g-4">
+    <!-- Tarjeta de perfil -->
+    <div class="col-md-12">
+      <div class="card text-center h-100" style="background-color: #c8e6c9;">
+        <div class="card-body" style="background-color: #c8e6c9;">
+          <h5 class="card-title" style="color: #2e7d32;">{{ estudiante.nombre }}</h5>
+          <p class="card-text" style="color: #2e7d32;">{{ estudiante.correo }}</p>
+          <button
+            *ngIf="estudiante"
+            class="btn"
+            style="background-color: #4caf50; color: #fff; margin-left: 0.5rem;"
+            [routerLink]="['/actualizar', estudiante.id]"
+          >
+            Actualizar mi usuario
+          </button>
+          <button [routerLink]="['filtrar-asesorias']" class="btn btn-dark">
+            Explorar Asesorías
+          </button>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="container pt-5" style="max-width:800px;">
 
@@ -12,3 +39,4 @@
   
   </div>
   
+
