@@ -41,7 +41,7 @@ export class ProfesorActualizarComponent implements OnInit {
       nombre:        ['', Validators.required],
       correo:        ['', [Validators.required, Validators.email]],
       contrasena:    ['', Validators.required],
-      telefono:      ['', [Validators.required, Validators.minLength(7), Validators.pattern(/^[0-9]+$/)]],
+      telefono:      ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       fotoUrl:       [''],
       videoUrl:      [''],
       formacion:     [''],
@@ -56,16 +56,6 @@ export class ProfesorActualizarComponent implements OnInit {
 
   onSubmitUpdate(): void {
     if (this.profesorForm.invalid) return;
-
-    const nuevoNombre: string = this.profesorForm.value.nombre?.toString().trim() || '';
-    const nombreOriginal: string = this.profesorOriginal.nombre?.toString().trim() || '';
-
-   if (nuevoNombre === nombreOriginal) {
-      this.nombreDuplicado = true;
-       return;
-      } else {
-  this.nombreDuplicado = false;
-}
 
     const payload: Profesor = {
       id: this.profesorId,
