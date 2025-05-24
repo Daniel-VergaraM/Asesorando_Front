@@ -24,6 +24,28 @@
   </div>
 </div>
 
+    <div class="container mt-5">
+      <h3 class="mb-3">Mis Asesorías</h3>
+
+      <mwl-calendar-month-view
+      [viewDate]="viewDate"
+      [events]="calendarEvents">
+    </mwl-calendar-month-view>
+    </div>
+
+    <!-- Modal -->
+    <ng-template #modalContent let-event="event">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ selectedEvent?.title }}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Fecha:</strong> {{ selectedEvent?.start | date:'fullDate' }}</p>
+        <p><strong>Hora:</strong> {{ selectedEvent?.start | date:'shortTime' }}</p>
+        <p><strong>Estado:</strong> {{ selectedEvent?.meta?.reserva.estado }}</p>
+        <p><strong>Comentario:</strong> {{ selectedEvent?.meta?.reserva.comentario?.texto || 'Sin comentarios' }}</p>
+      </div>
+    </ng-template>
 
 
 <div class="container pt-5" style="max-width:800px;">
