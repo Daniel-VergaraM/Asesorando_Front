@@ -1,7 +1,7 @@
+// profesor-update.component.ts
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfesorService } from '../profesor.service';
 import { Profesor } from '../profesor';
 import { ProfesorDetail } from '../profesorDetail';
@@ -16,8 +16,7 @@ export class ProfesorActualizarComponent implements OnInit {
   profesorId!: number;
   profesorForm!: FormGroup;
   private profesorOriginal!: ProfesorDetail;
-  nombreDuplicado: boolean = false;
-
+  fotoPreviewUrl: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -33,6 +32,7 @@ export class ProfesorActualizarComponent implements OnInit {
       .subscribe(p => {
         this.profesorOriginal = p;
         this.profesorForm.patchValue(p);
+        this.updateImagePreview();
       });
   }
 
@@ -50,8 +50,23 @@ export class ProfesorActualizarComponent implements OnInit {
       precioHora:    [''],
       codigoPostal:  [''],
       latitud:       [''],
-      longitud:      ['']
+      longitud:      [''],
+      descripcion:   ['']
     });
+  }
+
+  updateImagePreview(): void {
+    const url = this.profesorForm.get('fotoUrl')?.value;
+    this.fotoPreviewUrl = url && url.startsWith('http') ? url : '';
+  }
+
+  generarDescripcion(): void {
+    const formacion = this.profesorForm.get('formacion')?.value || '';
+    const experiencia = this.profesorForm.get('experiencia')?.value || '';
+
+    const descripcionGenerada = `Soy un profesional con formación en ${formacion.trim()} y experiencia en ${experiencia.trim()}. Me apasiona enseñar y acompañar el proceso de aprendizaje de mis estudiantes.`;
+
+    this.profesorForm.get('descripcion')?.setValue(descripcionGenerada);
   }
 
   onSubmitUpdate(): void {

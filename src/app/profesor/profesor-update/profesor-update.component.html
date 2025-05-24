@@ -21,8 +21,16 @@
     <div class="mb-3">
       <label for="telefono" class="form-label">Teléfono</label>
       <input id="telefono" class="form-control" formControlName="telefono" />
-      <div *ngIf="profesorForm.get('telefono')?.invalid && profesorForm.get('telefono')?.touched" class="text-danger mt-1">
-        El número debe tener exactamente 10 dígitos numéricos.
+      <div *ngIf="profesorForm.get('telefono')?.invalid && profesorForm.get('telefono')?.touched" class="text-danger">
+        El número debe contener exactamente 10 dígitos.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="fotoUrl" class="form-label">Foto URL</label>
+      <input id="fotoUrl" class="form-control" formControlName="fotoUrl" (input)="updateImagePreview()" />
+      <div *ngIf="fotoPreviewUrl" class="mt-2">
+        <img [src]="fotoPreviewUrl" alt="Vista previa de la foto" class="img-thumbnail" width="150" />
       </div>
     </div>
 
@@ -46,13 +54,15 @@
       <input id="precioHora" type="number" min="0" class="form-control" formControlName="precioHora" />
     </div>
 
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea id="descripcion" rows="3" class="form-control" formControlName="descripcion"></textarea>
+      <button type="button" class="btn btn-outline-primary mt-2" (click)="generarDescripcion()">Generar descripción automática</button>
+    </div>
+
     <div class="d-flex justify-content-end mt-4">
       <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success"
-              (click)="profesorForm.markAllAsTouched()"
-              [disabled]="profesorForm.invalid">
-        Guardar
-      </button>
+      <button type="submit" class="btn btn-success" [disabled]="profesorForm.invalid">Guardar</button>
     </div>
   </form>
 </div>
