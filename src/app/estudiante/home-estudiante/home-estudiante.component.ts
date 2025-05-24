@@ -8,17 +8,20 @@ import { CalendarEvent, CalendarModule } from 'angular-calendar';
 import { addHours } from 'date-fns';
 import { Reserva } from '../../reserva/reserva';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ComentarioComponent } from '../../comentario/comentario.component';
+import { ReservaService } from '../../reserva/reserva.service';
+import { ComentarioModule } from '../../comentario/comentario.module';
 
 @Component({
   selector: 'app-home-estudiante',
   standalone: true,
   templateUrl: './home-estudiante.component.html',
   styleUrls: ['./home-estudiante.component.css'],
-  imports: [CommonModule, RouterModule, CalendarModule]
+  imports: [CommonModule, RouterModule, CalendarModule, ComentarioModule]
 })
 export class HomeEstudianteComponent implements OnInit {
-  @ViewChild('modalContent') modalContent!: TemplateRef<any>;
-  modalRef?: NgbModalRef;
+  @ViewChild('modalContent', { static: true }) modalContent: any;
+  modalRef!: NgbModalRef;
 
   estudiante!: EstudianteDetail;
   usuarioNombre = '';
@@ -27,8 +30,9 @@ export class HomeEstudianteComponent implements OnInit {
   calendarEvents: CalendarEvent[] = [];
   reservas: Reserva[] = [];
   selectedEvent?: CalendarEvent;
+  mostrarFormularioComentario: boolean = false;
 
-  constructor(private estudianteSvc: EstudianteService, private modalService: NgbModal) {}
+  constructor(private estudianteSvc: EstudianteService, private modalService: NgbModal, private reservaService: ReservaService) {}
 
   ngOnInit(): void {
     const stored = localStorage.getItem('userInfo');
@@ -62,4 +66,28 @@ export class HomeEstudianteComponent implements OnInit {
   closeModal(): void {
     this.modalRef?.close();
   }
+
+  cambiarEstadoACompletada(): void {
+    if (!this.selectedEvent?.meta?.reserva?.id) return;
+
+    const id = this.selectedEvent.meta.reserva.id;
+    this.reservaService.cambiarEstadoACompletada(id).subscribe(() => {
+      this.selectedEvent!.meta.reserva.estado = 'COMPLETADA';
+      this.mostrarFormularioComentario = true;
+
+    });
+  }
+
+
+  abrirComentarioModal(idReserva: number): void {
+    this.modalService.open(ComentarioComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+      // Puedes pasar el id de la reserva como input al componente
+      // si el componente usa @Input() o usa NgbActiveModal
+      // Usa modalRef.componentInstance si es necesario
+    }).componentInstance.idReserva = idReserva;
+  }
+  
 }

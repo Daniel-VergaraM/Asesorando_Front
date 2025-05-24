@@ -9,7 +9,7 @@ import { ComentarioCreateComponent } from './comentario-create/comentario-create
 
 @NgModule({
   declarations: [ComentarioComponent, ComentarioCreateComponent],
-  exports: [ComentarioComponent
+  exports: [ComentarioComponent, ComentarioCreateComponent
   ],
   imports: [
     CommonModule,

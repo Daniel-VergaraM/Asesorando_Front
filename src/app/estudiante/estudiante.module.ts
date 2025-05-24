@@ -7,6 +7,8 @@ import { HomeEstudianteComponent }   from './home-estudiante/home-estudiante.com
 import { EstudianteListComponent }   from './estudiante-list/estudiante-list.component';
 import { EstudianteDetailComponent } from './estudiante-detail/estudiante-detail.component';
 import { EstudianteCreateComponent } from './estudiante-create/estudiante-create.component';
+import { ComentarioCreateComponent } from '../comentario/comentario-create/comentario-create.component';
+import { ComentarioModule } from '../comentario/comentario.module';
 
 const routes: Routes = [
   { path: '',       component: HomeEstudianteComponent },
@@ -20,12 +22,13 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    HomeEstudianteComponent
+    HomeEstudianteComponent,
+    ComentarioModule
   ],
   declarations: [
     EstudianteListComponent,
     EstudianteDetailComponent,
-    EstudianteCreateComponent
+    EstudianteCreateComponent 
   ]
 })
 export class EstudianteModule {}
