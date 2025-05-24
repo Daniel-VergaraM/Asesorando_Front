@@ -18,6 +18,14 @@
       </div>
     </div>
 
+    <div class="mb-3">
+      <label for="fechaReserva" class="form-label">Fecha y hora de la reserva:</label>
+      <input type="datetime-local" id="fechaReserva" class="form-control" formControlName="fechaReserva" />
+      <div *ngIf="reservaForm.get('fechaReserva')?.invalid && reservaForm.get('fechaReserva')?.touched" class="text-danger">
+        La fecha y hora son obligatorias.
+      </div>
+    </div>
+
     <!-- Puedes agregar más campos según necesidad -->
 
     <button type="submit" class="btn btn-primary" [disabled]="reservaForm.invalid">Reservar</button>

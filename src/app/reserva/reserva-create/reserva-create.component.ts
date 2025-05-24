@@ -29,8 +29,10 @@ export class ReservaCreateComponent implements OnInit {
     this.reservaForm = this.fb.group({
       nombreCliente: ['', Validators.required],
       emailCliente: ['', [Validators.required, Validators.email]],
-      // agrega más campos que necesites
+      fechaReserva: ['', Validators.required],
     });
+      // agrega más campos que necesites
+    
   }
 
   onSubmit(): void {

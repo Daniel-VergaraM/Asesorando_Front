@@ -18,6 +18,7 @@ import { AsignacionesComponent } from './asignaciones/asignaciones.component';
 import { ReservaModule } from './reserva/reserva.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [		
@@ -44,6 +45,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgbModule,
     UsuarioModule,
     ComentarioModule,
     AsesoriaModule,
