@@ -1,0 +1,20 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AsignacionesComponent } from './asignaciones.component';
+
+describe('AsignacionesComponent', () => {
+  let component: AsignacionesComponent;
+  let fixture: ComponentFixture<AsignacionesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AsignacionesComponent]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AsignacionesComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should create', () => {
+    true
+  });
+});

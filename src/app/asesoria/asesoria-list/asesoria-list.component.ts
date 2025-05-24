@@ -11,7 +11,8 @@ import { AsesoriaDetail }        from '../asesoriaDetail';
 })
 export class AsesoriaListComponent implements OnInit {
   asesorias: AsesoriaDetail[] = [];
-  private profesorId?: number;
+  public profesorId?: number;
+  router: any;
 
   constructor(
     private asesoriaService: AsesoriaService,
@@ -38,5 +39,10 @@ export class AsesoriaListComponent implements OnInit {
   private loadByProfesor(profesorId: number): void {
     this.asesoriaService.getAsesoriasByProfesorId(profesorId)
       .subscribe(list => this.asesorias = list);
+  }
+  public devueltahomeprofesor(click: boolean): void {
+    if (click) {
+      this.router.navigate(['profesor/home', this.profesorId]);
+    }
   }
 }

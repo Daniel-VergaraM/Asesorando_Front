@@ -1,16 +1,39 @@
+:root {
+  --mountbattenpink: #997a8d;
+}
+
 /* Perfil */
+.profile-card,
+.solicitudes-card,
+.asesorias-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Imagen circular con borde rosa */
 .profile-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  /* Ajustes de tarjeta y progreso */
-  .progress {
-    height: 1.5rem;
-  }
-  .progress-bar {
-    line-height: 1.5rem;
-  }
-  
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--mountbattenpink);
+}
+
+/* Botones */
+.btn-mountbattenpink {
+  background-color: var(--mountbattenpink);
+  color: #fff;
+  border: none;
+}
+.btn-outline-mountbattenpink {
+  color: var(--mountbattenpink);
+  border-color: var(--mountbattenpink);
+}
+
+/* Headers de cards */
+.bg-mountbattenpink {
+  background-color: var(--mountbattenpink) !important;
+}
+.text-mountbattenpink {
+  color: var(--mountbattenpink) !important;
+}

@@ -3,4 +3,4 @@ describe('My First Test', () => {
     cy.visit('/')
     cy.contains('app is running')
   })
-})
+});

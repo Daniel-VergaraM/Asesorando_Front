@@ -8,19 +8,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent }            from './app.component';
 import { AppRoutingModule }        from './app-routing.module';
-import { HomeComponent }           from './home/home/home.component';
-
 import { UsuarioModule }           from './usuario/usuario.module';
 import { ComentarioModule }        from './comentario/comentario.module';
 import { AsesoriaModule }          from './asesoria/asesoria.module';
 import { EstudianteModule }        from './estudiante/estudiante.module';
 import { ProfesorModule }          from './profesor/profesor.module';
 import { CalendarioModule }        from './calendario/calendario.module';
+import { AsignacionesComponent } from './asignaciones/asignaciones.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
-  ],
+      AsignacionesComponent,
+      AsignacionesComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,15 +29,23 @@ import { CalendarioModule }        from './calendario/calendario.module';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
+
     UsuarioModule,
     ComentarioModule,
     AsesoriaModule,
     EstudianteModule,
     ProfesorModule,
-    HomeComponent,
     CalendarioModule
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}
