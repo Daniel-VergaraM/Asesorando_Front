@@ -1,27 +1,82 @@
-<!-- Sección de búsqueda -->
-<section
-  class="position-relative d-flex align-items-center justify-content-center text-white"
-  style="
-    background-image: url('/assets/resources/img00.png');
-    background-size: cover;
-    background-position: center;
-    height: 220vh;
-    padding-bottom: 220px;
-  ">
-  <div class="position-relative text-center px-3" style="z-index: 1; max-width: 100%; width: 100%;">
-    <h1 class="display-3 mb-3" style="color: white; font-size: 100px; font-family: sans-serif;">ENCUENTRA TU TUTOR IDEAL</h1>
-    <p class="lead mb-4" style="color: white; font-size: 40px; font-family: Arial, sans-serif;">
-      TUTORIAS DE TODAS LAS MATERIAS: VIRTUAL, PRESENCIAL O HIBRIDO
-    </p>
-    <div class="input-group mb-5" style="max-width: 1000px; margin: 0 auto;">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="¿Qué quieres aprender?"
-        [(ngModel)]="searchTerm"
-      />
-      <button class="btn btn-primary" (click)="onSearch()">Buscar</button>
-    </div>
-    <app-profesor-list></app-profesor-list>
+<div class="container-fluid px-0 d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <div class="row g-0">
+    <nav
+      class="navbar sticky-top navbar-expand-lg navbar-dark"
+      style="background-color: #0d0d0d; padding: .5rem 12px;"
+    >
+      <div class="container-fluid px-0" style="padding: 0 24px;">
+        <a class="navbar-brand" routerLink="/">AsesorAndes</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                routerLink="/login"
+                style="color: white; font-family: 'ADLaM Display', sans-serif;"
+              >
+                Iniciar sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-</section>
+
+  <!-- Contenido principal -->
+  <main class="flex-grow-1 px-0" style="background-image: url('/assets/resources/img00.png'); background-size: cover; background-position: center;">
+    <section class="text-white text-center px-3 pt-5">
+      <h1 class="display-3 mb-3" style="color: white; font-size: 100px; font-family: sans-serif;">
+        ENCUENTRA TU TUTOR IDEAL
+      </h1>
+      <p class="lead mb-4" style="color: white; font-size: 40px; font-family: Arial, sans-serif;">
+        TUTORIAS DE TODAS LAS MATERIAS: VIRTUAL, PRESENCIAL O HIBRIDO
+      </p>
+      <div class="input-group mb-5" style="max-width: 1000px; margin: 0 auto;">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="¿Qué quieres aprender?"
+          [(ngModel)]="searchTerm"
+        />
+        <button class="btn btn-primary" (click)="onSearch()">Buscar</button>
+      </div>
+    </section>
+
+    <!-- Lista de profesores -->
+    <section class="pb-5 px-3">
+      <app-profesor-list></app-profesor-list>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div class="row g-0 mt-auto">
+    <footer
+      class="page-footer font-small blue pt-4"
+      style="background-color: #0d0d0d"
+    >
+      <div class="container-fluid text-center px-0">
+        <div class="row g-0">
+          <div class="col-md-12 mt-3">
+            <h6 class="text-uppercase text-light">Sistema de Asesorías</h6>
+            <p class="text-light">Plataforma de gestión académica</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
