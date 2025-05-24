@@ -8,8 +8,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent }            from './app.component';
 import { AppRoutingModule }        from './app-routing.module';
-import { HomeComponent }           from './home/home/home.component';
-
 import { UsuarioModule }           from './usuario/usuario.module';
 import { ComentarioModule }        from './comentario/comentario.module';
 import { AsesoriaModule }          from './asesoria/asesoria.module';
@@ -31,13 +29,23 @@ import { AsignacionesComponent } from './asignaciones/asignaciones.component';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
+
     UsuarioModule,
     ComentarioModule,
     EstudianteModule,
     ProfesorModule,
-    CalendarioModule
+    CalendarioModule,
+    AsesoriaModule,
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}
