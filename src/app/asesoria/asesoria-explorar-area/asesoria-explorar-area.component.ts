@@ -44,7 +44,7 @@ export class AsesoriaExplorarAreaComponent  implements OnInit {
 
   selectedAsesoriaParaReserva: AsesoriaDetail | null = null;
 
-  abrirReserva(asesoria: AsesoriaDetail) {
+  abrirReserva(asesoria: any) {
     this.selectedAsesoriaParaReserva = asesoria;
   }
 

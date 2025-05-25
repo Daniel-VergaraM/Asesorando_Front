@@ -1,4 +1,4 @@
-import { NgModule }                from '@angular/core';
+import { Component, NgModule }                from '@angular/core';
 import { RouterModule, Routes }    from '@angular/router';
 import { UsuarioLoginComponent }       from './usuario/usuario-login/usuario-login/usuario-login.component';
 import { HomeEstudianteComponent } from './estudiante/home-estudiante/home-estudiante.component';
@@ -7,6 +7,8 @@ import { HomeComponent }               from './home/home/home.component';
 import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-update.component';
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
+import { ComentarioCreateComponent } from './comentario/comentario-create/comentario-create.component';
+import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 
 const routes: Routes = [
   // página pública
@@ -18,8 +20,11 @@ const routes: Routes = [
   // perfil de estudiante
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
+  { path:  'filtrar-asesorias/reserva-create', component: ReservaCreateComponent},
+
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
+
 
   { path: 'actualizar/:id', component: UsuarioActualizarComponent },
   
