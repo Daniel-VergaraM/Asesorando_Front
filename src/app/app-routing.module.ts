@@ -7,8 +7,7 @@ import { HomeComponent }               from './home/home/home.component';
 import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-update.component';
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
-import { ComentarioCreateComponent } from './comentario/comentario-create/comentario-create.component';
-import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
+import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-update.component';
 
 const routes: Routes = [
   // página pública
@@ -29,6 +28,8 @@ const routes: Routes = [
   { path: 'actualizar/:id', component: UsuarioActualizarComponent },
   
   {path: 'profesor/actualizar/:id', component: ProfesorActualizarComponent },
+
+  { path: 'asesoria/actualizar/:id', component: AsesoriaUpdateComponent },
 
   { path: 'asesorias', loadChildren: () => import('./asesoria/asesoria.module').then(m => m.AsesoriaModule) },
   { path: 'calendarios', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioModule) },

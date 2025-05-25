@@ -1,66 +1,78 @@
-<div class="container mt-3 border p-4 bg-light">
-  <h4 class="text-center mb-4">Actualizar Asesoría</h4>
+<div class="card shadow mt-4">
+  <div class="card-header bg-warning text-dark">
+    <i class="bi bi-pencil-square me-2"></i> Editar Asesoría
+  </div>
+  <div class="card-body">
+    <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+      <!-- Área -->
+      <div class="mb-3">
+        <label for="area" class="form-label">Área</label>
+        <input
+          id="area"
+          class="form-control"
+          formControlName="area"
+          placeholder="Ej: Psicología"
+          required
+        />
+      </div>
 
-  <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+      <!-- Temática -->
+      <div class="mb-3">
+        <label for="tematica" class="form-label">Temática</label>
+        <input
+          id="tematica"
+          class="form-control"
+          formControlName="tematica"
+          placeholder="Ej: Psicología del desarrollo"
+          required
+        />
+      </div>
 
-    <!-- Área -->
-    <div class="mb-3">
-      <label for="area" class="form-label">Área</label>
-      <input id="area" class="form-control" formControlName="area" />
-    </div>
+      <!-- Tipo -->
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Modalidad</label>
+        <select
+          id="tipo"
+          class="form-select"
+          formControlName="tipo"
+          required
+        >
+          <option value="Virtual">Virtual</option>
+          <option value="Presencial">Presencial</option>
+        </select>
+      </div>
 
-    <!-- Temática -->
-    <div class="mb-3">
-      <label for="tematica" class="form-label">Temática</label>
-      <input id="tematica" class="form-control" formControlName="tematica" />
-    </div>
+      <!-- Duración -->
+      <div class="mb-3">
+        <label for="duracion" class="form-label">Duración (minutos)</label>
+        <input
+          id="duracion"
+          type="number"
+          class="form-control"
+          formControlName="duracion"
+          min="1"
+          placeholder="Ej: 60"
+          required
+        />
+      </div>
 
-    <!-- Tipo -->
-    <div class="mb-3">
-      <label for="tipo" class="form-label">Tipo</label>
-      <input id="tipo" class="form-control" formControlName="tipo" />
-    </div>
-
-    <!-- Duración -->
-    <div class="mb-3">
-      <label for="duracion" class="form-label">Duración (minutos)</label>
-      <input id="duracion" type="number" class="form-control" formControlName="duracion" />
-    </div>
-
-    <!-- Completada -->
-    <div class="form-check mb-3">
-      <input type="checkbox" class="form-check-input" id="completada" formControlName="completada" />
-      <label class="form-check-label" for="completada">Completada</label>
-    </div>
-
-    <!-- Calendario ID -->
-    <div class="mb-3">
-      <label for="calendarioId" class="form-label">Calendario ID</label>
-      <input id="calendarioId" type="number" class="form-control" formControlName="calendarioId" />
-    </div>
-
-    <!-- Profesor ID -->
-    <div class="mb-3">
-      <label for="profesorId" class="form-label">Profesor ID</label>
-      <input id="profesorId" type="number" class="form-control" formControlName="profesorId" />
-    </div>
-
-    <!-- Reserva ID -->
-    <div class="mb-3">
-      <label for="reservaId" class="form-label">Reserva ID</label>
-      <input id="reservaId" type="number" class="form-control" formControlName="reservaId" />
-    </div>
-
-    <!-- Usuario ID -->
-    <div class="mb-3">
-      <label for="usuarioId" class="form-label">Usuario ID</label>
-      <input id="usuarioId" type="number" class="form-control" formControlName="usuarioId" />
-    </div>
-
-    <!-- Botones -->
-    <div class="d-flex justify-content-end mt-4">
-      <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success" [disabled]="asesoriaForm.invalid">Guardar</button>
-    </div>
-  </form>
+      <!-- Botones -->
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="onCancel()"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-warning"
+          [disabled]="asesoriaForm.invalid"
+        >
+          <i class="bi bi-check-circle me-1"></i> Guardar Cambios
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
