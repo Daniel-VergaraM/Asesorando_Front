@@ -57,4 +57,7 @@ export class AsesoriaService {
   return this.http.get<string[]>(`${environment.apiUrl}/profesores`);
   }
 
+ deleteAsesoria(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }

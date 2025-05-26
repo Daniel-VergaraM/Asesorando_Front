@@ -63,7 +63,7 @@ export class AsesoriaUpdateComponent implements OnInit {
     return;
   }
 
-  console.log('Enviando datos:', this.asesoriaForm.value); // Para depuración
+  console.log('Enviando datos:', this.asesoriaForm.value); 
 
   this.asesoriaService.updateAsesoria({
     ...this.asesoriaForm.value,
@@ -84,4 +84,26 @@ export class AsesoriaUpdateComponent implements OnInit {
   onCancel(): void {
     this.router.navigate(['/profesor/home', this.profesorId]);
   }
+
+  onDelete(): void {
+  if (confirm('¿Estás seguro de que quieres eliminar esta asesoría?')) {
+    this.asesoriaService.deleteAsesoria(this.asesoriaId).subscribe({
+      next: () => {
+        alert('Asesoría eliminada correctamente');
+         
+        const elemento = document.querySelector(`#asesoria-${this.asesoriaId}`);
+        if (elemento) elemento.remove();
+
+        
+        this.router.navigate(['/profesor/home', this.profesorId]);
+      },
+      error: (err) => {
+        console.error('Error al eliminar:', err);
+        alert('Error al eliminar: ' + err.message);
+      }
+    });
+  }
+}
+
+
 }
