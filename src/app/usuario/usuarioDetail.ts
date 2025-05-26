@@ -1,20 +1,29 @@
+// src/app/usuario/usuarioDetail.ts
 import { Asesoria } from '../asesoria/asesoria';
-import { Usuario }  from './usuario';
+import { Usuario } from './usuario';
 
 export class UsuarioDetail implements Usuario {
-  public id: number;
-  public tipo: string;
-  public nombre: string;
-  public correo: string;
-  public contrasena: string;
-  public telefono: string;
-  
-  public asesoriasCompletadas: Asesoria[];
+  asesoriasCompletadas: Asesoria[] = [];
 
-  constructor(id: number,tipo: string,nombre: string,correo: string,contrasena: string,telefono: string,asesoriasCompletadas: Asesoria[] = []) { this.id = id;
-    this.tipo = tipo;
-    this.nombre = nombre;
-    this.correo = correo;
-    this.contrasena = contrasena;
-    this.telefono = telefono;
-    this.asesoriasCompletadas= asesoriasCompletadas;}}
+  constructor(data: Usuario) {
+
+    Object.assign(this, data);
+  
+    this.asesoriasCompletadas = data.asesoriasCompletadas ?? [];
+  }
+  id!: number;
+  tipo!: string;
+  nombre!: string;
+  correo!: string;
+  contrasena!: string;
+  telefono!: string;
+  fotoUrl: string | undefined;
+  videoUrl: string | undefined;
+  formacion: string | undefined;
+  experiencia: string | undefined;
+  enlaceReunion: string | undefined;
+  precioHora: number | undefined;
+  codigoPostal: number | undefined;
+  latitud: number | undefined;
+  longitud: number | undefined;
+}

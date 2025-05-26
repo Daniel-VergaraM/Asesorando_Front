@@ -1,0 +1,76 @@
+/* Contenedor principal centrado */
+#Container {
+  position: relative;
+  width: 360px;
+  margin: 80px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Formulario con background y sombra */
+.form {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título del formulario */
+#login-lable {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333333;
+}
+
+/* Inputs */
+.form-content {
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.form-content:focus {
+  outline: none;
+  border-color: #2e8def;
+}
+
+/* Botón de submit */
+.form-button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  background-color: #2e8def;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-button:disabled {
+  background-color: #aaaaaa;
+  cursor: not-allowed;
+}
+
+.form-button:not(:disabled):hover {
+  background-color: #1c6cc1;
+}
+
+/* SVG decorativos */
+#rays {
+  position: absolute;
+  bottom: -80px;
+  left: -50px;
+  opacity: 0.2;
+}
+
+#emiter {
+  position: absolute;
+  bottom: -60px;
+  right: -30px;
+  opacity: 0.1;
+}
