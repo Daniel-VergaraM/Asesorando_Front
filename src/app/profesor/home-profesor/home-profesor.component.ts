@@ -8,6 +8,7 @@ import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { RouterModule } from '@angular/router';
 import { AsesoriaUpdateComponent } from '../../asesoria/asesoria-update/asesoria-update.component'; // Importa el componente
 import { AsesoriaModule } from '../../asesoria/asesoria.module';
+import { Asesoria } from '../../asesoria/asesoria';
 
 @Component({
   selector: 'app-home-profesor',
@@ -28,7 +29,8 @@ export class HomeProfesorComponent implements OnInit {
   perfilProgress = 0;
   asesoriasOpen = false;
   
- 
+  misSolicitudesAsesorias: Asesoria[] = [];
+
   mostrarFormularioEdicion: boolean = false;
   asesoriaSeleccionadaId: number  = 0;
 
@@ -64,7 +66,19 @@ export class HomeProfesorComponent implements OnInit {
     this.asesoriasOpen = false;
   }
 
-  
+  ordenarSolicitudesPorDuracion(): void {
+    this.solicitudes.sort((a, b) => {
+      const duracionA = Number(a.duracion) || 0;
+      const duracionB = Number(b.duracion) || 0;
+      return duracionA - duracionB;
+    });
+  }
+  formatearDuracion(minutos: number): string {
+    const h = Math.floor(minutos / 60);
+    const m = minutos % 60;
+    return `${h > 0 ? h + 'h' : ''}${m > 0 ? (h > 0 ? ', ' : '') + m + ' min' : ''}`.trim();
+  }
+
   abrirEdicion(asesoriaId: number): void {
     this.asesoriaSeleccionadaId = asesoriaId;
     this.mostrarFormularioEdicion = true;
