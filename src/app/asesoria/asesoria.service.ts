@@ -60,4 +60,7 @@ export class AsesoriaService {
  deleteAsesoria(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  getAsesoriasByProfesor(profesorId: number): Observable<Asesoria[]> {
+    return this.http.get<Asesoria[]>(`${this.apiUrl}/profesor/${profesorId}`);
+  }
 }

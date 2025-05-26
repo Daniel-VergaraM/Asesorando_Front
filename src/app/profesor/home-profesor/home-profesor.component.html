@@ -66,26 +66,31 @@
 
     <!-- Columna derecha (Contenido principal) -->
     <div class="col-lg-9 col-md-8">
-      <div class="row g-4">
-        <!-- Card de solicitudes -->
-        <div class="col-lg-6 col-md-12">
-          <div class="card h-100">
-            <div class="card-header">Mis solicitudes de asesorías</div>
-            <ul class="list-group list-group-flush" *ngIf="solicitudes?.length; else noSol">
-              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let s of solicitudes">
-                <div class="flex-grow-1">
-                  {{ s.tematica }} ({{ s.duracion }} min) {{ s.tipo }}
-                </div>
-               <button class="btn btn-dark btn-sm ms-2" [routerLink]="['/asesoria/actualizar', s.id, profesor.id]">
-               <i class="bi bi-pencil-square me-1"></i> Editar
-              </button>
-              </li>
-            </ul>
-            <ng-template #noSol>
-              <div class="card-body text-muted"><em>No tienes solicitudes</em></div>
-            </ng-template>
-          </div>
+  <div class="row g-4">
+    <!-- Card de solicitudes -->
+    <div class="col-lg-6 col-md-12">
+  <div class="card h-100">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>Mis solicitudes de asesorías</span>
+      <button class="btn btn-outline-primary btn-sm" (click)="ordenarSolicitudesPorDuracion()">
+        Filtrar por duración
+      </button>
+    </div>
+    <ul class="list-group list-group-flush" *ngIf="solicitudes?.length; else noSol">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let s of solicitudes">
+        <div class="flex-grow-1">
+          {{ s.tematica }} {{ formatearDuracion(+s.duracion) }} {{ s.tipo }}
         </div>
+        <button class="btn btn-dark btn-sm ms-2" [routerLink]="['/asesoria/actualizar', s.id, profesor.id]">
+          <i class="bi bi-pencil-square me-1"></i> Editar
+        </button>
+      </li>
+    </ul>
+    <ng-template #noSol>
+      <div class="card-body text-muted"><em>No tienes solicitudes</em></div>
+    </ng-template>
+  </div>
+</div>
 
         <!-- Card de asesorías publicadas -->
         <div class="col-lg-6 col-md-12">
