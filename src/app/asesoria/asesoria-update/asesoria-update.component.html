@@ -1,78 +1,29 @@
-<div class="card shadow mt-4">
-  <div class="card-header bg-warning text-dark">
-    <i class="bi bi-pencil-square me-2"></i> Editar Asesoría
-  </div>
-  <div class="card-body">
-    <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
-      <!-- Área -->
-      <div class="mb-3">
-        <label for="area" class="form-label">Área</label>
-        <input
-          id="area"
-          class="form-control"
-          formControlName="area"
-          placeholder="Ej: Psicología"
-          required
-        />
-      </div>
+<div class="container mt-4">
+  <h4>Actualizar Asesoría</h4>
+  <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+    <div class="mb-3">
+      <label for="area">Área</label>
+      <input id="area" type="text" class="form-control" formControlName="area">
+    </div>
+    <div class="mb-3">
+      <label for="tematica">Temática</label>
+      <input id="tematica" type="text" class="form-control" formControlName="tematica">
+    </div>
+    <div class="mb-3">
+      <label for="tipo">Tipo</label>
+      <input id="tipo" type="text" class="form-control" formControlName="tipo">
+    </div>
+    <div class="mb-3">
+      <label for="duracion">Duración (minutos)</label>
+      <input id="duracion" type="number" class="form-control" formControlName="duracion">
+    </div>
+    
+    <div class="form-check mb-3">
+      <input id="completada" type="checkbox" class="form-check-input" formControlName="completada">
+      <label for="completada" class="form-check-label">Completada</label>
+    </div>
 
-      <!-- Temática -->
-      <div class="mb-3">
-        <label for="tematica" class="form-label">Temática</label>
-        <input
-          id="tematica"
-          class="form-control"
-          formControlName="tematica"
-          placeholder="Ej: Psicología del desarrollo"
-          required
-        />
-      </div>
-
-      <!-- Tipo -->
-      <div class="mb-3">
-        <label for="tipo" class="form-label">Modalidad</label>
-        <select
-          id="tipo"
-          class="form-select"
-          formControlName="tipo"
-          required
-        >
-          <option value="Virtual">Virtual</option>
-          <option value="Presencial">Presencial</option>
-        </select>
-      </div>
-
-      <!-- Duración -->
-      <div class="mb-3">
-        <label for="duracion" class="form-label">Duración (minutos)</label>
-        <input
-          id="duracion"
-          type="number"
-          class="form-control"
-          formControlName="duracion"
-          min="1"
-          placeholder="Ej: 60"
-          required
-        />
-      </div>
-
-      <!-- Botones -->
-      <div class="d-flex justify-content-end gap-2 mt-4">
-        <button
-          type="button"
-          class="btn btn-outline-secondary"
-          (click)="onCancel()"
-        >
-          Cancelar
-        </button>
-        <button
-          type="submit"
-          class="btn btn-warning"
-          [disabled]="asesoriaForm.invalid"
-        >
-          <i class="bi bi-check-circle me-1"></i> Guardar Cambios
-        </button>
-      </div>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-dark">Guardar</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="onCancel()">Cancelar</button>
+  </form>
 </div>

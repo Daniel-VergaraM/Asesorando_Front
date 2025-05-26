@@ -103,6 +103,19 @@ img {
   margin-bottom: 20px; /* Add some space below the navbar */
 }
 
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
 
 .container {
   position: absolute;

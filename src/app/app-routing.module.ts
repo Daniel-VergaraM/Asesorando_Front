@@ -30,7 +30,8 @@ const routes: Routes = [
   
   {path: 'profesor/actualizar/:id', component: ProfesorActualizarComponent },
 
-  { path: 'asesoria/actualizar/:id', component: AsesoriaUpdateComponent },
+{ path: 'asesoria/actualizar/:id/:profesorId', component: AsesoriaUpdateComponent },
+
 
   { path: 'asesorias', loadChildren: () => import('./asesoria/asesoria.module').then(m => m.AsesoriaModule) },
   { path: 'calendarios', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioModule) },
