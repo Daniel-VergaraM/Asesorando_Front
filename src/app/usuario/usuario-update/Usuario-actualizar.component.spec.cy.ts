@@ -1,4 +1,3 @@
-// cypress/component/usuario-actualizar.component.cy.ts
 import { mount } from 'cypress/angular';
 import { of } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -40,12 +39,12 @@ describe('UsuarioActualizarComponent (Component Test)', () => {
       actualizarUsuario: (u) => of(mockDetail)
     };
 
-    // Espía actualizarUsuario en el stub
+    // Espia actualizarUsuario en el stub
     cy.spy(usuarioServiceStub, 'actualizarUsuario').as('actualizarSpy');
-    // Spy para Router.navigate
+    // espia para Router.navigate
     navegarSpy = cy.spy().as('navegarSpy');
 
-    // Montar el componente
+    // trae el componete 
     mount(UsuarioActualizarComponent, {
       imports: [ReactiveFormsModule, RouterTestingModule.withRoutes([])],
       providers: [

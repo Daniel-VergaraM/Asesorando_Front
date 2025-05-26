@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 
 import { Usuario } from "../../src/app/usuario/usuario";
 

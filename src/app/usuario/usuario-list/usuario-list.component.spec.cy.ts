@@ -27,7 +27,7 @@ describe('UsuarioListComponent', () => {
 
     // Generar lista de usuarios de prueba incluyendo tipo y contrasena
     const testUsers: Usuario[] = [];
-    const tipos = ['ESTUDIANTE_NORMAL', 'PROFESOR_TIEMPO_COMPLETO'];
+    const tipos = ['ESTUDIANTE', 'PROFESOR'];
     for (let i = 0; i < 3; i++) {
       testUsers.push({
         id: i + 1,
@@ -43,16 +43,16 @@ describe('UsuarioListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('crea la lista', () => {
     expect(component).to.exist;
   });
 
-  it('should have 3 user cards', () => {
+  it('genera 3 cards', () => {
     const cards = debug.queryAll(By.css('div.col-auto.mb-4'));
     expect(cards.length).to.equal(3);
   });
 
-  it('should render user name, correo and telefono', () => {
+  it('renderiza campos basicos de usuario', () => {
     const cards = debug.queryAll(By.css('div.card-body'));
     cards.forEach((card, index) => {
       const text = card.nativeElement.textContent;
