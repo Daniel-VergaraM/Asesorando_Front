@@ -32,6 +32,7 @@
           placeholder="Correo"
           required
           [(ngModel)]="model.correo"
+          data-cy="login-email"
         />
       </div>
 
@@ -58,6 +59,7 @@
           placeholder="Contraseña"
           required
           [(ngModel)]="model.contrasena"
+          data-cy="login-password"
         />
       </div>
 
@@ -68,6 +70,11 @@
           type="submit"
           class="button1"
           [disabled]="loginForm.invalid"
+          data-cy="login-submit"
         >
           Login
         </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="container-fluid mt-2 mb-4">
   <h2 class="text-center">HU14 Juan Caicedo </h2>
   <div class="row justify-content-center">
-    <div *ngFor="let u of users" class="col-auto mb-4">
+    <div *ngFor="let u of users" class="col-auto mb-4" data-cy="user-item">
       <div class="card">
         <div class="card-body">
           <h5>{{ u?.nombre}}</h5>
@@ -11,29 +11,53 @@
           <p><strong>Teléfono:</strong> {{ u?.telefono}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-outline-primary btn-sm"
-                  (click)="seleccionarUsuario(u)">Ver</button>
-          <button class="btn btn-outline-success btn-sm"
-                  (click)="updateUsuario(u.id)">Actualizar</button>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            (click)="seleccionarUsuario(u)"
+            data-cy="user-view"
+          >
+            Ver
+          </button>
+          <button
+            class="btn btn-outline-success btn-sm"
+            (click)="updateUsuario(u.id)"
+            data-cy="user-edit"
+          >
+            Actualizar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="selectedUser" class="mt-4 p-3 border bg-light">
+  <div
+    *ngIf="selectedUser"
+    class="mt-4 p-3 border bg-light"
+    data-cy="user-detail"
+  >
     <div class="d-flex justify-content-between">
       <h4>Detalle de {{ selectedUser.nombre }}</h4>
-      <button class="btn btn-sm btn-outline-secondary"
-              (click)="cerrarDetalle()">✕</button>
+      <button
+        class="btn btn-sm btn-outline-secondary"
+        (click)="cerrarDetalle()"
+        data-cy="detail-close"
+      >
+        ✕
+      </button>
     </div>
     <p><strong>ID:</strong> {{ selectedUser.id}}</p>
     <p><strong>Tipo:</strong> {{ selectedUser.tipo}}</p>
-    <p><strong>Correo:</strong> {{ selectedUser.correo}}  </p>
+    <p><strong>Correo:</strong> {{ selectedUser.correo}}</p>
     <p><strong>Teléfono:</strong> {{ selectedUser.telefono}}</p>
-    <h5>Asesorías completadas ({{ selectedUser.asesoriasCompletadas }})</h5>
+    <h5>
+      Asesorías completadas ({{ selectedUser.asesoriasCompletadas }})
+    </h5>
     <ul class="list-group">
-      <li *ngFor="let a of selectedUser.asesoriasCompletadas"
-          class="list-group-item">
+      <li
+        *ngFor="let a of selectedUser.asesoriasCompletadas"
+        class="list-group-item"
+        data-cy="user-advisory"
+      >
         ID: {{ a.id }} — Temática: {{ a.tematica }}
       </li>
     </ul>

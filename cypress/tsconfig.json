@@ -3,7 +3,7 @@
   "include": [
     "**/*.ts",
     "../cypress.config.ts"
-  ],
+, "../src/app/estudiante/home-estudiante/home-estudiante.component.cy.ts"  ],
   "compilerOptions": {
     "sourceMap": false,
     "types": ["cypress"]

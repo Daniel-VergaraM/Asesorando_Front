@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Juan Pérez", "correo": "juan@uniandes.edu.co", "telefono": "3001234567" },
+  { "id": 2, "nombre": "Ana Gómez",   "correo": "ana@uniandes.edu.co",  "telefono": "3107654321" },
+  { "id": 3, "nombre": "Luis Martínez","correo": "luis@uniandes.edu.co","telefono": "3201112222" }
+]
