@@ -8,6 +8,7 @@ import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-upd
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
 import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-update.component';
+import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 
 const routes: Routes = [
   // página pública
