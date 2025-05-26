@@ -36,20 +36,19 @@ export class ReservaCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.reservaForm.invalid) {
-      return;
-    }
+    if (this.reservaForm.invalid) return;
 
-    // Crear el objeto reserva con el id de la asesoría y los datos del formulario
     const nuevaReserva = {
-      asesoriaId: this.asesoriaId,
-      ...this.reservaForm.value
+      nombreCliente: this.reservaForm.value.nombreCliente,
+      emailCliente: this.reservaForm.value.emailCliente,
+      fechaReserva: this.reservaForm.value.fechaReserva.substring(0, 10), 
+      asesoriaId: this.asesoriaId
     };
 
     this.reservaService.createReserva(nuevaReserva).subscribe({
       next: () => {
         alert('Reserva creada exitosamente');
-        this.router.navigate(['/asesorias']); // O donde quieras redirigir
+        this.router.navigate(['/asesorias']);
       },
       error: (err) => {
         alert('Error al crear la reserva');

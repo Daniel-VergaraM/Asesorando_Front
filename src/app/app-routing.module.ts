@@ -1,4 +1,4 @@
-import { NgModule }                from '@angular/core';
+import { Component, NgModule }                from '@angular/core';
 import { RouterModule, Routes }    from '@angular/router';
 import { UsuarioLoginComponent }       from './usuario/usuario-login/usuario-login/usuario-login.component';
 import { HomeEstudianteComponent } from './estudiante/home-estudiante/home-estudiante.component';
@@ -19,8 +19,11 @@ const routes: Routes = [
   // perfil de estudiante
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
+  { path:  'filtrar-asesorias/reserva-create', component: ReservaCreateComponent},
+
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
+
 
   { path: 'actualizar/:id', component: UsuarioActualizarComponent },
   

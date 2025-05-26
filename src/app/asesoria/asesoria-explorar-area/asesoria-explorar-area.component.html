@@ -62,12 +62,19 @@
               <button class="btn btn-success mt-2" (click)="abrirReserva(asesoria)">Reservar</button>
 
               <!-- Aquí cargas el componente reserva-create sólo si selectedAsesoriaParaReserva NO es null -->
-              <div *ngIf="selectedAsesoriaParaReserva" class="modal-backdrop">
-                <div class="modal-content p-4 shadow rounded bg-white">
-                  <button class="btn btn-danger btn-sm mb-3" (click)="cerrarReserva()">Cerrar</button>
-                  <button class="btn btn-success mt-2" [routerLink]="['/reserva-create', asesoria.id]">Reservar</button>
-                </div>
+              <!-- Modal bonito y centrado -->
+        <div *ngIf="selectedAsesoriaParaReserva" class="popup-overlay">
+            <div class="popup-container">
+              <h5 class="mb-3 text-center text-primary fw-bold">¿Confirmas que deseas reservar esta asesoría?</h5>
+
+              <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-outline-danger px-4" (click)="cerrarReserva()">Cancelar</button>
+                <button class="btn btn-success px-4" [routerLink]="['/filtrar-asesorias', 'reserva-create']">
+                  Reservar
+                </button>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
