@@ -8,6 +8,8 @@ import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-upd
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
 import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-update.component';
+import { ComentarioCreateComponent } from './comentario/comentario-create/comentario-create.component';
+import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 
 const routes: Routes = [
   // página pública
@@ -19,8 +21,8 @@ const routes: Routes = [
   // perfil de estudiante
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
-  { path:  'filtrar-asesorias/reserva-create', component: ReservaCreateComponent},
-
+  { path:  'estudiante/home/:id/filtrar-asesorias/reserva-create/:idAsesoria', component: ReservaCreateComponent},
+  { path: 'estudiante/home/:id/comentario-create/:idReserva', component: ComentarioCreateComponent },
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
 

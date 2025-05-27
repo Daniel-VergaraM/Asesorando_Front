@@ -1,14 +1,28 @@
-.asesoria-card {
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease;
-  }
-  
-  .asesoria-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  h4 {
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
+.text-verde {
+  color: #2e7d32; /* verde medio */
+}
+
+.text-verde-oscuro {
+  color: #1b5e20; /* verde oscuro */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.popup-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+}

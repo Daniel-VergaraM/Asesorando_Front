@@ -41,20 +41,18 @@ export class AsesoriaService {
     return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}?area=${area}`);
   }
 
-  filtrarAsesorias(area?: string, profesor?: string, modalidad?: string): Observable<AsesoriaDetail[]> {
-  let queryParams = [];
+  filtrarAsesorias(profesorId?: number | null, tipo?: string, area?: string): Observable<AsesoriaDetail[]> {
+    let queryParams = [];
 
-  if (area) queryParams.push(`area=${encodeURIComponent(area)}`);
-  if (profesor) queryParams.push(`profesor=${encodeURIComponent(profesor)}`);
-  if (modalidad) queryParams.push(`tipo=${encodeURIComponent(modalidad)}`);
+    if (profesorId != null) queryParams.push(`profesorId=${profesorId}`);
+    if (tipo) queryParams.push(`tipo=${encodeURIComponent(tipo)}`);
+    if (area) queryParams.push(`area=${encodeURIComponent(area)}`);
 
-  const url = queryParams.length > 0 ? `${this.apiUrl}?${queryParams.join('&')}` : this.apiUrl;
+    const url = queryParams.length > 0
+      ? `${this.apiUrl}/filtrar?${queryParams.join('&')}`
+      : `${this.apiUrl}`;
 
-  return this.http.get<AsesoriaDetail[]>(url);
-}
-
-  getProfesores(): Observable<string[]> {
-  return this.http.get<string[]>(`${environment.apiUrl}/profesores`);
+    return this.http.get<AsesoriaDetail[]>(url);
   }
 
 }

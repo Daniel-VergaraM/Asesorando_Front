@@ -63,17 +63,21 @@ export class UsuarioActualizarComponent implements OnInit {
 
     console.log('▶️ Payload a enviar:', payload);
 
-    this.usuarioService.actualizarUsuario(payload)
-      .subscribe({
-        next: resp => {
-          console.log('✅ Actualización OK:', resp);
-          this.router.navigate(['/profesor/home', this.userId]);
-        },
-        error: err => console.error('❌ Error al actualizar:', err)
-      });
+    this.usuarioService.actualizarUsuario(payload).subscribe({
+  next: resp => {
+    console.log('✅ Actualización OK:', resp);
+    this.usuarioService.getUsuarioById(this.userId).subscribe(user => {
+      const tipo = user.tipo;
+      this.router.navigate([`/${tipo}/home`, this.userId]);
+    });
+  },
+  error: err => console.error('❌ Error al actualizar:', err)
+});
   }
 
   onCancel(): void {
-    this.router.navigate(['/profesor/home', this.userId]);
-  }
+    this.usuarioService.getUsuarioById(this.userId).subscribe(user => {
+    const tipo = user.tipo;
+    this.router.navigate([`/${tipo}/home`, this.userId]);
+  });}
 }

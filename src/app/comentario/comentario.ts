@@ -1,5 +1,5 @@
 export class Comentario {
-  public id: number;
+  public id?: number;
   public comentario: string;
   public calificacion: number;
 

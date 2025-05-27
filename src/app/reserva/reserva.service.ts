@@ -4,26 +4,31 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 interface Reserva {
+  id?:number;
+  fechaReserva: string;
+  estudianteId: number;
   asesoriaId: number;
-  nombreCliente: string;
-  emailCliente: string;
-  // otros campos si los tienes
+  cancelada: boolean;
+  estado: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservaService {
-  private apiUrl = `${environment.apiUrl}/reservas`; 
+  private apiUrl = `${environment.apiUrl}/reservas`;
 
   constructor(private http: HttpClient) {}
 
-  createReserva(reserva: Reserva): Observable<any> {
-    return this.http.post(this.apiUrl, reserva);
+  createReserva(reserva: Reserva): Observable<Reserva> {
+  return this.http.post<Reserva>(this.apiUrl, reserva);
   }
 
-  cambiarEstadoACompletada(id: number): Observable<any> {
-  return this.http.put(`/api/reservas/${id}/completar`, {});
-    }
-  
+  cambiarEstadoACompletada(id: number): Observable<Reserva> {
+    return this.http.put<Reserva>(`${this.apiUrl}/${id}/estado`, null);
+  }
+
+  cambiarACancelada(id: number): Observable<Reserva> {
+    return this.http.put<Reserva>(`${this.apiUrl}/${id}/cancelada`, null);
+  }
 }

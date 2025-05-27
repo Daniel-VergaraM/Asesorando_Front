@@ -1,21 +1,56 @@
-<form [formGroup]="comentarioForm" (ngSubmit)="createComentario()" class="comentario-form">
-  <div class="form-group">
-    <label for="texto">Comentario:</label>
-    <textarea id="texto" formControlName="texto"></textarea>
+<header class="bg-success text-white py-3 shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h3 m-0 fw-bold">Asesorando</h1>
+    <!-- Si en el futuro quieres botones de navegación o perfil, puedes colocarlos aquí -->
+    <!-- <a href="/home" class="btn btn-outline-light">Inicio</a> -->
+  </div>
+</header>
+
+<form [formGroup]="comentarioForm" (ngSubmit)="createComentario()" class="comentario-form card shadow-sm p-4 border-0 mt-4" style="background-color: #f8f9fa;">
+  <h4 class="mb-4 text-success fw-bold">Dejar un comentario</h4>
+
+  <div class="mb-3">
+    <label for="comentario" class="form-label text-success">Comentario:</label>
+    <textarea
+      id="comentario"
+      class="form-control border-success"
+      rows="4"
+      placeholder="Escribe tu comentario aquí..."
+      formControlName="comentario"
+    ></textarea>
+    <div *ngIf="comentarioForm.get('comentario')?.invalid && comentarioForm.get('comentario')?.touched" class="text-danger mt-1">
+      El comentario es obligatorio.
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="calificacion">Calificación (1 a 5):</label>
-    <input type="number" id="calificacion" formControlName="calificacion" min="1" max="5" />
+  <div class="mb-3">
+    <label for="calificacion" class="form-label text-success">Calificación (1 a 5):</label>
+    <input
+      type="number"
+      id="calificacion"
+      class="form-control border-success"
+      min="1"
+      max="5"
+      formControlName="calificacion"
+    />
+    <div *ngIf="comentarioForm.get('calificacion')?.invalid && comentarioForm.get('calificacion')?.touched" class="text-danger mt-1">
+      La calificación debe estar entre 1 y 5.
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="idAsesoria">ID Asesoría:</label>
-    <input type="text" id="idAsesoria" formControlName="idAsesoria" />
-  </div>
-
-  <div class="form-buttons">
-    <button type="submit" [disabled]="comentarioForm.invalid">Enviar</button>
-    <button type="button" (click)="cancelCreation()">Cancelar</button>
+  <div class="d-flex justify-content-between mt-4">
+    <button type="submit" class="btn btn-success" [disabled]="comentarioForm.invalid">
+      Enviar
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="cancelCreation()">
+      Regresar
+    </button>
   </div>
 </form>
+
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-1 fw-bold">Sistema de Asesorías</p>
+    <p class="mb-0">Plataforma de gestión académica</p>
+  </div>
+</footer>

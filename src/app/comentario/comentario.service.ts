@@ -28,4 +28,9 @@ export class ComentarioService {
   createComentario(comentario: Comentario): Observable<Comentario> {
     return this.http.post<Comentario>(this.apiUrl, comentario);
   }
+
+  createComentarioYAsociar(reservaId: number, comentario: Comentario): Observable<Comentario> {
+  const url = `${environment.apiUrl}/reservas/${reservaId}/comentarios`;
+  return this.http.post<Comentario>(url, comentario);
+  }
 }

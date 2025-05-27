@@ -1,5 +1,9 @@
 /* Colores verdes suaves y profesionales */
-
+footer {
+  margin: 0;
+  padding: 1.5rem 0;
+  width: 100%;
+}
 .perfil-card {
   background-color: #d0f0c0; 
   border: 2px solid #4caf50; 

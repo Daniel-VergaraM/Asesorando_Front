@@ -1,33 +1,40 @@
+<header class="bg-success text-white py-3 shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h3 m-0 fw-bold">Asesorando</h1>
+    <!-- Si en el futuro quieres botones de navegación o perfil, puedes colocarlos aquí -->
+    <!-- <a href="/home" class="btn btn-outline-light">Inicio</a> -->
+  </div>
+</header>
+
 <div class="container mt-4">
-  <h3>Reservar asesoría #{{ asesoriaId }}</h3>
+  <div class="card p-4 shadow border-0" style="background-color: #f8f9fa;">
+    <h3 class="mb-4 text-success fw-bold">Reservar asesoría #{{ asesoriaId }}</h3>
 
-  <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()"> 
-    <div class="mb-3">
-      <label for="nombreCliente" class="form-label">Nombre:</label>
-      <input type="text" id="nombreCliente" class="form-control" formControlName="nombreCliente" />
-      <div *ngIf="reservaForm.get('nombreCliente')?.invalid && reservaForm.get('nombreCliente')?.touched" class="text-danger">
-        El nombre es obligatorio.
+    <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="fechaReserva" class="form-label text-success">Fecha y hora de la reserva:</label>
+        <input
+          type="datetime-local"
+          id="fechaReserva"
+          class="form-control border-success"
+          formControlName="fechaReserva"
+        />
+        <div
+          *ngIf="reservaForm.get('fechaReserva')?.invalid && reservaForm.get('fechaReserva')?.touched"
+          class="text-danger mt-1"
+        >
+          La fecha y hora son obligatorias.
+        </div>
       </div>
-    </div>
 
-    <div class="mb-3">
-      <label for="emailCliente" class="form-label">Email:</label>
-      <input type="email" id="emailCliente" class="form-control" formControlName="emailCliente" />
-      <div *ngIf="reservaForm.get('emailCliente')?.invalid && reservaForm.get('emailCliente')?.touched" class="text-danger">
-        Ingresa un email válido.
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="fechaReserva" class="form-label">Fecha y hora de la reserva:</label>
-      <input type="datetime-local" id="fechaReserva" class="form-control" formControlName="fechaReserva" />
-      <div *ngIf="reservaForm.get('fechaReserva')?.invalid && reservaForm.get('fechaReserva')?.touched" class="text-danger">
-        La fecha y hora son obligatorias.
-      </div>
-    </div>
-
-    <!-- Puedes agregar más campos según necesidad -->
-
-    <button type="submit" class="btn btn-primary" [disabled]="reservaForm.invalid">Reservar</button>
-  </form>
+      <button type="submit" class="btn btn-success mt-3" [disabled]="reservaForm.invalid">Reservar</button>
+    </form>
+  </div>
 </div>
+
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-1 fw-bold">Sistema de Asesorías</p>
+    <p class="mb-0">Plataforma de gestión académica</p>
+  </div>
+</footer>

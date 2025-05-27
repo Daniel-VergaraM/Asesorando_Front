@@ -13,6 +13,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ReservaCreateComponent implements OnInit {
   reservaForm!: FormGroup;
   asesoriaId!: number;
+  estudianteId!: number;
+ 
 
   constructor(
     private route: ActivatedRoute,
@@ -22,38 +24,45 @@ export class ReservaCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Obtener el id del estudiante desde la ruta
+    this.estudianteId = Number(this.route.snapshot.paramMap.get('id'));
+
     // Obtener el id de la asesoría desde la ruta
-    this.asesoriaId = Number(this.route.snapshot.paramMap.get('id'));
+    this.asesoriaId = Number(this.route.snapshot.paramMap.get('idAsesoria'));
 
     // Inicializar el formulario
     this.reservaForm = this.fb.group({
-      nombreCliente: ['', Validators.required],
-      emailCliente: ['', [Validators.required, Validators.email]],
-      fechaReserva: ['', Validators.required],
+      fechaReserva: ['', Validators.required]
     });
-      // agrega más campos que necesites
-    
   }
 
   onSubmit(): void {
-    if (this.reservaForm.invalid) return;
+  if (this.reservaForm.invalid) return;
 
-    const nuevaReserva = {
-      nombreCliente: this.reservaForm.value.nombreCliente,
-      emailCliente: this.reservaForm.value.emailCliente,
-      fechaReserva: this.reservaForm.value.fechaReserva.substring(0, 10), 
-      asesoriaId: this.asesoriaId
-    };
+  const nuevaReserva = {
+  fechaReserva: this.reservaForm.value.fechaReserva,
+  estudianteId: this.estudianteId,
+  asesoriaId: this.asesoriaId,
+  cancelada: false,
+  estado: 'noCompletada'
+};
 
-    this.reservaService.createReserva(nuevaReserva).subscribe({
-      next: () => {
-        alert('Reserva creada exitosamente');
-        this.router.navigate(['/asesorias']);
-      },
-      error: (err) => {
-        alert('Error al crear la reserva');
-        console.error(err);
-      }
-    });
-  }
+  this.reservaService.createReserva(nuevaReserva).subscribe({
+    next: () => {
+      alert('Reserva creada exitosamente');
+      this.router.navigate(['/estudiante/home', this.estudianteId]);
+    },
+    error: (err) => {
+      alert('Error al crear la reserva');
+      console.error(err);
+    }
+  });
+}
+
+cancelCreation(): void {
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  this.router.navigate(['/estudiante/home', this.estudianteId]);
+});}
+  
+
 }
