@@ -116,7 +116,8 @@
                   <div class="card-header">Asesorías</div>
                   <div class="card-body">
                     <ng-container *ngIf="getProfesorAsesorias(selectedProfesor).length > 0; else noAsesorias">
-                      <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor)" class="card mb-2">
+                      <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor) | slice:0:2" class="card mb-2">
+
                         <div class="card-body p-3">
                           <h5 class="card-title">{{ asesoria.tipo }}</h5>
                           <p class="mb-1"><strong>Área:</strong> {{ asesoria.area }}</p>
@@ -127,6 +128,16 @@
                           </span>
                         </div>
                       </div>
+
+                      <div class="card-body d-flex justify-content-center py-3">
+                        <button [routerLink]="['/asesorias/list', selectedProfesor.id]" class="btn btn-outline-dark">
+                          Mostrar todas las asesorías 
+                          <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                      </div>
+
+
+
                     </ng-container>
                     <ng-template #noAsesorias>
                       <div class="alert alert-info">

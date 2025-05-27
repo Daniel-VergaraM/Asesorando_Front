@@ -7,13 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { AsesoriaService } from '../../asesoria/asesoria.service';
 import { Tematica } from '../../tematica/tematica';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];
