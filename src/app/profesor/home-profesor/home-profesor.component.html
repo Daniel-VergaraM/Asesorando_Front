@@ -38,31 +38,6 @@
           </div>
         </div>
       </div>
-          
-      <!-- Sección Asesorías -->
-      <div class="card text-center shadow-sm mt-4">
-        <div class="card-header py-2">
-          Asesorías
-        </div>
-        <div class="card-body py-2">
-          <div class="dropdown">
-            <button
-              class="btn btn-dark dropdown-toggle w-100"
-              (click)="toggleAsesorias(); $event.preventDefault()"
-            >
-              Opciones de Asesorías
-            </button>
-            <ul
-              class="dropdown-menu w-100 mt-1"
-              [class.show]="asesoriasOpen"
-              (mouseleave)="closeAsesorias()"
-            >
-              <li><a class="dropdown-item" [routerLink]="['/asesorias/profesor', profesor.id]">Listar</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/asesorias/create', profesor.id]">Crear</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
     
     <!-- Contenido principal -->

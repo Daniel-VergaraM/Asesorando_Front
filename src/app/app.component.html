@@ -1,5 +1,5 @@
 <div class="row g-0">
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark"
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
        style="background-color: #0d0d0d; padding: .5rem 12px;">
     <div class="container-fluid px-0" style="padding: 0 24px;">
       <a class="navbar-brand" routerLink="/">AsesorAndes</a>
@@ -37,13 +37,17 @@
   </nav>
 </div>
 
-<router-outlet class="d-block w-100 pt-1 pb-1"></router-outlet>
+
+<main class="  justify-content-center align-items-start py-5 px-0" style="padding-bottom: 1000px;">
+  <router-outlet class="d-block w-100 pt-5"></router-outlet>
+</main>
+
+
 
  <div class="row g-0 mt-auto">
-    <footer
-      class="page-footer font-small blue pt-4"
-      style="background-color: #0d0d0d"
-    >
+
+    <footer class="fixed-bottom page-footer font-small blue pt-4"
+          style="background-color: #0d0d0d;">
       <div class="container-fluid text-center px-0">
         <div class="row g-0">
           <div class="col-md-12 mt-3">
