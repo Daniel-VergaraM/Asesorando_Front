@@ -17,7 +17,7 @@ export class AsesoriaService {
   /** Lista todas las asesorías del profesor (último año) */
   getAsesorias(): Observable<AsesoriaDetail[]> {
     return this.http.get<AsesoriaDetail[]>(this.apiUrl);
-    }
+  }
   
   getAsesoriasByProfesorId(profesorId: number): Observable<AsesoriaDetail[]> {
     return this.http.get<AsesoriaDetail[]>(`${this.apiUrl}/profesor/${profesorId}`);

@@ -10,6 +10,7 @@ import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor
 import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-update.component';
 import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 import { UsuarioDeleteComponent } from './usuario/usuario-delete/usuario-delete/usuario-delete.component';
+import { AsesoriaListComponent } from './asesoria/asesoria-list/asesoria-list.component';
 
 const routes: Routes = [
   // página pública
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
   { path:  'filtrar-asesorias/reserva-create', component: ReservaCreateComponent},
+  { path: 'asesorias/list/:id', component: AsesoriaListComponent }
+,
 
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },

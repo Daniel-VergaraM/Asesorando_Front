@@ -2,6 +2,7 @@ import { Component, OnInit }    from '@angular/core';
 import { ActivatedRoute }        from '@angular/router';
 import { AsesoriaService }       from '../asesoria.service';
 import { AsesoriaDetail }        from '../asesoriaDetail';
+import { Location } from '@angular/common';
 
 @Component({
   standalone: false,
@@ -16,12 +17,13 @@ export class AsesoriaListComponent implements OnInit {
 
   constructor(
     private asesoriaService: AsesoriaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     // Intenta extraer el parámetro
-    const param = this.route.snapshot.paramMap.get('profesorId');
+    const param = this.route.snapshot.paramMap.get('id'); 
     if (param) {
       this.profesorId = +param;
       this.loadByProfesor(this.profesorId);
@@ -45,4 +47,9 @@ export class AsesoriaListComponent implements OnInit {
       this.router.navigate(['profesor/home', this.profesorId]);
     }
   }
+
+  public volverAtras(): void {
+  this.location.back();
+  }
+
 }
