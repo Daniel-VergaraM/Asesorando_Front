@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfesorService } from '../profesor.service';
 import { AsesoriaService } from '../../asesoria/asesoria.service';
 import { ProfesorDetail } from '../profesorDetail';
@@ -9,20 +9,24 @@ import { RouterModule } from '@angular/router';
 import { AsesoriaUpdateComponent } from '../../asesoria/asesoria-update/asesoria-update.component'; // Importa el componente
 import { AsesoriaModule } from '../../asesoria/asesoria.module';
 import { Asesoria } from '../../asesoria/asesoria';
+import { UsuarioModule } from '../../usuario/usuario.module';
 
 @Component({
   selector: 'app-home-profesor',
   standalone: true,
   imports: [ 
     CommonModule, 
-    FormsModule, 
+    FormsModule,
     RouterModule,
+    AsesoriaModule,
+    UsuarioModule,
     AsesoriaModule,
   ],
   templateUrl: './home-profesor.component.html',
   styleUrls: ['./home-profesor.component.css'],
 })
 export class HomeProfesorComponent implements OnInit {
+  mostrarConfirmDelete = false;
   profesor!: ProfesorDetail;
   solicitudes: AsesoriaDetail[] = [];
   anuncios: { area: string; tema: string }[] = [];
@@ -41,6 +45,9 @@ export class HomeProfesorComponent implements OnInit {
 
   ngOnInit() {
     this.cargarDatosProfesor();
+  }
+  onDeleteClick(): void {
+    this.mostrarConfirmDelete = true;
   }
 
   private cargarDatosProfesor(): void {

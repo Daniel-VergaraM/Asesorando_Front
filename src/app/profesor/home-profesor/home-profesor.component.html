@@ -20,6 +20,17 @@
           >
             Actualizar mi usuario
           </button>
+
+<button
+  class="btn btn-outline-danger"
+  [routerLink]="['/usuarios','borrar', profesor.id]"
+  data-cy="btn-delete-user"
+>
+  Borrar mi cuenta
+</button>
+
+</div>
+
         </div>
       </div>
 
@@ -122,4 +133,3 @@
       </div>
     </div>
   </div>
-</div>

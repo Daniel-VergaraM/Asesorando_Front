@@ -10,13 +10,15 @@ import { UsuarioActualizarComponent }from './usuario-update/usuario-update.compo
 import { UsuarioLoginComponent } from './usuario-login/usuario-login/usuario-login.component';
 import { UsuarioService }           from './usuario.service';
 import { Usuario }                 from './usuario';
+import { UsuarioDeleteComponent } from './usuario-delete/usuario-delete/usuario-delete.component';
 
 @NgModule({
   declarations: [
     UsuarioComponent,
     UsuarioListComponent,
     UsuarioActualizarComponent,
-    UsuarioLoginComponent
+    UsuarioLoginComponent,
+    UsuarioDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { Usuario }                 from './usuario';
     UsuarioComponent,
     UsuarioListComponent,
     UsuarioActualizarComponent,
-    UsuarioLoginComponent
+    UsuarioLoginComponent,
+    UsuarioDeleteComponent
   ]
 })
 export class UsuarioModule { }

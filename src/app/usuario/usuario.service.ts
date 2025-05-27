@@ -58,8 +58,12 @@ export class UsuarioService {
       .put<Usuario>(`${this.apiUrl}/${u.id}`, u)
       .pipe(map(user => new UsuarioDetail(user)));
   }
-
-  eliminarUsuario(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+/** se elimina un usuario  si pone su contrasena*/
+  eliminarusuario(id: number, password: string): Observable<void> {
+    return this.http.request<void>(
+      'delete',
+      `${this.apiUrl}/${id}`,
+      { body: { password } }
+    );
   }
 }
