@@ -6,7 +6,7 @@ import { AsesoriaService } from '../../asesoria/asesoria.service';
 import { ProfesorDetail } from '../profesorDetail';
 import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { RouterModule } from '@angular/router';
-import { AsesoriaUpdateComponent } from '../../asesoria/asesoria-update/asesoria-update.component'; // Importa el componente
+import { AsesoriaUpdateComponent } from '../../asesoria/asesoria-update/asesoria-update.component'; 
 import { AsesoriaModule } from '../../asesoria/asesoria.module';
 import { Asesoria } from '../../asesoria/asesoria';
 import { UsuarioModule } from '../../usuario/usuario.module';
@@ -28,7 +28,7 @@ import { UsuarioModule } from '../../usuario/usuario.module';
 export class HomeProfesorComponent implements OnInit {
   mostrarConfirmDelete = false;
   profesor!: ProfesorDetail;
-  solicitudes: AsesoriaDetail[] = [];
+  asesorias: AsesoriaDetail[] = [];
   anuncios: { area: string; tema: string }[] = [];
   perfilProgress = 0;
   asesoriasOpen = false;
@@ -62,7 +62,7 @@ export class HomeProfesorComponent implements OnInit {
       });
 
     this.asesoriaSvc.getAsesoriasByProfesorId(profesorId)
-      .subscribe(list => this.solicitudes = list);
+      .subscribe(list => this.asesorias = list);
   }
 
   toggleAsesorias(): void {
@@ -74,7 +74,7 @@ export class HomeProfesorComponent implements OnInit {
   }
 
   ordenarSolicitudesPorDuracion(): void {
-    this.solicitudes.sort((a, b) => {
+    this.asesorias.sort((a, b) => {
       const duracionA = Number(a.duracion) || 0;
       const duracionB = Number(b.duracion) || 0;
       return duracionA - duracionB;
