@@ -39,6 +39,7 @@ export class ProfesorListComponent implements OnInit {
 
   loadProfesores() {
     this.loading = true;
+    
     this.profesorService.getProfesores().subscribe({
       next: (profesores) => {
         // For each professor, get detailed information
@@ -48,8 +49,16 @@ export class ProfesorListComponent implements OnInit {
               this.profesores.push(profesorDetail);
               this.filteredProfesores = [...this.profesores];
               this.loading = false;
+              this.profesorService.getTematicasByProfesorId(profesor.id).subscribe(
+                (tematicas: Tematica[]) => {
+                  this.tematicasMap[profesor.id] = tematicas;
+                },
+                (error: any) => {
+                  console.error(`Error loading tematicas for professor ${profesor.id}:`, error);
+                }
+              );
             },
-            error: (error) => {
+            error: (error: any) => {
               console.error(`Error loading details for professor ${profesor.id}:`, error);
             }
           });
@@ -93,17 +102,30 @@ export class ProfesorListComponent implements OnInit {
   }
 
   selectProfesor(profesor: ProfesorDetail) {
-    this.selectedProfesor = profesor;
+  this.selectedProfesor = profesor;
 
-    // carga las asesorías de este profe y las guardas en el mapa
-    this.asesoriasService.getAsesoriasByProfesorId(profesor.id).subscribe({
-      next: (list: Asesoria[]) => this.asesoriasMap[profesor.id] = list,
-      error: (err: any) => {
-        console.error('Error al cargar asesorías:', err);
-        this.asesoriasMap[profesor.id] = [];
-      }
-    });
-  }
+  // Cargar asesorías del profesor
+  this.asesoriasService.getAsesoriasByProfesorId(profesor.id).subscribe({
+    next: (list: Asesoria[]) => this.asesoriasMap[profesor.id] = list,
+    error: (err: any) => {
+      console.error('Error al cargar asesorías:', err);
+      this.asesoriasMap[profesor.id] = [];
+    }
+  });
+
+  // Cargar temáticas del profesor
+  this.profesorService.getTematicasByProfesorId(profesor.id).subscribe({
+    next: (tematicas: Tematica[]) => {
+      this.tematicasMap[profesor.id] = tematicas;
+      this.selectedProfesor!.tematicas = tematicas;  // <- aquí actualizamos la vista
+    },
+    error: (err: any) => {
+      console.error('Error al cargar temáticas:', err);
+      this.tematicasMap[profesor.id] = [];
+    }
+  });
+}
+
 
 
   clearSelection() {
@@ -124,6 +146,8 @@ export class ProfesorListComponent implements OnInit {
   }
 
   getProfesorTematicas(profesor: ProfesorDetail): Tematica[] {
-    return profesor.tematicas || this.tematicasMap[profesor.id] || [];
-  }
+    return profesor.tematicas?.length ? profesor.tematicas : this.tematicasMap[profesor.id] || [];
+  } 
+
+
 }

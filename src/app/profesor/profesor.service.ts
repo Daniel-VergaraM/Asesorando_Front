@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Tematica } from '../tematica/tematica';
 
 @Injectable({
   providedIn: 'root',
@@ -63,5 +64,10 @@ export class ProfesorService {
 
   getProfesorDetail(id: number): Observable<ProfesorDetail> {
     return this.http.get<ProfesorDetail>(this.url + '/' + id);
+  }
+
+  getTematicasByProfesorId(id: number): Observable<Tematica[]> {
+    return this.http.get<Tematica[]>(`${this.url}/${id}/tematicas`);
+
   }
 }

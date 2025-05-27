@@ -51,7 +51,6 @@
             {{ prof.formacion }}
             <div class="d-flex align-items-center justify-content-between mt-2">
               <button class="btn btn-sm btn-info" (click)="selectProfesor(prof)">Ver detalles</button>
-              <button class="btn btn-sm btn-primary" (click)="viewProfile(prof)">Perfil</button>
             </div>
           </div>
         </div>
@@ -116,7 +115,7 @@
                   <div class="card-header">Asesorías</div>
                   <div class="card-body">
                     <ng-container *ngIf="getProfesorAsesorias(selectedProfesor).length > 0; else noAsesorias">
-                      <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor) | slice:0:3" class="card mb-2">
+                      <div *ngFor="let asesoria of getProfesorAsesorias(selectedProfesor) | slice:0:2" class="card mb-2">
 
                         <div class="card-body p-3">
                           <h5 class="card-title">{{ asesoria.tipo }}</h5>
