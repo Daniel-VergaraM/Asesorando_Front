@@ -1,314 +1,152 @@
-/* home-profesor.component.css */
+:root {
+  --onyx:        #2E3532;
+  --reseda:      #7E9181;
+  --french-gray: #C7CEDB;
+  --cadet-gray:  #A0AAB2;
+  --mountbatten: #94849B;
+  --white:       #ffffff;
+}
 
-/* General styling for the profile image */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Perfil */
 .profile-img {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  border-radius: 50%; /* Makes the image round */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  border: 3px solid #dee2e6; /* A light border around the profile picture */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--french-gray);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Styling for the cards, now white/light background */
+/* Tarjetas generales */
 .card {
-  background-color: #ffffff !important; /* White background */
-  border: 1px solid rgba(0, 0, 0, 0.125); /* Standard Bootstrap card border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Lighter shadow for cards */
+  border: none;
+  border-radius: 0.75rem;
 }
-
-/* Styling for card headers */
 .card-header {
-  background-color: #f8f9fa !important; /* Light gray for card headers */
-  color: #343a40 !important; /* Dark text color for headers */
-  font-weight: bold; /* Make header text bold */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125); /* Add a separator line */
+  background: var(--reseda);
+  color: var(--onyx);
+  font-weight: 600;
+  font-size: 1rem;
 }
-
-/* Styling for card body text to ensure readability */
 .card-body,
 .list-group-item {
-  color: #212529; /* Darker text for card bodies and list items */
-  background-color: #ffffff !important; /* Consistent white background for list items */
-  border-color: rgba(0, 0, 0, 0.125); /* Light border for list items */
+  background: var(--white);
 }
 
-/* Specific text color for "No tienes solicitudes" and "No has publicado anuncios" */
-.card-body.text-muted {
-  color: #6c757d !important; /* Standard Bootstrap muted text color */
-}
-
-/* Styling for buttons inside the cards */
+/* Botones principales (bootstrap overrides) */
 .btn-dark {
-  background-color: #343a40; /* Dark button background */
-  border-color: #343a40; /* Dark button border */
-  color: #ffffff; /* White text for dark buttons */
+  background: var(--onyx);
+  border: none;
 }
-
 .btn-dark:hover {
-  background-color: #23272b; /* Darker hover state */
-  border-color: #1d2124;
+  background: #232a2a;
 }
 
-/* Styling for the dropdown button */
-.dropdown-toggle {
-  background-color: #343a40; /* Dark button for dropdown */
-  border-color: #343a40;
-  color: #ffffff;
+.btn-outline-danger {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+.btn-outline-danger:hover {
+  background: #dc3545;
+  color: #fff;
 }
 
-.dropdown-toggle:hover {
-  background-color: #23272b;
-  border-color: #1d2124;
-}
-
-/* Styling for the dropdown menu */
-.dropdown-menu {
-  background-color: #ffffff !important; /* White background for dropdown menu */
-  border: 1px solid rgba(0, 0, 0, 0.15); /* Subtle border */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175); /* Soft shadow */
-}
-
-/* Styling for dropdown items */
-.dropdown-item {
-  color: #212529; /* Dark text for dropdown items */
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: #e9ecef; /* Light gray hover state for dropdown items */
-  color: #212529; /* Keep text dark on hover */
-}
-
-/* Styling for the "Mostrar todas las asesorías" button */
-.btn-outline-dark { /* Changed to btn-outline-dark */
-  color: #343a40 !important;
-  border: 1px solid #343a40 !important;
-  background-color: transparent !important;
-}
-
-.btn-outline-dark:hover {
-    background-color: #343a40 !important;
-    color: #ffffff !important;
-}
-
-/* Ensure images have a default max-width to prevent overflow */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Navbar styling for "Cerrar sesión" button */
-.navbar {
-  margin-bottom: 20px; /* Add some space below the navbar */
-}
-
+/* Lista de solicitudes */
 .list-group-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.25rem;
+  border: none;
+  border-bottom: 1px solid var(--french-gray);
+}
+.list-group-item:last-child {
+  border-bottom: none;
 }
 
-.btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  white-space: nowrap;
+/* Dropdown */
+.dropdown-menu {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-
-.container {
-  position: absolute;
-  inset: 0;
+/* Texto muted centrado */
+.text-muted {
+  color: var(--cadet-gray) !important;
 }
 
-.container::before {
+/* ===========================
+   Botón “blob” personalizado
+   =========================== */
+.button {
+  cursor: pointer;
+  font-size: 1.4rem;
+  border-radius: 16px;
+  border: none;
+  padding: 2px;
+  background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Crea el halo luminoso */
+.button::after {
   content: "";
   position: absolute;
-  inset: -145%;
-  rotate: -45deg;
-  background: #000;
-  background-image: radial-gradient(4px 100px at 0px 235px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 235px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 117.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 252px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 252px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 126px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 150px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 150px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 75px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 253px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 253px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 126.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 204px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 204px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 102px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 134px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 134px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 67px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 179px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 179px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 89.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 299px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 299px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 149.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 215px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 215px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 107.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 281px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 281px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 140.5px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 158px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 158px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 79px, #0f0 100%, #0000 150%),
-    radial-gradient(4px 100px at 0px 210px, #0f0, #0000),
-    radial-gradient(4px 100px at 300px 210px, #0f0, #0000),
-    radial-gradient(1.5px 1.5px at 150px 105px, #0f0 100%, #0000 150%);
-  background-size:
-    300px 235px,
-    300px 235px,
-    300px 235px,
-    300px 252px,
-    300px 252px,
-    300px 252px,
-    300px 150px,
-    300px 150px,
-    300px 150px,
-    300px 253px,
-    300px 253px,
-    300px 253px,
-    300px 204px,
-    300px 204px,
-    300px 204px,
-    300px 134px,
-    300px 134px,
-    300px 134px,
-    300px 179px,
-    300px 179px,
-    300px 179px,
-    300px 299px,
-    300px 299px,
-    300px 299px,
-    300px 215px,
-    300px 215px,
-    300px 215px,
-    300px 281px,
-    300px 281px,
-    300px 281px,
-    300px 158px,
-    300px 158px,
-    300px 158px,
-    300px 210px,
-    300px 210px,
-    300px 210px;
-  animation: hi 150s linear infinite;
-}
-
-@keyframes hi {
-  0% {
-    background-position:
-      0px 220px,
-      3px 220px,
-      151.5px 337.5px,
-      25px 24px,
-      28px 24px,
-      176.5px 150px,
-      50px 16px,
-      53px 16px,
-      201.5px 91px,
-      75px 224px,
-      78px 224px,
-      226.5px 350.5px,
-      100px 19px,
-      103px 19px,
-      251.5px 121px,
-      125px 120px,
-      128px 120px,
-      276.5px 187px,
-      150px 31px,
-      153px 31px,
-      301.5px 120.5px,
-      175px 235px,
-      178px 235px,
-      326.5px 384.5px,
-      200px 121px,
-      203px 121px,
-      351.5px 228.5px,
-      225px 224px,
-      228px 224px,
-      376.5px 364.5px,
-      250px 26px,
-      253px 26px,
-      401.5px 105px,
-      275px 75px,
-      278px 75px,
-      426.5px 180px;
-  }
-  to {
-    background-position:
-      0px 6800px,
-      3px 6800px,
-      151.5px 6917.5px,
-      25px 13632px,
-      28px 13632px,
-      176.5px 13758px,
-      50px 5416px,
-      53px 5416px,
-      201.5px 5491px,
-      75px 17175px,
-      78px 17175px,
-      226.5px 17301.5px,
-      100px 5119px,
-      103px 5119px,
-      251.5px 5221px,
-      125px 8428px,
-      128px 8428px,
-      276.5px 8495px,
-      150px 9876px,
-      153px 9876px,
-      301.5px 9965.5px,
-      175px 13391px,
-      178px 13391px,
-      326.5px 13540.5px,
-      200px 14741px,
-      203px 14741px,
-      351.5px 14848.5px,
-      225px 18770px,
-      228px 18770px,
-      376.5px 18910.5px,
-      250px 5082px,
-      253px 5082px,
-      401.5px 5161px,
-      275px 6375px,
-      278px 6375px,
-      426.5px 6480px;
-  }
-}
-#checkbox {
-  display: none;
-}
-
-.switch {
-  position: relative;
-  width: fit-content;
-  padding: 10px 20px;
-  background-color: rgb(46, 46, 46);
-  border-radius: 50px;
+  width: 65%;
+  height: 60%;
+  border-radius: 120px;
+  top: 0;
+  right: 0;
+  box-shadow: 0 0 20px #ffffff38;
   z-index: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: white;
-  font-size: 0.9em;
-  font-weight: 600;
-  transition: all 0.3s;
 }
-.switch svg path {
-  fill: white;
+
+/* “Burbuja” de color en el lateral izquierdo */
+.blob1 {
+  position: absolute;
+  width: 70px;
+  height: 100%;
+  border-radius: 16px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #3fe9ff,
+    #0000ff80,
+    transparent
+  );
+  box-shadow: -10px 10px 30px #0051ff2d;
+  z-index: 2;
 }
-#checkbox:checked + .switch {
-  background-color: rgb(174, 0, 255);
-  box-shadow: 0px 0px 40px rgba(174, 0, 255, 0.438);
+
+/* Contenedor interno para el texto */
+.inner {
+  padding: 14px 25px;
+  border-radius: 14px;
+  color: #fff;
+  position: relative;
+  background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+  z-index: 3;
+}
+
+/* Destello suave sobre el fondo interno */
+.inner::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+  border-radius: 14px;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #00e1ff1a,
+    #0000ff11,
+    transparent
+  );
+  z-index: 2;
 }
