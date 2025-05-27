@@ -1,1 +1,56 @@
-<router-outlet></router-outlet>
+<div class="row g-0">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark"
+       style="background-color: #0d0d0d; padding: .5rem 12px;">
+    <div class="container-fluid px-0" style="padding: 0 24px;">
+      <a class="navbar-brand" routerLink="/">AsesorAndes</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Enruta al '/' -->
+        <ul class="navbar-nav ms-auto" *ngIf="currentUrl === '/'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login"
+               style="color: white; font-family: 'ADLaM Display', sans-serif;">
+              Iniciar sesión
+            </a>
+          </li>
+        </ul>
+
+        <!-- Ruta diferente de '/' -->
+        <ul class="navbar-nav ms-auto" *ngIf="currentUrl !== '/'">
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()"
+               style="color: white; font-family: 'ADLaM Display', sans-serif;">
+              Log Out
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+<router-outlet class="d-block w-100 pt-1 pb-1"></router-outlet>
+
+ <div class="row g-0 mt-auto">
+    <footer
+      class="page-footer font-small blue pt-4"
+      style="background-color: #0d0d0d"
+    >
+      <div class="container-fluid text-center px-0">
+        <div class="row g-0">
+          <div class="col-md-12 mt-3">
+            <h6 class="text-uppercase text-light">Sistema de Asesorías</h6>
+            <p class="text-light">Plataforma de gestión académica</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
