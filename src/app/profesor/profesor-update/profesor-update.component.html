@@ -1,68 +1,165 @@
-<div class="container mt-3 border p-4 bg-light">
-  <h4 class="text-center mb-4">Actualizar mi Perfil como Profesor</h4>
+<!-- profesor-update.component.html -->
+<form
+  class="form"
+  [formGroup]="profesorForm"
+  (ngSubmit)="onSubmitUpdate()"
+>
+  <label class="lb" for="nombre">Nombre :</label>
+  <input
+    id="nombre"
+    class="infos"
+    type="text"
+    formControlName="nombre"
+    placeholder="Nombre completo"
+  />
 
-  <form [formGroup]="profesorForm" (ngSubmit)="onSubmitUpdate()">
+  <label class="lb" for="correo">E-mail :</label>
+  <input
+    id="correo"
+    class="infos"
+    type="email"
+    formControlName="correo"
+    placeholder="ejemplo@correo.com"
+  />
 
-    <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input id="nombre" class="form-control" formControlName="nombre" />
-    </div>
+  <label class="lb" for="contrasena">Contraseña :</label>
+  <input
+    id="contrasena"
+    class="infos"
+    type="password"
+    formControlName="contrasena"
+    placeholder="Mínimo 8 caracteres"
+  />
 
-    <div class="mb-3">
-      <label for="correo" class="form-label">Correo</label>
-      <input id="correo" type="email" class="form-control" formControlName="correo" />
-    </div>
+  <label class="lb" for="telefono">Teléfono :</label>
+  <input
+    id="telefono"
+    class="infos"
+    type="text"
+    formControlName="telefono"
+    placeholder="Sólo dígitos"
+  />
 
-    <div class="mb-3">
-      <label for="contrasena" class="form-label">Contraseña</label>
-      <input id="contrasena" type="password" class="form-control" formControlName="contrasena" />
-    </div>
+  <label class="lb" for="fotoUrl">URL Foto :</label>
+  <input
+    id="fotoUrl"
+    class="infos"
+    type="url"
+    formControlName="fotoUrl"
+    placeholder="http(s)://..."
+    (input)="updateImagePreview()"
+  />
+  <!-- preview de la foto -->
+  <img *ngIf="fotoPreviewUrl" [src]="fotoPreviewUrl" alt="Preview foto" class="preview-img" />
 
-    <div class="mb-3">
-      <label for="telefono" class="form-label">Teléfono</label>
-      <input id="telefono" class="form-control" formControlName="telefono" />
-      <div *ngIf="profesorForm.get('telefono')?.invalid && profesorForm.get('telefono')?.touched" class="text-danger">
-        El número debe contener exactamente 10 dígitos.
-      </div>
-    </div>
+  <label class="lb" for="videoUrl">URL Video :</label>
+  <input
+    id="videoUrl"
+    class="infos"
+    type="url"
+    formControlName="videoUrl"
+    placeholder="http(s)://..."
+  />
 
-    <div class="mb-3">
-      <label for="fotoUrl" class="form-label">Foto URL</label>
-      <input id="fotoUrl" class="form-control" formControlName="fotoUrl" (input)="updateImagePreview()" />
-      <div *ngIf="fotoPreviewUrl" class="mt-2">
-        <img [src]="fotoPreviewUrl" alt="Vista previa de la foto" class="img-thumbnail" width="150" />
-      </div>
-    </div>
+  <label class="lb" for="formacion">Formación :</label>
+  <input
+    id="formacion"
+    class="infos"
+    type="text"
+    formControlName="formacion"
+    placeholder="Universidad / Título"
+  />
 
-    <div class="mb-3">
-      <label for="formacion" class="form-label">Formación</label>
-      <input id="formacion" class="form-control" formControlName="formacion" />
-    </div>
+  <label class="lb" for="experiencia">Experiencia :</label>
+  <input
+    id="experiencia"
+    class="infos"
+    type="text"
+    formControlName="experiencia"
+    placeholder="Años / Área"
+  />
 
-    <div class="mb-3">
-      <label for="experiencia" class="form-label">Experiencia</label>
-      <input id="experiencia" class="form-control" formControlName="experiencia" />
-    </div>
+  <!-- Botón para auto-generar descripción -->
+  <button
+    type="button"
+    class="form-button generate"
+    (click)="generarDescripcion()"
+  >
+    Generar descripción
+  </button>
 
-    <div class="mb-3">
-      <label for="enlaceReunion" class="form-label">Enlace Reunión</label>
-      <input id="enlaceReunion" type="url" class="form-control" formControlName="enlaceReunion" />
-    </div>
+  <label class="lb" for="descripcion">Descripción :</label>
+  <textarea
+    id="descripcion"
+    class="infos"
+    formControlName="descripcion"
+    placeholder="Descripción breve"
+    rows="3"
+  ></textarea>
 
-    <div class="mb-3">
-      <label for="precioHora" class="form-label">Precio Hora</label>
-      <input id="precioHora" type="number" min="0" class="form-control" formControlName="precioHora" />
-    </div>
+  <label class="lb" for="enlaceReunion">Enlace Reunión :</label>
+  <input
+    id="enlaceReunion"
+    class="infos"
+    type="url"
+    formControlName="enlaceReunion"
+    placeholder="http(s)://..."
+  />
 
-    <div class="mb-3">
-      <label for="descripcion" class="form-label">Descripción</label>
-      <textarea id="descripcion" rows="3" class="form-control" formControlName="descripcion"></textarea>
-      <button type="button" class="btn btn-outline-primary mt-2" (click)="generarDescripcion()">Generar descripción automática</button>
-    </div>
+  <label class="lb" for="precioHora">Precio por Hora :</label>
+  <input
+    id="precioHora"
+    class="infos"
+    type="number"
+    formControlName="precioHora"
+    placeholder="₱ o número"
+    min="0"
+  />
 
-    <div class="d-flex justify-content-end mt-4">
-      <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success" [disabled]="profesorForm.invalid">Guardar</button>
-    </div>
-  </form>
-</div>
+  <label class="lb" for="codigoPostal">Código Postal :</label>
+  <input
+    id="codigoPostal"
+    class="infos"
+    type="number"
+    formControlName="codigoPostal"
+    placeholder="5–6 dígitos"
+  />
+
+  <label class="lb" for="latitud">Latitud :</label>
+  <input
+    id="latitud"
+    class="infos"
+    type="number"
+    formControlName="latitud"
+    placeholder="–90 a 90"
+    step="any"
+  />
+
+  <label class="lb" for="longitud">Longitud :</label>
+  <input
+    id="longitud"
+    class="infos"
+    type="number"
+    formControlName="longitud"
+    placeholder="–180 a 180"
+    step="any"
+  />
+  <div class="button-group">
+    <button
+      id="send"
+      type="submit"
+      class="form-button save"
+    >
+      ACTUALIZAR
+    </button>
+    <button
+      id="limpar"
+      type="button"
+      class="form-button clear"
+      (click)="onCancel()"
+    >
+      CANCELAR
+    </button>
+  </div>
+
+</form>

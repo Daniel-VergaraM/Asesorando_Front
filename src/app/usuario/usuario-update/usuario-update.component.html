@@ -1,96 +1,168 @@
-<div class="container mt-3 border p-4 bg-light">
-  <h4 class="text-center mb-4">Actualizar mi Usuario</h4>
+<div id="Container">
+  <form class="form" [formGroup]="usuarioForm" (ngSubmit)="onSubmitUpdate()">
 
-  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmitUpdate()">
+    <div id="login-lable">Actualizar Usuario</div>
 
-    <!-- Nombre -->
-    <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input id="nombre" class="form-control" formControlName="nombre" />
-    </div>
+    <input
+      class="form-content"
+      type="text"
+      formControlName="nombre"
+      placeholder="Nombre"
+    />
 
-    <!-- Correo -->
-    <div class="mb-3">
-      <label for="correo" class="form-label">Correo</label>
-      <input id="correo" type="email" class="form-control" formControlName="correo" />
-    </div>
+    <input
+      class="form-content"
+      type="email"
+      formControlName="correo"
+      placeholder="Correo electrónico"
+    />
 
-    <!-- Contraseña -->
-    <div class="mb-3">
-      <label for="contrasena" class="form-label">Contraseña</label>
-      <input id="contrasena" type="password" class="form-control" formControlName="contrasena" />
-    </div>
+    <input
+      class="form-content"
+      type="password"
+      formControlName="contrasena"
+      placeholder="Contraseña"
+    />
 
-    <!-- Teléfono -->
-    <div class="mb-3">
-      <label for="telefono" class="form-label">Teléfono</label>
-      <input id="telefono" class="form-control" formControlName="telefono" />
-    </div>
+    <input
+      class="form-content"
+      type="text"
+      formControlName="telefono"
+      placeholder="Teléfono"
+    />
 
-    <!-- Foto URL -->
-    <div class="mb-3">
-      <label for="fotoUrl" class="form-label">URL Foto</label>
-      <input id="fotoUrl" type="url" class="form-control" formControlName="fotoUrl" />
-    </div>
+    <input
+      class="form-content"
+      type="url"
+      formControlName="fotoUrl"
+      placeholder="URL de la foto"
+    />
 
-    <!-- Video URL -->
-    <div class="mb-3">
-      <label for="videoUrl" class="form-label">URL Video</label>
-      <input id="videoUrl" type="url" class="form-control" formControlName="videoUrl" />
-    </div>
+    <input
+      class="form-content"
+      type="url"
+      formControlName="videoUrl"
+      placeholder="URL del video"
+    />
 
-    <!-- Formación -->
-    <div class="mb-3">
-      <label for="formacion" class="form-label">Formación</label>
-      <input id="formacion" class="form-control" formControlName="formacion" />
-    </div>
+    <input
+      class="form-content"
+      type="text"
+      formControlName="formacion"
+      placeholder="Formación académica"
+    />
 
-    <!-- Experiencia -->
-    <div class="mb-3">
-      <label for="experiencia" class="form-label">Experiencia</label>
-      <input id="experiencia" class="form-control" formControlName="experiencia" />
-    </div>
+    <input
+      class="form-content"
+      type="text"
+      formControlName="experiencia"
+      placeholder="Experiencia"
+    />
 
-    <!-- Enlace Reunión -->
-    <div class="mb-3">
-      <label for="enlaceReunion" class="form-label">Enlace Reunión</label>
-      <input id="enlaceReunion" type="url" class="form-control" formControlName="enlaceReunion" />
-    </div>
+    <input
+      class="form-content"
+      type="url"
+      formControlName="enlaceReunion"
+      placeholder="Enlace de reunión"
+    />
 
-    <!-- Precio Hora -->
-    <div class="mb-3">
-      <label for="precioHora" class="form-label">Precio Hora</label>
-      <input id="precioHora" type="number" min="0" class="form-control" formControlName="precioHora" />
-    </div>
+    <input
+      class="form-content"
+      type="number"
+      formControlName="precioHora"
+      placeholder="Precio por hora"
+      min="0"
+    />
 
-    <!-- Ubicación -->
-    <div class="row g-3 mb-3">
-      <div class="col-md-4">
-        <label for="codigoPostal" class="form-label">Código Postal</label>
-        <input id="codigoPostal" class="form-control" formControlName="codigoPostal" />
-      </div>
-      <div class="col-md-4">
-        <label for="latitud" class="form-label">Latitud</label>
-        <input id="latitud" type="number" step="any" class="form-control" formControlName="latitud" />
-      </div>
-      <div class="col-md-4">
-        <label for="longitud" class="form-label">Longitud</label>
-        <input id="longitud" type="number" step="any" class="form-control" formControlName="longitud" />
-      </div>
-    </div>
+    <input
+      class="form-content"
+      type="number"
+      formControlName="codigoPostal"
+      placeholder="Código postal"
+    />
 
-    <!-- Botones -->
-    <div class="d-flex justify-content-end mt-4">
-      <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">
-        Cancelar
-      </button>
-      <button
-        type="submit"
-        class="btn btn-success"
-        [disabled]="usuarioForm.invalid"
-      >
-        Guardar
-      </button>
-    </div>
+    <input
+      class="form-content"
+      type="number"
+      step="any"
+      formControlName="latitud"
+      placeholder="Latitud"
+    />
+
+    <input
+      class="form-content"
+      type="number"
+      step="any"
+      formControlName="longitud"
+      placeholder="Longitud"
+    />
+
+    <!-- Botón Guardar -->
+    <button
+      class="form-button"
+      type="submit"
+      [disabled]="usuarioForm.invalid"
+      data-cy="btn-save"
+    >
+      Guardar
+    </button>
+
+    <!-- Botón Cancelar -->
+    <button
+      class="form-button btn-cancel"
+      type="button"
+      (click)="onCancel()"
+      data-cy="btn-cancel"
+    >
+      Cancelar
+    </button>
   </form>
+
+  <div id="rays">
+    <svg
+      fill="none"
+      viewBox="0 0 299 152"
+      height="9em"
+      width="18em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="url(#paint0_linear_8_3)"
+        d="M149.5 152H133.42L9.53674e-07 4.70132e-06H149.5L299 4.70132e-06L165.58 152H149.5Z"
+      ></path>
+      <defs>
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          y2="12.1981"
+          x2="150.12"
+          y1="152"
+          x1="149.5"
+          id="paint0_linear_8_3"
+        >
+          <stop stop-color="#00E0FF"></stop>
+          <stop stop-opacity="0" stop-color="#65EDFF" offset="1"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div id="emiter">
+    <svg
+      fill="none"
+      viewBox="0 0 160 61"
+      height="61"
+      width="160"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- aquí va todo tu <defs> y filtros tal como en tu original -->
+      <g filter="url(#filter0_di_1_38)">
+        <path
+          fill="#2B2B2B"
+          d="M80 27.9997C121.974 27.9997 156 22.4032 156 15.4996L156 40.4998C156 47.4034 121.974 52.9998 80 52.9998C38.0265 52.9998 4.00028 47.4034 4 40.4998V40.4998V15.51C4.0342 22.4089 38.0474 27.9997 80 27.9997Z"
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+        ></path>
+      </g>
+    </svg>
+  </div>
 </div>

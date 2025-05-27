@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AsesoriaDetail } from '../../asesoria/asesoriaDetail';
 import { AsesoriaService } from '../../asesoria/asesoria.service';
+import { Tematica } from '../../tematica/tematica';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
 })
 export class ProfesorListComponent implements OnInit {
   profesores: ProfesorDetail[] = [];
@@ -21,6 +23,7 @@ export class ProfesorListComponent implements OnInit {
   searchType: string = 'nombre';
   loading: boolean = true;
   private asesoriasMap: Record<number, Asesoria[]> = {};
+  private tematicasMap: Record<number, Tematica[]> = {};
   selectedProfesor: ProfesorDetail | null = null;
 
   @Output() createProfesor = new EventEmitter<void>();
@@ -108,8 +111,9 @@ export class ProfesorListComponent implements OnInit {
   }
 
   getProfesorAsesorias(profesor: ProfesorDetail): Asesoria[] {
-    return []
+    return  profesor.asesorias || this.asesoriasMap[profesor.id] || [];
   }
+  
 
   onCreateNewProfesor() {
     this.createProfesor.emit();
@@ -117,5 +121,9 @@ export class ProfesorListComponent implements OnInit {
 
   viewProfile(profesor: ProfesorDetail) {
     this.viewProfesorDetail.emit(profesor);
+  }
+
+  getProfesorTematicas(profesor: ProfesorDetail): Tematica[] {
+    return profesor.tematicas || this.tematicasMap[profesor.id] || [];
   }
 }

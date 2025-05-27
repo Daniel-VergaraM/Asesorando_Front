@@ -17,8 +17,8 @@ export class UsuarioLoginComponent {
   @Output() loginEvent = new EventEmitter<Usuario>();
 
   constructor(
-    private usuarioSvc: UsuarioService,
-    private router: Router
+    private readonly usuarioSvc: UsuarioService,
+    private readonly router: Router
   ) {}
 
   onSubmit() {

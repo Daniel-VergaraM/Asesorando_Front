@@ -1,8 +1,10 @@
 import { Profesor } from './profesor';
 import { Tematica } from '../tematica/tematica';
+import { Asesoria } from '../asesoria/asesoria';
 
 export class ProfesorDetail extends Profesor {
   public tematicas: Tematica[];
+  public asesorias?: Asesoria[];
 
   constructor(
     id: number,
@@ -19,7 +21,8 @@ export class ProfesorDetail extends Profesor {
     codigoPostal?: number,
     latitud?: number,
     longitud?: number,
-    tematicas?: Tematica[]
+    tematicas?: Tematica[],
+    asesorias?: Asesoria[]
   ) {
     super(
       id,
@@ -38,5 +41,6 @@ export class ProfesorDetail extends Profesor {
       longitud
     );
     this.tematicas = tematicas || [];
+    this.asesorias = asesorias || [];
   }
 }

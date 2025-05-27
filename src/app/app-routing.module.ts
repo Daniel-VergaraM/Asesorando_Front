@@ -1,4 +1,4 @@
-import { Component, NgModule }                from '@angular/core';
+import {  NgModule }                from '@angular/core';
 import { RouterModule, Routes }    from '@angular/router';
 import { UsuarioLoginComponent }       from './usuario/usuario-login/usuario-login/usuario-login.component';
 import { HomeEstudianteComponent } from './estudiante/home-estudiante/home-estudiante.component';
@@ -8,8 +8,8 @@ import { UsuarioActualizarComponent } from './usuario/usuario-update/usuario-upd
 import { AsesoriaExplorarAreaComponent } from './asesoria/asesoria-explorar-area/asesoria-explorar-area.component';
 import { ProfesorActualizarComponent } from './profesor/profesor-update/profesor-update.component';
 import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-update.component';
-import { ComentarioCreateComponent } from './comentario/comentario-create/comentario-create.component';
 import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
+import { UsuarioDeleteComponent } from './usuario/usuario-delete/usuario-delete/usuario-delete.component';
 
 const routes: Routes = [
   // página pública
@@ -26,12 +26,13 @@ const routes: Routes = [
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
 
-
+   {path: 'usuarios/borrar/:id',    component: UsuarioDeleteComponent },
   { path: 'actualizar/:id', component: UsuarioActualizarComponent },
   
   {path: 'profesor/actualizar/:id', component: ProfesorActualizarComponent },
 
-  { path: 'asesoria/actualizar/:id', component: AsesoriaUpdateComponent },
+{ path: 'asesoria/actualizar/:id/:profesorId', component: AsesoriaUpdateComponent },
+
 
   { path: 'asesorias', loadChildren: () => import('./asesoria/asesoria.module').then(m => m.AsesoriaModule) },
   { path: 'calendarios', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioModule) },

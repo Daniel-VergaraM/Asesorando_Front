@@ -1,22 +1,20 @@
-// src/app/usuario/usuario.module.ts
 import { NgModule }               from '@angular/core';
 import { CommonModule }           from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule }           from '@angular/router';
-
 import { UsuarioComponent }          from './usuario.component';
 import { UsuarioListComponent }      from './usuario-list/usuario-list.component';
 import { UsuarioActualizarComponent }from './usuario-update/usuario-update.component';
 import { UsuarioLoginComponent } from './usuario-login/usuario-login/usuario-login.component';
-import { UsuarioService }           from './usuario.service';
-import { Usuario }                 from './usuario';
+import { UsuarioDeleteComponent } from './usuario-delete/usuario-delete/usuario-delete.component';
 
 @NgModule({
   declarations: [
     UsuarioComponent,
     UsuarioListComponent,
     UsuarioActualizarComponent,
-    UsuarioLoginComponent
+    UsuarioLoginComponent,
+    UsuarioDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +26,8 @@ import { Usuario }                 from './usuario';
     UsuarioComponent,
     UsuarioListComponent,
     UsuarioActualizarComponent,
-    UsuarioLoginComponent
+    UsuarioLoginComponent,
+    UsuarioDeleteComponent
   ]
 })
 export class UsuarioModule { }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsesoriaService }from '../asesoria.service';
+import { AsesoriaService } from '../asesoria.service';
 import { Asesoria } from '../asesoria';
 
 @Component({
@@ -11,20 +11,34 @@ import { Asesoria } from '../asesoria';
   styleUrls: ['./asesoria-update.component.css']
 })
 export class AsesoriaUpdateComponent implements OnInit {
-  @Input() asesoriaId!: number; // Recibe el ID desde el componente padre
+  @Input() asesoriaId!: number;
+  profesorId!: number;
   asesoriaForm!: FormGroup;
+  asesorias: Asesoria[] = [];
+  ordenAscendente: boolean = true;
 
   constructor(
     private fb: FormBuilder,
     private asesoriaService: AsesoriaService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.buildForm();
-    if (this.asesoriaId) {
-      this.loadAsesoriaData();
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      const profesorId = params.get('profesorId');
+
+      if (id) this.asesoriaId = +id;
+      if (profesorId) this.profesorId = +profesorId;
+
+      this.buildForm();
+      if (this.asesoriaId) {
+        this.loadAsesoriaData();
+      }
+
+      this.cargarAsesorias();
+    });
   }
 
   private buildForm(): void {
@@ -33,7 +47,6 @@ export class AsesoriaUpdateComponent implements OnInit {
       tematica: ['', Validators.required],
       tipo: ['', Validators.required],
       duracion: [null, [Validators.required, Validators.min(1)]],
-      profesorId: [null, Validators.required],
       completada: [false]
     });
   }
@@ -47,23 +60,66 @@ export class AsesoriaUpdateComponent implements OnInit {
     });
   }
 
-  onSubmitUpdate(): void {
-    if (this.asesoriaForm.invalid) return;
-
-    const updatedAsesoria: Asesoria = {
-      ...this.asesoriaForm.value,
-      id: this.asesoriaId
-    };
-
-    this.asesoriaService.updateAsesoria(updatedAsesoria).subscribe({
-      next: () => {
-        this.router.navigate(['/profesor']);
+  private cargarAsesorias(): void {
+    this.asesoriaService.getAsesoriasByProfesor(this.profesorId).subscribe({
+      next: (asesorias) => {
+        this.asesorias = asesorias;
       },
-      error: (err) => console.error('Error al actualizar:', err)
+      error: (err) => console.error('Error al cargar asesorías:', err)
+    });
+  }
+
+  ordenarPorDuracion(): void {
+  if (this.ordenAscendente) {
+    this.asesorias.sort((a, b) => Number(a.duracion) - Number(b.duracion));
+  } else {
+    this.asesorias.sort((a, b) => Number(b.duracion) - Number(a.duracion));
+  }
+  this.ordenAscendente = !this.ordenAscendente;
+}
+
+  onSubmitUpdate(): void {
+    if (this.asesoriaForm.invalid) {
+      console.log('Formulario inválido', this.asesoriaForm.errors);
+      return;
+    }
+
+    console.log('Enviando datos:', this.asesoriaForm.value);
+
+    this.asesoriaService.updateAsesoria({
+      ...this.asesoriaForm.value,
+      id: this.asesoriaId,
+      profesorId: this.profesorId
+    }).subscribe({
+      next: () => {
+        alert('Asesoría actualizada correctamente');
+        this.router.navigate(['/profesor/home', this.profesorId]);
+      },
+      error: (err) => {
+        console.error('Error al actualizar:', err);
+        alert('Error al actualizar: ' + err.message);
+      }
     });
   }
 
   onCancel(): void {
-    this.router.navigate(['/profesor']);
+    this.router.navigate(['/profesor/home', this.profesorId]);
+  }
+
+  onDelete(): void {
+    if (confirm('¿Estás seguro de que quieres eliminar esta asesoría?')) {
+      this.asesoriaService.deleteAsesoria(this.asesoriaId).subscribe({
+        next: () => {
+          alert('Asesoría eliminada correctamente');
+          const elemento = document.querySelector(`#asesoria-${this.asesoriaId}`);
+          if (elemento) elemento.remove();
+          this.router.navigate(['/profesor/home', this.profesorId]);
+        },
+        error: (err) => {
+          console.error('Error al eliminar:', err);
+          alert('Error al eliminar: ' + err.message);
+        }
+      });
+    }
   }
 }

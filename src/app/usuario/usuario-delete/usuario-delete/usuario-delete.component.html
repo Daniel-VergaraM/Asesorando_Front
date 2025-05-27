@@ -1,0 +1,45 @@
+<!-- Fondo fijo -->
+<div class="bg-container">
+  <div class="galaxy"></div>
+</div>
+
+<!-- Contenido -->
+<div class="delete-wrapper">
+  <div class="delete-card" id="main">
+    <h2>INGRESAR CONTRASEÑA PARA BORRAR CUENTA</h2>
+
+    <form [formGroup]="confirmForm" (ngSubmit)="onConfirm()">
+      <input
+        type="password"
+        formControlName="password"
+        class="input"
+        placeholder="Contraseña"
+        data-cy="input-password"
+      />
+
+      <div class="button-group">
+        <button
+          type="submit"
+          class="btn-confirm"
+          [disabled]="confirmForm.invalid"
+          data-cy="btn-confirm-delete"
+        >
+          CONFIRMAR
+        </button>
+        <button
+          type="button"
+          class="btn-cancel"
+          (click)="onCancel()"
+          data-cy="btn-cancel"
+        >
+          CANCELAR
+        </button>
+      </div>
+    </form>
+
+    <p *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </p>
+
+  </div>
+</div>

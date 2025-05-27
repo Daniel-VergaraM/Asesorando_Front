@@ -1,104 +1,152 @@
-/* home-profesor.component.css */
+:root {
+  --onyx:        #2E3532;
+  --reseda:      #7E9181;
+  --french-gray: #C7CEDB;
+  --cadet-gray:  #A0AAB2;
+  --mountbatten: #94849B;
+  --white:       #ffffff;
+}
 
-/* General styling for the profile image */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Perfil */
 .profile-img {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  border-radius: 50%; /* Makes the image round */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  border: 3px solid #dee2e6; /* A light border around the profile picture */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--french-gray);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Styling for the cards, now white/light background */
+/* Tarjetas generales */
 .card {
-  background-color: #ffffff !important; /* White background */
-  border: 1px solid rgba(0, 0, 0, 0.125); /* Standard Bootstrap card border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Lighter shadow for cards */
+  border: none;
+  border-radius: 0.75rem;
 }
-
-/* Styling for card headers */
 .card-header {
-  background-color: #f8f9fa !important; /* Light gray for card headers */
-  color: #343a40 !important; /* Dark text color for headers */
-  font-weight: bold; /* Make header text bold */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125); /* Add a separator line */
+  background: var(--reseda);
+  color: var(--onyx);
+  font-weight: 600;
+  font-size: 1rem;
 }
-
-/* Styling for card body text to ensure readability */
 .card-body,
 .list-group-item {
-  color: #212529; /* Darker text for card bodies and list items */
-  background-color: #ffffff !important; /* Consistent white background for list items */
-  border-color: rgba(0, 0, 0, 0.125); /* Light border for list items */
+  background: var(--white);
 }
 
-/* Specific text color for "No tienes solicitudes" and "No has publicado anuncios" */
-.card-body.text-muted {
-  color: #6c757d !important; /* Standard Bootstrap muted text color */
-}
-
-/* Styling for buttons inside the cards */
+/* Botones principales (bootstrap overrides) */
 .btn-dark {
-  background-color: #343a40; /* Dark button background */
-  border-color: #343a40; /* Dark button border */
-  color: #ffffff; /* White text for dark buttons */
+  background: var(--onyx);
+  border: none;
 }
-
 .btn-dark:hover {
-  background-color: #23272b; /* Darker hover state */
-  border-color: #1d2124;
+  background: #232a2a;
 }
 
-/* Styling for the dropdown button */
-.dropdown-toggle {
-  background-color: #343a40; /* Dark button for dropdown */
-  border-color: #343a40;
-  color: #ffffff;
+.btn-outline-danger {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+.btn-outline-danger:hover {
+  background: #dc3545;
+  color: #fff;
 }
 
-.dropdown-toggle:hover {
-  background-color: #23272b;
-  border-color: #1d2124;
+/* Lista de solicitudes */
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid var(--french-gray);
+}
+.list-group-item:last-child {
+  border-bottom: none;
 }
 
-/* Styling for the dropdown menu */
+/* Dropdown */
 .dropdown-menu {
-  background-color: #ffffff !important; /* White background for dropdown menu */
-  border: 1px solid rgba(0, 0, 0, 0.15); /* Subtle border */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175); /* Soft shadow */
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Styling for dropdown items */
-.dropdown-item {
-  color: #212529; /* Dark text for dropdown items */
+/* Texto muted centrado */
+.text-muted {
+  color: var(--cadet-gray) !important;
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: #e9ecef; /* Light gray hover state for dropdown items */
-  color: #212529; /* Keep text dark on hover */
+/* ===========================
+   Botón “blob” personalizado
+   =========================== */
+.button {
+  cursor: pointer;
+  font-size: 1.4rem;
+  border-radius: 16px;
+  border: none;
+  padding: 2px;
+  background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Styling for the "Mostrar todas las asesorías" button */
-.btn-outline-dark { /* Changed to btn-outline-dark */
-  color: #343a40 !important;
-  border: 1px solid #343a40 !important;
-  background-color: transparent !important;
+/* Crea el halo luminoso */
+.button::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 60%;
+  border-radius: 120px;
+  top: 0;
+  right: 0;
+  box-shadow: 0 0 20px #ffffff38;
+  z-index: 1;
 }
 
-.btn-outline-dark:hover {
-    background-color: #343a40 !important;
-    color: #ffffff !important;
+/* “Burbuja” de color en el lateral izquierdo */
+.blob1 {
+  position: absolute;
+  width: 70px;
+  height: 100%;
+  border-radius: 16px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #3fe9ff,
+    #0000ff80,
+    transparent
+  );
+  box-shadow: -10px 10px 30px #0051ff2d;
+  z-index: 2;
 }
 
-/* Ensure images have a default max-width to prevent overflow */
-img {
-  max-width: 100%;
-  height: auto;
+/* Contenedor interno para el texto */
+.inner {
+  padding: 14px 25px;
+  border-radius: 14px;
+  color: #fff;
+  position: relative;
+  background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+  z-index: 3;
 }
 
-/* Navbar styling for "Cerrar sesión" button */
-.navbar {
-  margin-bottom: 20px; /* Add some space below the navbar */
+/* Destello suave sobre el fondo interno */
+.inner::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+  border-radius: 14px;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #00e1ff1a,
+    #0000ff11,
+    transparent
+  );
+  z-index: 2;
 }

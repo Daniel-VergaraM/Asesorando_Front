@@ -34,23 +34,40 @@ export class UsuarioActualizarComponent implements OnInit {
       });
   }
 
-  private buildForm() {
-    this.usuarioForm = this.fb.group({
-      nombre:        ['', Validators.required],
-      correo:        ['', [Validators.required, Validators.email]],
-      contrasena:    ['', Validators.required],
-      telefono:      ['', [Validators.required, Validators.minLength(7)]],
-      fotoUrl:       [''],
-      videoUrl:      [''],
-      formacion:     [''],
-      experiencia:   [''],
-      enlaceReunion: [''],
-      precioHora:    [''],
-      codigoPostal:  this.fb.control('', []),
-      latitud:       [''],
-      longitud:      ['']
-    });
-  }
+private buildForm() {
+  this.usuarioForm = this.fb.group({
+    nombre:        ['', Validators.required],
+    correo:        ['', [Validators.required, Validators.email]],
+    contrasena:    ['', [Validators.required, Validators.minLength(8)]],
+    telefono:      ['', [Validators.required, Validators.minLength(7), Validators.pattern(/^[0-9]+$/)]],
+
+    fotoUrl:       ['', Validators.pattern(/^(https?:\/\/).+/)],             // debe ser URL http(s)
+    videoUrl:      ['', Validators.pattern(/^(https?:\/\/).+/)],             // idem
+    enlaceReunion: ['', Validators.pattern(/^(https?:\/\/).+/)],             // idem
+
+    formacion:     ['', Validators.required],
+    experiencia:   ['', Validators.required],
+
+    precioHora:    [
+      '', 
+      [Validators.required, Validators.min(0)]
+    ],
+
+    codigoPostal:  [
+      '', 
+      [Validators.required, Validators.pattern(/^[0-9]{5,6}$/)]
+    ],
+    latitud:       [
+      '', 
+      [Validators.required, Validators.min(-90), Validators.max(90)]
+    ],
+    longitud:      [
+      '', 
+      [Validators.required, Validators.min(-180), Validators.max(180)]
+    ]
+  });
+}
+
 
   onSubmitUpdate(): void {
     if (this.usuarioForm.invalid) return;

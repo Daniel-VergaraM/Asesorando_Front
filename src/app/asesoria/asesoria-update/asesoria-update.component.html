@@ -1,78 +1,44 @@
-<div class="card shadow mt-4">
-  <div class="card-header bg-warning text-dark">
-    <i class="bi bi-pencil-square me-2"></i> Editar Asesoría
-  </div>
-  <div class="card-body">
-    <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
-      <!-- Área -->
-      <div class="mb-3">
+<div class="container mt-3 border p-4 bg-light">
+  <h4 class="text-center mb-4">Actualizar Asesoría</h4>
+
+  <form [formGroup]="asesoriaForm" (ngSubmit)="onSubmitUpdate()">
+    <div class="row mb-3">
+      <div class="col-md-6">
         <label for="area" class="form-label">Área</label>
-        <input
-          id="area"
-          class="form-control"
-          formControlName="area"
-          placeholder="Ej: Psicología"
-          required
-        />
+        <input id="area" class="form-control" formControlName="area">
       </div>
-
-      <!-- Temática -->
-      <div class="mb-3">
+      <div class="col-md-6">
         <label for="tematica" class="form-label">Temática</label>
-        <input
-          id="tematica"
-          class="form-control"
-          formControlName="tematica"
-          placeholder="Ej: Psicología del desarrollo"
-          required
-        />
+        <input id="tematica" class="form-control" formControlName="tematica">
       </div>
+    </div>
 
-      <!-- Tipo -->
-      <div class="mb-3">
-        <label for="tipo" class="form-label">Modalidad</label>
-        <select
-          id="tipo"
-          class="form-select"
-          formControlName="tipo"
-          required
-        >
-          <option value="Virtual">Virtual</option>
-          <option value="Presencial">Presencial</option>
-        </select>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="tipo" class="form-label">Tipo</label>
+        <input id="tipo" class="form-control" formControlName="tipo">
       </div>
+      <div class="col-md-6">
+        <label for="duracion" class="form-label">Duración (min)</label>
+        <input id="duracion" type="number" class="form-control" formControlName="duracion">
+      </div>
+    </div>
 
-      <!-- Duración -->
-      <div class="mb-3">
-        <label for="duracion" class="form-label">Duración (minutos)</label>
-        <input
-          id="duracion"
-          type="number"
-          class="form-control"
-          formControlName="duracion"
-          min="1"
-          placeholder="Ej: 60"
-          required
-        />
-      </div>
+    <div class="form-check mb-3">
+      <input id="completada" type="checkbox" class="form-check-input" formControlName="completada">
+      <label for="completada" class="form-check-label">¿Completada?</label>
+    </div>
 
-      <!-- Botones -->
-      <div class="d-flex justify-content-end gap-2 mt-4">
-        <button
-          type="button"
-          class="btn btn-outline-secondary"
-          (click)="onCancel()"
-        >
-          Cancelar
-        </button>
-        <button
-          type="submit"
-          class="btn btn-warning"
-          [disabled]="asesoriaForm.invalid"
-        >
-          <i class="bi bi-check-circle me-1"></i> Guardar Cambios
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
+      <button type="button" class="btn btn-danger" (click)="onDelete()">ELIMINAR ASESORÍA</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">CANCELAR</button>
+    </div>
+      <div class="text-end mb-3">
+      <button type="button" class="btn btn-outline-primary" (click)="ordenarPorDuracion()">
+        Ordenar por duración
+      </button>
+</div>
+
+  </form>
 </div>

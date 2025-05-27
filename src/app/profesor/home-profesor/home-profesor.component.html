@@ -1,134 +1,107 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Mi Perfil de Profesor</a>
-    <div class="ms-auto">
-      <button
-        class="btn btn-outline-dark"
-        [routerLink]="['/']"
-      >
-        Cerrar sesión
-      </button>
-    </div>
-  </div>
-</nav>
-
 <div class="container-fluid py-4">
   <div class="row g-4">
-
-    <div class="col-lg-3 col-md-4">
-      <div class="card text-center h-100">
-        <img
-          [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
-          class="profile-img mx-auto mt-4"
-          alt="Foto profesor"
-        />
-        <div class="card-body">
+    <!-- Columna Perfil -->
+    <div class="col-lg-3 col-md-4 mb-4">
+      <div class="card text-center h-100 shadow-sm">
+        <div class="card-body d-flex flex-column align-items-center">
+          <!-- Avatar -->
+          <img
+            [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
+            class="profile-img mb-3"
+            alt="Foto profesor"
+          />
+          <!-- Datos -->
           <h5 class="card-title">{{ profesor.nombre }}</h5>
-          <p class="card-text">{{ profesor.correo }}</p>
-          <p class="card-text">{{ profesor.telefono }}</p>
-          <button
-            *ngIf="profesor"
-            class="btn btn-dark mt-3"
-            [routerLink]="['/actualizar', profesor.id]"
-          >
-            Actualizar mi usuario
-          </button>
+          <p class="card-text text-muted">{{ profesor.correo }}</p>
+          <p class="card-text text-muted">{{ profesor.telefono }}</p>
+          <!-- Botones con diseño blob -->
+          <div class="mt-auto w-100 d-flex gap-2">
+            <!-- Actualizar mi usuario -->
+            <button
+              class="button flex-fill"
+              [routerLink]="['/profesor/actualizar', profesor.id]"
+            >
+              <div class="blob1"></div>
+              <div class="inner">Actualizar</div>
+            </button>
+
+            <!-- Borrar mi cuenta -->
+            <button
+              class="button flex-fill"
+              [routerLink]="['/usuarios','borrar', profesor.id]"
+              data-cy="btn-delete-user"
+            >
+              <div class="blob1"></div>
+              <div class="inner">Borrar</div>
+            </button>
+
+          </div>
         </div>
       </div>
-
-      <div class="card text-center shadow mt-4"> <div class="card-header">
-            Asesorías
-          </div>
-          <div class="card-body">
-            <div class="dropdown" [class.show]="asesoriasOpen">
-              <button
-                class="btn btn-dark dropdown-toggle w-100"
-                type="button"
-                id="dropdownAsesorias"
-                (click)="toggleAsesorias(); $event.preventDefault()"
-                [attr.aria-expanded]="asesoriasOpen"
-              >
-                Opciones de Asesorías
-              </button>
-              <ul
-                class="dropdown-menu w-100 mt-2"
-                [class.show]="asesoriasOpen"
-                aria-labelledby="dropdownAsesorias"
-                (mouseleave)="closeAsesorias()"
-              >
-                <li>
-                  <a class="dropdown-item"
-                    [routerLink]="['/asesorias/profesor', profesor.id]"
-                    (click)="closeAsesorias()">
-                    Listar
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                    [routerLink]="['/asesorias/create', profesor.id]"
-                    (click)="closeAsesorias()">
-                    Crear
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-      </div>
-    </div> <div class="col-lg-9 col-md-8">
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="col-lg-9 col-md-8">
       <div class="row g-4">
-
-        <div class="col-lg-6 col-md-12">
-          <div class="card h-100">
-            <div class="card-header">Mis solicitudes de asesorias</div>
-            <ul
-              class="list-group list-group-flush"
-              *ngIf="solicitudes?.length; else noSol"
-            >
-              <li
-                class="list-group-item"
-                *ngFor="let s of solicitudes"
+        <!-- Solicitudes -->
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center py-2">
+              <span>Mis solicitudes de asesorías</span>
+              <button class="btn btn-outline-primary btn-sm" (click)="ordenarSolicitudesPorDuracion()">
+                Filtrar por duración
+              </button>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li 
+                *ngFor="let s of solicitudes; else noSol" 
+                class="list-group-item d-flex justify-content-between align-items-center"
               >
-                {{ s.tematica }} ({{ s.duracion }} min)  {{ s.tipo }}
+                <div>
+                  {{ s.tematica }} • {{ formatearDuracion(+s.duracion) }} • {{ s.tipo }}
+                </div>
+                <button class="btn btn-dark btn-sm" [routerLink]="['/asesoria/actualizar', s.id, profesor.id]">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </button>
               </li>
             </ul>
             <ng-template #noSol>
-              <div class="card-body text-muted"><em>No tienes solicitudes</em></div>
-            </ng-template>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-12">
-          <div class="card h-100">
-            <div class="card-header">Mis asesorías</div>
-            <ul
-              class="list-group list-group-flush"
-              *ngIf="anuncios?.length; else noAnun"
-            >
-              <li
-                class="list-group-item"
-                *ngFor="let a of anuncios | slice:0:5"
-              >
-                <strong>{{ a.tema }}</strong> {{ a.area }}
-              </li>
-            </ul>
-            <div class="card-body d-flex align-items-end justify-content-center pt-0">
-                <button
-                    routerLink="/asesorias/list"
-                    class="btn btn-outline-dark mt-auto"
-                >
-                    Mostrar todas las {{ anuncios.length }} asesorías
-                    <i class="bi bi-arrow-right ms-2"></i>
-                </button>
-            </div>
-            <ng-template #noAnun>
-              <div class="card-body text-muted">
-                <i class="bi bi-info-circle me-2"></i>No has publicado anuncios
+              <div class="card-body text-center text-muted py-4">
+                <em>No tienes solicitudes</em>
               </div>
             </ng-template>
           </div>
         </div>
-       <div class="col-12 mt-4" *ngIf="mostrarFormularioEdicion">
-  <app-asesoria-update [asesoriaId]="asesoriaSeleccionadaId"></app-asesoria-update>
+        
+        <!-- Asesorías -->
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header py-2">Mis asesorías</div>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let a of anuncios | slice:0:5" class="list-group-item">
+                <strong>{{ a.tema }}</strong> — {{ a.area }}
+              </li>
+            </ul>
+            <div class="card-body d-flex justify-content-center py-3">
+              <button routerLink="/asesorias/list" class="btn btn-outline-dark">
+                Mostrar todas las {{ anuncios.length }} asesorías 
+                <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </div>
+            <ng-template #noAnun>
+              <div class="card-body text-center text-muted py-4">
+                <i class="bi bi-info-circle me-1"></i>No has publicado anuncios
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Formulario de edición -->
+      <div class="mt-4" *ngIf="mostrarFormularioEdicion">
+        <app-asesoria-update [asesoriaId]="asesoriaSeleccionadaId"></app-asesoria-update>
+      </div>
+    </div>
+    
+  </div>
 </div>
-       
-      </div> </div> </div> </div> ```
