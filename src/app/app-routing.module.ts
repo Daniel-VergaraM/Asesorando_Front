@@ -11,6 +11,8 @@ import { AsesoriaUpdateComponent } from './asesoria/asesoria-update/asesoria-upd
 import { ReservaCreateComponent } from './reserva/reserva-create/reserva-create.component';
 import { UsuarioDeleteComponent } from './usuario/usuario-delete/usuario-delete/usuario-delete.component';
 import { AsesoriaListComponent } from './asesoria/asesoria-list/asesoria-list.component';
+import { ComentarioCreateComponent } from './comentario/comentario-create/comentario-create.component';
+
 
 const routes: Routes = [
   // página pública
@@ -22,10 +24,12 @@ const routes: Routes = [
   // perfil de estudiante
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
-  { path:  'filtrar-asesorias/reserva-create', component: ReservaCreateComponent},
+  { path:  'estudiante/home/:id/filtrar-asesorias/reserva-create/:idAsesoria', component: ReservaCreateComponent},
   { path: 'asesorias/list/:id', component: AsesoriaListComponent }
 ,
-
+  { path: 'estudiante/home/:id/comentario-create/:idReserva', component: ComentarioCreateComponent },
+  
+  
   // perfil de profesor
   { path: 'profesor/home/:id',    component: HomeProfesorComponent },
 

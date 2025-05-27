@@ -1,28 +1,76 @@
+<header class="bg-success text-white py-3 shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h3 m-0 fw-bold">Asesorando</h1>
+    <!-- Si en el futuro quieres botones de navegación o perfil, puedes colocarlos aquí -->
+    <!-- <a href="/home" class="btn btn-outline-light">Inicio</a> -->
+  </div>
+</header>
+
 <div class="container mt-4">
   <div class="row g-4">
     <!-- Perfil -->
     <div class="col-lg-4 col-md-5">
       <div class="card text-center h-100 perfil-card">
         <div class="card-body">
+          <h2 class="text-verde-oscuro">Bienvenido, {{ usuarioNombre }}!</h2>
           <h5 class="card-title">{{ estudiante.nombre }}</h5>
           <p class="card-text">{{ estudiante.correo }}</p>
-          <div class="d-flex flex-column gap-2">
-            <button
-              *ngIf="estudiante"
-              class="btn btn-actualizar"
-              [routerLink]="['/actualizar', estudiante.id]"
-            >
-              Actualizar mi usuario
-            </button>
-            <div *ngIf="estudiante">
-            <button class="btn btn-explorar" [routerLink]="['/estudiante/home', estudiante.id, 'filtrar-asesorias']">
-              Explorar Asesorías
-            </button>
+
+
+           <div *ngIf="reservasPendientes.length > 0" class="mt-4">
+            <h5 class="text-success text-center mb-3">📌 Reservas Pendientes</h5>
+            
+            <div *ngFor="let reserva of reservasPendientes" class="card mb-3 shadow-sm border-success">
+              <div class="card-body">
+                <h6 class="card-title text-primary">
+                  📅 Fecha: {{ reserva.fechaReserva | date:'fullDate' }} 
+                  <span class="text-muted">({{ reserva.fechaReserva | date:'shortTime' }})</span>
+                </h6>
+                <p class="card-text mb-1">
+                  <strong>Estado:</strong> 
+                  <span [ngClass]="{
+                      'text-danger': reserva.estado === 'cancelada',
+                      'text-warning': reserva.estado === 'noCompletada',
+                      'text-success': reserva.estado === 'completada'
+                    }">
+                    {{ reserva.estado }}
+                  </span>
+                </p>
+                <p class="card-text">
+                  <strong>Cancelada:</strong> 
+                  <span class="fw-semibold">
+                    {{ reserva.cancelada ? 'Sí ❌' : 'No ✅' }}
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
+
+          <div *ngIf="reservasPendientes.length === 0" class="mt-4 text-center text-muted">
+            <i class="bi bi-calendar-x fs-4 d-block mb-2"></i>
+            <p class="fw-semibold">No tienes reservas pendientes.</p>
           </div>
+
+          <!-- Botones: todos del mismo tamaño -->
+        <div *ngIf="estudiante" class="d-grid gap-2 mt-4">
+          <button class="btn btn-primary w-100" [routerLink]="['/actualizar', estudiante.id]">
+            Actualizar mi usuario
+          </button>
+
+          <button class="btn btn-success w-100" [routerLink]="['/estudiante/home', estudiante.id, 'filtrar-asesorias']">
+            Explorar Asesorías
+          </button>
+
+          <!-- BOTÓN -->
+          <button class="btn btn-secondary w-100 mb-3" (click)="mostrarProfesores = true">
+            <i class="fa fa-search me-2"></i> Buscar nuevos profesores
+          </button>
+
         </div>
       </div>
     </div>
+  </div>
+          
 
     <!-- Calendario -->
     <div class="col-lg-8 col-md-7">
@@ -46,34 +94,41 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
+        <p><strong>Id:</strong> {{ selectedEvent?.meta?.reserva?.id }}</p>
         <p><strong>Fecha:</strong> {{ selectedEvent?.start | date:'fullDate' }}</p>
         <p><strong>Hora:</strong> {{ selectedEvent?.start | date:'shortTime' }}</p>
         <p><strong>Estado:</strong> {{ selectedEvent?.meta?.reserva?.estado }}</p>
-        <p><strong>Comentario:</strong> 
-          {{ selectedEvent?.meta?.reserva?.comentario?.texto ? selectedEvent?.meta?.reserva?.comentario?.texto : 'Sin comentarios' }}
-        </p>
+        <p><strong>Cancelada:</strong> {{ selectedEvent?.meta?.reserva?.cancelada}}</p>
+        <div class="d-grid gap-2">
+          <button
+            class="btn btn-success"
+            *ngIf="selectedEvent?.meta?.reserva?.estado === 'noCompletada' && !selectedEvent?.meta?.reserva?.cancelada"
+            (click)="cambiarEstadoACompletada()">
+            Marcar como completada
+          </button>
+
+          <button
+            class="btn btn-danger"
+            *ngIf="selectedEvent?.meta?.reserva?.cancelada === false && selectedEvent?.meta?.reserva?.estado === 'noCompletada' "
+            (click)="cambiarACancelada()">
+            Cancelar Reserva
+          </button>
+        </div>
+        <div *ngIf="mostrarFormularioComentario && estudianteId && selectedEvent?.meta?.reserva?.id && selectedEvent?.meta?.reserva?.estado === 'Completada'">
+        <button class="btn btn-success" (click)="abrirFormularioComentario(estudianteId, selectedEvent?.meta?.reserva?.id)">
+          Agregar Comentario
+        </button>
+      </div>
       </div>
     </ng-template>
 
-    <div class="modal-footer"></div>
-    <button
-      class="btn btn-success"
-      *ngIf="selectedEvent?.meta?.reserva?.estado === 'pendiente'"
-      (click)="cambiarEstadoACompletada()">
-      Marcar como completada
-    </button>
-    <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
-    </div>
+<!-- COMPONENTE CONDICIONAL -->
+          <app-profesor-list *ngIf="mostrarProfesores"></app-profesor-list>
+<router-outlet></router-outlet>
 
-    <div *ngIf="mostrarFormularioComentario">
-      <app-comentario-create></app-comentario-create>
-    </div>
-
-  <!-- Bienvenida y botón -->
-  <div class="text-center mt-5">
-    <h2 class="text-verde-oscuro">Bienvenido, {{ usuarioNombre }}!</h2>
-    <button class="btn btn-buscar mt-3" routerLink="/profesores">
-      <i class="fa fa-search me-2"></i> Buscar nuevos profesores
-    </button>
+<footer class="bg-dark text-white py-4 mt-5 w-100">
+  <div class="text-center">
+    <p class="mb-1 fw-bold">Sistema de Asesorías</p>
+    <p class="mb-0">Plataforma de gestión académica</p>
   </div>
-</div>
+</footer>
