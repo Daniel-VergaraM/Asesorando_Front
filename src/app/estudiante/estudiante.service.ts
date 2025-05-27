@@ -10,7 +10,7 @@ import { EstudianteDetail } from './estudianteDetail';
   providedIn: 'root',
 })
 export class EstudianteService {
-  private url = environment.apiUrl + '/estudiantes';
+  private url = environment.apiUrl + '/usuarios';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export class EstudianteService {
   constructor(private http: HttpClient) {}
 
   getEstudiantes(): Observable<Estudiante[]> {
-    return this.http.get<Estudiante[]>(this.url);
+    return this.http.get<Estudiante[]>(`${this.url}/tipo/ESTUDIANTE`);
   }
 
   getEstudiante(id: number): Observable<Estudiante> {
@@ -32,7 +32,7 @@ export class EstudianteService {
   }
 
   createEstudiante(estudiante: Estudiante): Observable<Estudiante> {
-    return this.http.post<Estudiante>(this.url, estudiante, this.httpOptions);
+    return this.http.post<Estudiante>(`${this.url}`, estudiante, this.httpOptions);
   }
 
   updateEstudiante(estudiante: Estudiante): Observable<Estudiante> {
