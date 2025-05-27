@@ -1,6 +1,3 @@
-// cypress/component/usuario-delete.cy.ts
-
-/// <reference types="cypress" />
 
 import { mount }               from 'cypress/angular';
 import { ReactiveFormsModule } from '@angular/forms';

@@ -1,4 +1,3 @@
-// src/app/usuario/usuario-delete/usuario-delete.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators }   from '@angular/forms';
 import { ActivatedRoute, Router }               from '@angular/router';
@@ -16,10 +15,10 @@ export class UsuarioDeleteComponent implements OnInit {
   errorMessage = '';
 
   constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private usuarioSvc: UsuarioService
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly usuarioSvc: UsuarioService
   ) {}
 
   ngOnInit(): void {

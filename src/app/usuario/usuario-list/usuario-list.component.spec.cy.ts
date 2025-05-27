@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { faker } from '@faker-js/faker';
 
@@ -15,8 +15,9 @@ describe('UsuarioListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterModule.forRoot([])],
-      declarations: [UsuarioListComponent]
+      imports: [RouterModule.forRoot([])],
+      declarations: [UsuarioListComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi())]
     }).compileComponents();
   });
 

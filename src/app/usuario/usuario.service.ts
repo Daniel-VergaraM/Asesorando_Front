@@ -11,9 +11,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = `${environment.apiUrl}/usuarios`;
+  private readonly apiUrl = `${environment.apiUrl}/usuarios`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl);
