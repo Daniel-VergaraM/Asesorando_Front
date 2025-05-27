@@ -97,8 +97,24 @@
       placeholder="Longitud"
     />
 
-    <button class="form-button" type="submit" [disabled]="usuarioForm.invalid">
+    <!-- Botón Guardar -->
+    <button
+      class="form-button"
+      type="submit"
+      [disabled]="usuarioForm.invalid"
+      data-cy="btn-save"
+    >
       Guardar
+    </button>
+
+    <!-- Botón Cancelar -->
+    <button
+      class="form-button btn-cancel"
+      type="button"
+      (click)="onCancel()"
+      data-cy="btn-cancel"
+    >
+      Cancelar
     </button>
   </form>
 
@@ -138,7 +154,7 @@
       width="160"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- (aquí va todo tu <defs> y filtros tal como en tu original) -->
+      <!-- aquí va todo tu <defs> y filtros tal como en tu original -->
       <g filter="url(#filter0_di_1_38)">
         <path
           fill="#2B2B2B"
@@ -147,7 +163,6 @@
           fill-rule="evenodd"
         ></path>
       </g>
-      <!-- resto de tu SVG... -->
     </svg>
   </div>
 </div>
