@@ -1,102 +1,47 @@
 <div id="Container">
   <form class="form" [formGroup]="usuarioForm" (ngSubmit)="onSubmitUpdate()">
+    <div id="login-lable">Actualizar Mi Perfil</div>
+    <p>todos los campos son obligatorios</p>
 
-    <div id="login-lable">Actualizar Usuario</div>
-
+    <!-- Nombre -->
+    <label for="nombre">Nombre:</label>
     <input
       class="form-content"
       type="text"
+      id="nombre"
       formControlName="nombre"
       placeholder="Nombre"
     />
 
+    <!-- Correo electrónico -->
+    <label for="correo">Correo electrónico:</label>
     <input
       class="form-content"
       type="email"
+      id="correo"
       formControlName="correo"
       placeholder="Correo electrónico"
     />
 
+    <!-- Contraseña -->
+    <label for="contrasena">Contraseña:</label>
     <input
       class="form-content"
       type="password"
+      id="contrasena"
       formControlName="contrasena"
       placeholder="Contraseña"
     />
 
+    <!-- Teléfono -->
+    <label for="telefono">Teléfono:</label>
     <input
       class="form-content"
       type="text"
+      id="telefono"
       formControlName="telefono"
       placeholder="Teléfono"
     />
-
-    <input
-      class="form-content"
-      type="url"
-      formControlName="fotoUrl"
-      placeholder="URL de la foto"
-    />
-
-    <input
-      class="form-content"
-      type="url"
-      formControlName="videoUrl"
-      placeholder="URL del video"
-    />
-
-    <input
-      class="form-content"
-      type="text"
-      formControlName="formacion"
-      placeholder="Formación académica"
-    />
-
-    <input
-      class="form-content"
-      type="text"
-      formControlName="experiencia"
-      placeholder="Experiencia"
-    />
-
-    <input
-      class="form-content"
-      type="url"
-      formControlName="enlaceReunion"
-      placeholder="Enlace de reunión"
-    />
-
-    <input
-      class="form-content"
-      type="number"
-      formControlName="precioHora"
-      placeholder="Precio por hora"
-      min="0"
-    />
-
-    <input
-      class="form-content"
-      type="number"
-      formControlName="codigoPostal"
-      placeholder="Código postal"
-    />
-
-    <input
-      class="form-content"
-      type="number"
-      step="any"
-      formControlName="latitud"
-      placeholder="Latitud"
-    />
-
-    <input
-      class="form-content"
-      type="number"
-      step="any"
-      formControlName="longitud"
-      placeholder="Longitud"
-    />
-
     <!-- Botón Guardar -->
     <button
       class="form-button"
@@ -118,6 +63,7 @@
     </button>
   </form>
 
+  <!-- SVG decorativos -->
   <div id="rays">
     <svg
       fill="none"
@@ -154,7 +100,6 @@
       width="160"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- aquí va todo tu <defs> y filtros tal como en tu original -->
       <g filter="url(#filter0_di_1_38)">
         <path
           fill="#2B2B2B"
