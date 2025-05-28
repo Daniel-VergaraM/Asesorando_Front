@@ -1,4 +1,3 @@
-<!-- profesor-update.component.html -->
 <form
   class="form"
   [formGroup]="profesorForm"
@@ -12,6 +11,9 @@
     formControlName="nombre"
     placeholder="Nombre completo"
   />
+  <div class="error-message" *ngIf="profesorForm.get('nombre')?.touched && profesorForm.get('nombre')?.invalid">
+    <small *ngIf="profesorForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
+  </div>
 
   <label class="lb" for="correo">E-mail :</label>
   <input
@@ -21,6 +23,10 @@
     formControlName="correo"
     placeholder="ejemplo@correo.com"
   />
+  <div class="error-message" *ngIf="profesorForm.get('correo')?.touched && profesorForm.get('correo')?.invalid">
+    <small *ngIf="profesorForm.get('correo')?.errors?.['required']">El correo es obligatorio.</small>
+    <small *ngIf="profesorForm.get('correo')?.errors?.['email']">El correo no tiene un formato válido.</small>
+  </div>
 
   <label class="lb" for="contrasena">Contraseña :</label>
   <input
@@ -30,6 +36,10 @@
     formControlName="contrasena"
     placeholder="Mínimo 8 caracteres"
   />
+  <div class="error-message" *ngIf="profesorForm.get('contrasena')?.touched && profesorForm.get('contrasena')?.invalid">
+    <small *ngIf="profesorForm.get('contrasena')?.errors?.['required']">La contraseña es obligatoria.</small>
+    <small *ngIf="profesorForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener mínimo 8 caracteres.</small>
+  </div>
 
   <label class="lb" for="telefono">Teléfono :</label>
   <input
@@ -39,6 +49,10 @@
     formControlName="telefono"
     placeholder="Sólo dígitos"
   />
+  <div class="error-message" *ngIf="profesorForm.get('telefono')?.touched && profesorForm.get('telefono')?.invalid">
+    <small *ngIf="profesorForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</small>
+    <small *ngIf="profesorForm.get('telefono')?.errors?.['pattern']">El teléfono debe contener sólo números.</small>
+  </div>
 
   <label class="lb" for="fotoUrl">URL Foto :</label>
   <input
@@ -50,6 +64,9 @@
     (input)="updateImagePreview()"
   />
   <img *ngIf="fotoPreviewUrl" [src]="fotoPreviewUrl" alt="Preview foto" class="preview-img" />
+  <div class="error-message" *ngIf="profesorForm.get('fotoUrl')?.touched && profesorForm.get('fotoUrl')?.invalid">
+    <small *ngIf="profesorForm.get('fotoUrl')?.errors?.['pattern']">URL inválida.</small>
+  </div>
 
   <label class="lb" for="videoUrl">URL Video :</label>
   <input
@@ -59,6 +76,9 @@
     formControlName="videoUrl"
     placeholder="http(s)://..."
   />
+  <div class="error-message" *ngIf="profesorForm.get('videoUrl')?.touched && profesorForm.get('videoUrl')?.invalid">
+    <small *ngIf="profesorForm.get('videoUrl')?.errors?.['pattern']">URL inválida.</small>
+  </div>
 
   <label class="lb" for="formacion">Formación :</label>
   <input
@@ -68,6 +88,9 @@
     formControlName="formacion"
     placeholder="Universidad / Título"
   />
+  <div class="error-message" *ngIf="profesorForm.get('formacion')?.touched && profesorForm.get('formacion')?.invalid">
+    <small *ngIf="profesorForm.get('formacion')?.errors?.['required']">La formación es obligatoria.</small>
+  </div>
 
   <label class="lb" for="experiencia">Experiencia :</label>
   <input
@@ -77,6 +100,9 @@
     formControlName="experiencia"
     placeholder="Años / Área"
   />
+  <div class="error-message" *ngIf="profesorForm.get('experiencia')?.touched && profesorForm.get('experiencia')?.invalid">
+    <small *ngIf="profesorForm.get('experiencia')?.errors?.['required']">La experiencia es obligatoria.</small>
+  </div>
 
   <button
     type="button"
@@ -94,6 +120,9 @@
     placeholder="Descripción breve"
     rows="3"
   ></textarea>
+  <div class="error-message" *ngIf="profesorForm.get('descripcion')?.touched && profesorForm.get('descripcion')?.invalid">
+    <small *ngIf="profesorForm.get('descripcion')?.errors?.['required']">La descripción es obligatoria.</small>
+  </div>
 
   <label class="lb" for="enlaceReunion">Enlace Reunión :</label>
   <input
@@ -103,6 +132,9 @@
     formControlName="enlaceReunion"
     placeholder="http(s)://..."
   />
+  <div class="error-message" *ngIf="profesorForm.get('enlaceReunion')?.touched && profesorForm.get('enlaceReunion')?.invalid">
+    <small *ngIf="profesorForm.get('enlaceReunion')?.errors?.['pattern']">URL inválida.</small>
+  </div>
 
   <label class="lb" for="precioHora">Precio por Hora :</label>
   <input
@@ -113,6 +145,9 @@
     placeholder="₱ o número"
     min="0"
   />
+  <div class="error-message" *ngIf="profesorForm.get('precioHora')?.touched && profesorForm.get('precioHora')?.invalid">
+    <small *ngIf="profesorForm.get('precioHora')?.errors?.['min']">El precio no puede ser negativo.</small>
+  </div>
 
   <label class="lb" for="codigoPostal">Código Postal :</label>
   <input
@@ -122,6 +157,9 @@
     formControlName="codigoPostal"
     placeholder="5–6 dígitos"
   />
+  <div class="error-message" *ngIf="profesorForm.get('codigoPostal')?.touched && profesorForm.get('codigoPostal')?.invalid">
+    <small *ngIf="profesorForm.get('codigoPostal')?.errors?.['required']">El código postal es obligatorio.</small>
+  </div>
 
   <label class="lb" for="latitud">Latitud :</label>
   <input
@@ -132,6 +170,10 @@
     placeholder="–90 a 90"
     step="any"
   />
+  <div class="error-message" *ngIf="profesorForm.get('latitud')?.touched && profesorForm.get('latitud')?.invalid">
+    <small *ngIf="profesorForm.get('latitud')?.errors?.['required']">La latitud es obligatoria.</small>
+    <small *ngIf="profesorForm.get('latitud')?.errors?.['min'] || profesorForm.get('latitud')?.errors?.['max']">La latitud debe estar entre -90 y 90.</small>
+  </div>
 
   <label class="lb" for="longitud">Longitud :</label>
   <input
@@ -142,6 +184,10 @@
     placeholder="–180 a 180"
     step="any"
   />
+  <div class="error-message" *ngIf="profesorForm.get('longitud')?.touched && profesorForm.get('longitud')?.invalid">
+    <small *ngIf="profesorForm.get('longitud')?.errors?.['required']">La longitud es obligatoria.</small>
+    <small *ngIf="profesorForm.get('longitud')?.errors?.['min'] || profesorForm.get('longitud')?.errors?.['max']">La longitud debe estar entre -180 y 180.</small>
+  </div>
 
   <div class="button-group">
     <button
