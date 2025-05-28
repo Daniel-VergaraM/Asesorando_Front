@@ -49,7 +49,6 @@
     placeholder="http(s)://..."
     (input)="updateImagePreview()"
   />
-  <!-- preview de la foto -->
   <img *ngIf="fotoPreviewUrl" [src]="fotoPreviewUrl" alt="Preview foto" class="preview-img" />
 
   <label class="lb" for="videoUrl">URL Video :</label>
@@ -79,7 +78,6 @@
     placeholder="Años / Área"
   />
 
-  <!-- Botón para auto-generar descripción -->
   <button
     type="button"
     class="form-button generate"
@@ -144,11 +142,13 @@
     placeholder="–180 a 180"
     step="any"
   />
+
   <div class="button-group">
     <button
       id="send"
       type="submit"
       class="form-button save"
+      [disabled]="profesorForm.invalid"
     >
       ACTUALIZAR
     </button>
@@ -157,9 +157,9 @@
       type="button"
       class="form-button clear"
       (click)="onCancel()"
+      data-cy="btn-cancel"
     >
       CANCELAR
     </button>
   </div>
-
 </form>
