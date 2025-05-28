@@ -1,16 +1,18 @@
+import { Tematica } from "../tematica/tematica";
+
 export class Asesoria {
-  id: number;
-  duracion: string;
-  tematica: string;
-  tipo: string;
-  area: string;
-  completada: boolean;
-  profesorId: number;     // renombrado
+  public id: number;
+  public duracion: string;
+  public tipo: string;
+  public area: string;
+  public completada: boolean;
+  public profesorId: number;     // renombrado
+  public tematica: Tematica;
 
   constructor(
     id: number,
     duracion: string,
-    tematica: string,
+    tematica: Tematica,
     tipo: string,
     area: string,
     completada: boolean,
@@ -18,7 +20,7 @@ export class Asesoria {
   ) {
     this.id          = id;
     this.duracion    = duracion;
-    this.tematica    = tematica;
+    this.tematica   = tematica;
     this.tipo        = tipo;
     this.area        = area;
     this.completada  = completada;
