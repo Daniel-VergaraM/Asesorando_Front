@@ -1,5 +1,3 @@
-import { Tematica } from "../tematica/tematica";
-
 export class Asesoria {
   public id: number;
   public duracion: string;
@@ -7,12 +5,12 @@ export class Asesoria {
   public area: string;
   public completada: boolean;
   public profesorId: number;     // renombrado
-  public tematica: Tematica;
+  public tematica: string;
 
   constructor(
     id: number,
     duracion: string,
-    tematica: Tematica,
+    tematica: string,
     tipo: string,
     area: string,
     completada: boolean,

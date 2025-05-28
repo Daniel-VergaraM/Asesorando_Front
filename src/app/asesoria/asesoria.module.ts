@@ -25,13 +25,6 @@ import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.compo
     AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
   ],
-  exports: [
-    AsesoriaListComponent,
-    AsesoriaDetailComponent,
-    AsesoriaCreateComponent,
-    AsesoriaUpdateComponent,
-    AsesoriaExplorarAreaComponent
-  ]
   
 })
 export class AsesoriaModule {}
