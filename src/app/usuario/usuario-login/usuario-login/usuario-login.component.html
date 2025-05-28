@@ -20,64 +20,32 @@
       <div class="card">
         <div class="card2">
           <!-- Formulario Angular con ngForm y onSubmit -->
-          <form
-            #loginForm="ngForm"
-            (ngSubmit)="onSubmit()"
-            class="form"
-            autocomplete="off"
-          >
-            <p id="heading">Iniciar Sesión</p>
-
-            <!-- Campo Correo -->
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form" autocomplete="off">
+            <h2 style="color: white; text-align: center;">INICIAR SESIÓN</h2>    <!-- Campo Correo -->
             <div class="field">
-              <svg
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                height="16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                class="input-icon"
-              >
-                <path
-                  d="M0 4a2 2 0 012-2h12a2 2 0 012 2v1l-8 4.5L0 5V4zM0 7.236l8 4.5 8-4.5V12a2 2 0 01-2 2H2a2 2 0 01-2-2V7.236z"
-                />
-              </svg>
               <input
-                id="correo"
-                name="correo"
+                formControlName="correo"
                 type="email"
-                class="input-field"
                 placeholder="Correo"
-                required
-                [(ngModel)]="model.correo"
-                data-cy="login-email"
+                class="input-field"
               />
+              <div *ngIf="correo.touched && correo.invalid" class="text-danger small">
+                <div *ngIf="correo.errors?.['required']">El correo es requerido.</div>
+                <div *ngIf="correo.errors?.['email']">El correo no es válido.</div>
+              </div>
             </div>
 
             <!-- Campo Contraseña -->
             <div class="field">
-              <svg
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                height="16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                class="input-icon"
-              >
-                <path
-                  d="M8 1a2 2 0 00-2 2v4H4a2 2 0 00-2 2v5a2 2 0 002 2h8a2 2 0 002-2V9a2 2 0 00-2-2h-2V3a2 2 0 00-2-2z"
-                />
-              </svg>
               <input
-                id="contrasena"
-                name="contrasena"
+                formControlName="contrasena"
                 type="password"
-                class="input-field"
                 placeholder="Contraseña"
-                required
-                [(ngModel)]="model.contrasena"
-                data-cy="login-password"
+                class="input-field"
               />
+              <div *ngIf="contrasena.touched && contrasena.invalid" class="text-danger small">
+                <div *ngIf="contrasena.errors?.['required']">La contraseña es requerida.</div>
+              </div>
             </div>
 
             <!-- Botón Login -->

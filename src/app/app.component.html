@@ -38,23 +38,19 @@
 </div>
 
 
-<main class="  justify-content-center align-items-start py-5 px-0" style="padding-bottom: 1000px;">
-  <router-outlet class="d-block w-100 pt-5"></router-outlet>
+<body class="d-flex flex-column min-vh-100">
+  <main class="flex-grow-1 py-0 mb-5">
+    <router-outlet class="d-block w-100 pt-5"></router-outlet>
 </main>
 
-
-
- <div class="row g-0 mt-auto">
-
-    <footer class="fixed-bottom page-footer font-small blue pt-4"
-          style="background-color: #0d0d0d;">
-      <div class="container-fluid text-center px-0">
-        <div class="row g-0">
-          <div class="col-md-12 mt-3">
-            <h6 class="text-uppercase text-light">Sistema de Asesorías</h6>
-            <p class="text-light">Plataforma de gestión académica</p>
-          </div>
+  <footer class="page-footer font-small blue py-5 bg-dark mt-auto">
+    <div class="container-fluid text-center px-0">
+      <div class="row g-0">
+        <div class="col-md-12 mt-3">
+          <h6 class="text-uppercase text-light">Sistema de Asesorías</h6>
+          <p class="text-light">Plataforma de gestión académica</p>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
+</body>

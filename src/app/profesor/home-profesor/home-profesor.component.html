@@ -1,130 +1,125 @@
-<div class="container-fluid py-4">
-  <div class="row g-4">
-    <!-- Columna Perfil -->
-    <div class="col-lg-3 col-md-4 mb-4">
-      <div class="card text-center h-100 shadow-sm">
-        <div class="card-body d-flex flex-column align-items-center">
-          <!-- Avatar -->
-          <img
-            [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
-            class="profile-img mb-3"
-            alt="Foto profesor"
-          />
-          <!-- Datos -->
-          <h5 class="card-title">{{ profesor.nombre }}</h5>
-          <p class="card-text text-muted">{{ profesor.correo }}</p>
-          <p class="card-text text-muted">{{ profesor.telefono }}</p>
-          <!-- Botones con diseño blob -->
-          <div class="mt-auto w-100 d-flex gap-2">
-            <!-- Actualizar mi usuario -->
-            <button
-              class="button flex-fill"
-              [routerLink]="['/profesor/actualizar', profesor.id]"
-            >
-              <div class="blob1"></div>
-              <div class="inner">Actualizar</div>
-            </button>
-
-            <!-- Borrar mi cuenta -->
-            <button
-              class="button flex-fill"
-              [routerLink]="['/usuarios','borrar', profesor.id]"
-              data-cy="btn-delete-user"
-            >
-              <div class="blob1"></div>
-              <div class="inner">Borrar</div>
-            </button>
-
-          </div>
-        </div>
+<div class="home-container">
+  <!-- Sidebar Perfil -->
+  <aside class="sidebar">
+    <div class="profile-card p-4">
+      <div class="avatar-wrapper mb-3">
+        <img
+          [src]="profesor.fotoUrl || 'assets/images/default-profile.jpg'"
+          alt="Avatar"
+          class="avatar-img"
+        />
       </div>
-    </div>
-    
-    <!-- Contenido principal -->
-    <div class="col-lg-9 col-md-8">
-      <div class="row g-4">
-       <!-- Solicitudes -->
-<div class="col-lg-6">
-  <div class="card h-100 shadow-sm">
-    <div class="card-header d-flex justify-content-between align-items-center py-2">
-      <span>Mis solicitudes de asesorías</span>
-      <button class="btn btn-outline-primary btn-sm" (click)="ordenarSolicitudesPorDuracion()">
-        Filtrar por duración
-      </button>
-    </div>
-
-    <!-- Conteo de asesorías -->
-    <div class="card-body pb-0">
-      <strong>Total de asesorías:</strong> {{ asesorias.length }}
-    </div>
-
-    <ul class="list-group list-group-flush">
-      <li 
-        *ngFor="let s of asesorias; else noSol" 
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
-        <div>
-          {{ s.tematica }} • {{ formatearDuracion(+s.duracion) }} • {{ s.tipo }}
-        </div>
-        <button class="btn btn-dark btn-sm" [routerLink]="['/asesoria/actualizar', s.id, profesor.id]">
-          <i class="bi bi-pencil-square"></i> Editar
+      <h4 class="profile-name">{{ profesor.nombre }}</h4>
+      <p class="text-muted small">{{ profesor.correo }}</p>
+      <p class="text-muted small mb-4">📞 {{ profesor.telefono }}</p>
+      <div class="actions d-flex flex-column gap-2">
+        <button
+          class="btn btn-primary btn-block"
+          [routerLink]="['/profesor/actualizar', profesor.id]"
+        >
+          <i class="bi bi-pencil-fill me-2"></i>Editar Perfil
         </button>
-      </li>
-    </ul>
-    
-    <ng-template #noSol>
-      <div class="card-body text-center text-muted py-4">
-        <em>No tienes solicitudes</em>
-      </div>
-    </ng-template>
-  </div>
-</div>
-
-        
-        <!-- Asesorías -->
-              <div class="col-md-4">
-                <div class="card mb-3">
-                  <div class="card-header">Asesorías</div>
-                  <div class="card-body">
-                    <ng-container *ngIf="asesorias.length > 0; else noAsesorias">
-                      <div *ngFor="let asesoria of asesorias | slice:0:2" class="card mb-2">
-
-                        <div class="card-body p-3">
-                          <h5 class="card-title">{{ asesoria.tipo }}</h5>
-                          <p class="mb-1"><strong>Área:</strong> {{ asesoria.area }}</p>
-                          <p class="mb-1"><strong>Temática:</strong> {{ asesoria.tematica }}</p>
-                          <p class="mb-1"><strong>Duración:</strong> {{ asesoria.duracion }}</p>
-                          <span class="badge" [ngClass]="{'bg-success': asesoria.completada, 'bg-warning': !asesoria.completada}">
-                            {{ asesoria.completada ? 'Completada' : 'Pendiente' }}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="card-body d-flex justify-content-center py-3">
-                        <button [routerLink]="['/asesorias/list', profesor.id]" class="btn btn-outline-dark">
-                          Mostrar todas las asesorías 
-                          <i class="bi bi-arrow-right ms-1"></i>
-                        </button>
-                      </div>
-
-
-
-                    </ng-container>
-                    <ng-template #noAsesorias>
-                      <div class="alert alert-info">
-                        Este profesor no tiene asesorías registradas.
-                      </div>
-                    </ng-template>
-                  </div>
-                </div>
-              </div>
-      </div>
-      
-      <!-- Formulario de edición -->
-      <div class="mt-4" *ngIf="mostrarFormularioEdicion">
-        <app-asesoria-update [asesoriaId]="asesoriaSeleccionadaId"></app-asesoria-update>
+        <button
+          class="btn btn-outline-danger btn-block"
+          [routerLink]="['/usuarios', 'borrar', profesor.id]"
+          data-cy="btn-delete-user"
+        >
+          <i class="bi bi-trash-fill me-2"></i>Eliminar Cuenta
+        </button>
       </div>
     </div>
-    
-  </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Solicitudes -->
+    <section class="card-section">
+      <header class="section-header">
+        <h5>Solicitudes de Asesoría</h5>
+        <button
+          class="btn btn-sm btn-outline-light"
+          (click)="ordenarSolicitudesPorDuracion()"
+        >
+          Filtrar por duración
+        </button>
+      </header>
+      <ul class="list-requests">
+        <li *ngFor="let s of asesorias; else: noRequests">
+          <span
+            >{{ s.tematica }} · {{ formatearDuracion(+s.duracion) }} ·
+            {{ s.tipo }}</span
+          >
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            class="btn btn-dark btn-sm"
+            [routerLink]="['/asesorias/actualizar', s.id, profesor.id]"
+          >
+            <i class="bi bi-pencil-square"></i> Editar
+          </button>
+        </li>
+      </ul>
+      <footer class="section-footer">
+        <span>Total de Asesorias: {{ asesorias.length }}</span>
+        <button class="btn btn-sm btn-light">Refrescar</button>
+      </footer>
+      <ng-template #noRequests>
+        <div class="empty-state">Sin solicitudes Existentes</div>
+      </ng-template>
+    </section>
+
+    <!-- Historial -->
+    <section class="card-section">
+      <header class="section-header">
+        <h5>Historial de Asesorías</h5>
+        <button
+          class="btn btn-sm btn-outline-light"
+          [routerLink]="['/asesorias/create', profesor.id]"
+        >
+          Crear Asesoria
+        </button>
+      </header>
+      <ng-container *ngIf="asesorias.length > 0; else noAsesorias">
+        <div class="history-items">
+          <article
+            *ngFor="let a of asesorias | slice : 0 : 2"
+            class="history-item"
+          >
+            <div class="badge-wrapper">
+              <span
+                class="badge"
+                [ngClass]="a.completada ? 'badge-success' : 'badge-warning'"
+              >
+                {{ a.completada ? "Completa" : "Pendiente" }}
+              </span>
+            </div>
+            <div class="history-content">
+              <h6>{{ a.tipo }}</h6>
+              <p class="small mb-1"><strong>Área:</strong> {{ a.area }}</p>
+              <p class="small mb-1">
+                <strong>Temática:</strong> {{ a.tematica }}
+              </p>
+              <p class="small mb-0">
+                <strong>Duración:</strong> {{ a.duracion }} min
+              </p>
+            </div>
+          </article>
+        </div>
+        <footer class="history-footer">
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            [routerLink]="['/asesorias/list', profesor.id]"
+            class="btn btn-outline-dark"
+          >
+            Mostrar todas las asesorías
+            <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </footer>
+      </ng-container>
+      <ng-template #noAsesorias>
+        <div class="alert alert-info">
+          Este profesor no tiene asesorías registradas.
+        </div>
+      </ng-template>
+    </section>
+  </main>
 </div>

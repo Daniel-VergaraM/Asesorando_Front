@@ -25,8 +25,7 @@ const routes: Routes = [
   { path: 'estudiante/home/:id', component: HomeEstudianteComponent },
   { path: 'estudiante/home/:id/filtrar-asesorias', component: AsesoriaExplorarAreaComponent }, 
   { path:  'estudiante/home/:id/filtrar-asesorias/reserva-create/:idAsesoria', component: ReservaCreateComponent},
-  { path: 'asesorias/list/:id', component: AsesoriaListComponent }
-,
+  { path: 'asesorias/list/:id', component: AsesoriaListComponent },
   { path: 'estudiante/home/:id/comentario-create/:idReserva', component: ComentarioCreateComponent },
   
   
