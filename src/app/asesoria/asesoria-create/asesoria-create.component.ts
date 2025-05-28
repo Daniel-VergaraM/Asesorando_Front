@@ -7,6 +7,7 @@ import { AsesoriaService } from '../asesoria.service';
 
 @Component({
   selector: 'app-asesoria-create',
+  standalone: false,
   templateUrl: './asesoria-create.component.html',
   styleUrls: ['./asesoria-create.component.css']
 })
