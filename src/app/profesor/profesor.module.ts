@@ -12,6 +12,7 @@ import { ProfesorListComponent }    from './profesor-list/profesor-list.componen
 import { ProfesorDetailComponent }  from './profesor-detail/profesor-detail.component';
 import { ProfesorCreateComponent }  from './profesor-create/profesor-create.component';
 import { ProfesorActualizarComponent } from './profesor-update/profesor-update.component';
+
 import { HomeProfesorComponent }    from './home-profesor/home-profesor.component';
 
 @NgModule({

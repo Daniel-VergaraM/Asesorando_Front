@@ -21,14 +21,13 @@ import { AsesoriaUpdateComponent } from './asesoria-update/asesoria-update.compo
   declarations: [
     AsesoriaListComponent,
     AsesoriaDetailComponent,
-    AsesoriaCreateComponent,
     AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
   ],
   exports: [
     AsesoriaListComponent,
     AsesoriaDetailComponent,
-    AsesoriaCreateComponent,
+
     AsesoriaUpdateComponent,
     AsesoriaExplorarAreaComponent
   ]
